@@ -1,0 +1,23 @@
+prog main()
+
+   const string: titol := "Aquest programa demanarà dos nombres i seguidament mostrarà per pantalla tots els que es troben entre ells.\n";
+   const string: pregunta1 := "Introdueix el primer nombre: ";
+   const string: pregunta2 := "Introdueix el darrer nombre: ";
+   const string: separador := ", ";
+
+   print(titol);
+   print(pregunta1);
+   integer: n1;
+   read(n1);
+
+   print(pregunta2);
+   integer: n2;
+   read(n2);
+   
+   while n1 <= n2 loop
+        print(n1);
+        print(separador);
+        n1 := n1 + 1;
+   endloop
+
+end

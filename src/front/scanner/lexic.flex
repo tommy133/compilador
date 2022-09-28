@@ -5,7 +5,7 @@ import java_cup.runtime.*;
 import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import parser.ParserSym;
+import front.parser.ParserSym;
 
 %%
 %cup
