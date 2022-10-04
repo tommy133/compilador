@@ -1,7 +1,7 @@
 package front.parser;
 
-import symbols.*;
-import scanner.LexicalScanner;
+import front.symbols.*;
+import front.scanner.LexicalScanner;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
@@ -23,7 +23,7 @@ parser code {:
 terminal    
 
 colons, assign, scolon, op_and, op_or, add, sub, mult, div, mod,
-lparen, rparen, gte, lt,  If,  print, read, then, endif, Else, For,
+lparen, rparen, gte, lt,  If,  print, read, then, endif, Else,
 While, loop, endloop, prog, end, method, func,
 Const, integer, string, logic, comma, Return,
 val_int, val_id, val_str, lte, noteq, gt, equals, True, False;
@@ -44,7 +44,6 @@ non terminal  SymOUTPUT         OUTPUT;
 non terminal  SymINPUT         INPUT;
 non terminal  SymCONDIF      CONDIF;
 non terminal  SymCONDLABEL   CONDLABEL;
-non terminal  SymFOR   FOR;
 non terminal  SymWHILE      WHILE;
 non terminal  SymCALLMET        CALLMET;
 non terminal  SymCALLFUNC       CALLFUNC;
