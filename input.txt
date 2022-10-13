@@ -13,11 +13,14 @@ prog main()
    print(pregunta2);
    integer: n2;
    read(n2);
-   
-   while n1 <= n2 loop
-        print(n1);
-        print(separador);
-        n1 := n1 + 1;
+
+   repeat
+   print(n1);
+   print(separador);
+   n1 := n1 + 1;
+   until n1 <= n2
    endloop
+
+
 
 end

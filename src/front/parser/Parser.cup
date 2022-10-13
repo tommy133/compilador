@@ -24,7 +24,7 @@ terminal
 
 colons, assign, scolon, op_and, op_or, add, sub, mult, div, mod,
 lparen, rparen, gte, lt,  If,  print, read, then, endif, Else,
-While, loop, endloop, prog, end, method, func,
+While, Repeat, Until, loop, endloop, prog, end, method, func,
 Const, integer, string, logic, comma, Return,
 val_int, val_id, val_str, lte, noteq, gt, equals, True, False;
 
@@ -45,6 +45,7 @@ non terminal  SymINPUT         INPUT;
 non terminal  SymCONDIF      CONDIF;
 non terminal  SymCONDLABEL   CONDLABEL;
 non terminal  SymWHILE      WHILE;
+non terminal  SymREPUNTIL   REPUNTIL;
 non terminal  SymCALLMET        CALLMET;
 non terminal  SymCALLFUNC       CALLFUNC;
 non terminal  SymASSIGN          ASSIGN;
@@ -126,9 +127,10 @@ start with START;
               |     INPUT:b scolon            {: RESULT = new SymSENT(b); :}
               |     CONDIF:c endif            {: RESULT = new SymSENT(c); :}
               |     WHILE:d DICSCOPE endloop    {: RESULT = new SymSENT(d); :}
-              |     CALLMET:e scolon          {: RESULT = new SymSENT(e); :}
-              |     ASSIGN:f scolon             {: RESULT = new SymSENT(f); :}
-              |     DECVAR:g scolon           {: RESULT = new SymSENT(g); :}
+              |     REPUNTIL:e DICSCOPE endloop    {: RESULT = new SymSENT(e); :}
+              |     CALLMET:f scolon          {: RESULT = new SymSENT(f); :}
+              |     ASSIGN:g scolon             {: RESULT = new SymSENT(g); :}
+              |     DECVAR:h scolon           {: RESULT = new SymSENT(h); :}
               ;
 
     OPERANDX       ::= OPERANDX:a OPARITH:b SUBTYPE:c            {:  RESULT = new SymOPERANDX(a, b, c); :}
@@ -173,6 +175,11 @@ start with START;
 /*******BUCLE WHILE********/
 
     WHILE    ::= STARTLOOP While CONDLABEL CONDITION:a loop CONDBRANCH INCSCOPE SENTLIST:b GSTARTLOOP         {: RESULT = new SymWHILE(a, b); :}
+              ;
+
+/*******BUCLE REPEAT UNTIL********/
+
+    REPUNTIL    ::= STARTLOOP Repeat INCSCOPE SENTLIST:a Until CONDLABEL CONDITION:b CONDBRANCH  GSTARTLOOP         {: RESULT = new SymREPUNTIL(b, a); :}
               ;
 
 /**********DECLARACIÓ MÈTODE*************/

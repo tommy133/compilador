@@ -6,6 +6,7 @@ import java_cup.runtime.Symbol;
 import java_cup.runtime.SymbolFactory;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 public class TestParser {
@@ -19,7 +20,7 @@ public class TestParser {
       Parser parser = null;
 
     try {
-
+        clean("Tokens.txt");
 
         System.out.println(">>>>>>>>>>>> Parsing ["+filename+"]");
         scanner = new LexicalScanner(new FileReader(filename));
@@ -36,5 +37,17 @@ public class TestParser {
     }
 
   }
+
+    //Neteja els fitxers de sortida
+    private static void clean(String file) {
+        Writer writer;
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/" + file), StandardCharsets.UTF_8));
+            writer.write("");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

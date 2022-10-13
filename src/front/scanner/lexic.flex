@@ -114,6 +114,8 @@ space         = [' ' | '\t']+
 "if"       { writeToken(this.yytext()); return symbol(ParserSym.If, this.yytext());       }
 "endif"     { writeToken(this.yytext()); return symbol(ParserSym.endif, this.yytext()); }
 "while"    { writeToken(this.yytext()); return symbol(ParserSym.While, this.yytext());   }
+"repeat"    { writeToken(this.yytext()); return symbol(ParserSym.Repeat, this.yytext());   }
+"until"   { writeToken(this.yytext()); return symbol(ParserSym.Until, this.yytext()); }
 "endloop"   { writeToken(this.yytext()); return symbol(ParserSym.endloop, this.yytext()); }
 "then"   { writeToken(this.yytext()); return symbol(ParserSym.then, this.yytext()); }
 "loop"       { writeToken(this.yytext()); return symbol(ParserSym.loop, this.yytext()); }
