@@ -5,18 +5,31 @@ public class SymCONDBRANCH extends SymBase {
 
     //Genera els bots després d'evaluar el condicional en bucles i condicionals
 
-    public SymCONDBRANCH() {
+    public SymCONDBRANCH(boolean inverter) {
         super("CONDBRANCH", 0);
 
-        String trueLabel = tac.getTop(tac.getTrue_stack());
-        tac.generateCode("goto " + trueLabel + "\n");
-        tac.pop(tac.getTrue_stack());
+        if (inverter){
+            String falseLabel = tac.getTop(tac.getFalse_stack());
+            tac.generateCode("goto " + falseLabel + "\n");
 
-        String falseLabel = tac.getTop(tac.getFalse_stack());
-        tac.generateCode("goto " + falseLabel + "\n");
+            String trueLabel = tac.getTop(tac.getTrue_stack());
+            tac.generateCode("goto " + trueLabel + "\n");
+            tac.pop(tac.getTrue_stack());
 
-        tac.generateCode(trueLabel + ":skip\n");
-        tac.setTemp_id(null);
+            tac.generateCode(trueLabel + ":skip\n");
+            tac.setTemp_id(null);
+        } else {
+            String trueLabel = tac.getTop(tac.getTrue_stack());
+            tac.generateCode("goto " + trueLabel + "\n");
+            tac.pop(tac.getTrue_stack());
+
+            String falseLabel = tac.getTop(tac.getFalse_stack());
+            tac.generateCode("goto " + falseLabel + "\n");
+
+            tac.generateCode(trueLabel + ":skip\n");
+            tac.setTemp_id(null);
+        }
+
     }
 
 }

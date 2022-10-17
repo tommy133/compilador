@@ -21,6 +21,7 @@ public class TestParser {
 
     try {
         clean("Tokens.txt");
+        clean("codiIntermitg.txt");
 
         System.out.println(">>>>>>>>>>>> Parsing ["+filename+"]");
         scanner = new LexicalScanner(new FileReader(filename));

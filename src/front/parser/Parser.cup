@@ -78,6 +78,7 @@ non terminal  SymASSIGNCONST     ASSIGNCONST;
 non terminal  SymOPERATION        OPERATION;
 non terminal  SymCONDEXT         CONDEXT;
 non terminal  SymCONDBRANCH            CONDBRANCH;
+non terminal  SymCONDBRANCH            CONDBRANCHINV; //Condbranch with inverter
 non terminal  SymELSE            ELSE;
 non terminal  SymSTARTLOOP            STARTLOOP;
 non terminal  SymGSTARTLOOP            GSTARTLOOP;
@@ -179,7 +180,7 @@ start with START;
 
 /*******BUCLE REPEAT UNTIL********/
 
-    REPUNTIL    ::= STARTLOOP Repeat INCSCOPE SENTLIST:a Until CONDLABEL CONDITION:b CONDBRANCH  GSTARTLOOP         {: RESULT = new SymREPUNTIL(b, a); :}
+    REPUNTIL    ::= STARTLOOP Repeat INCSCOPE SENTLIST:a Until CONDLABEL CONDITION:b CONDBRANCHINV  GSTARTLOOP         {: RESULT = new SymREPUNTIL(b, a); :}
               ;
 
 /**********DECLARACIÓ MÈTODE*************/
@@ -324,8 +325,11 @@ start with START;
     CONDLABEL      ::=                               {: RESULT = new SymCONDLABEL(); :}
             ;
 
-    CONDBRANCH      ::=                               {: RESULT = new SymCONDBRANCH(); :}
+    CONDBRANCH      ::=                               {: RESULT = new SymCONDBRANCH(false); :}
             ;
+
+    CONDBRANCHINV      ::=                               {: RESULT = new SymCONDBRANCH(true); :}
+                ;
 
     ELSE      ::=                               {: RESULT = new SymELSE(); :}
             ;
