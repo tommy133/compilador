@@ -24,7 +24,7 @@ public class SymDECMP extends SymBase {
         this.DECCONSTLIST = c;
         this.SENTLIST = d;
 
-        ts.insertElement(new Symbol("program", MAINPROG, "NULL", ts.getParams()));
+        ts.insertElement(new Symbol("program", MAINPROG, "NULL",null, ts.getParams()));
         ts.emptyParams();
     }
 

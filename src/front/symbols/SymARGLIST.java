@@ -23,14 +23,14 @@ public class SymARGLIST extends SymBase {
     public SymARGLIST(SymARG a) {
         super("ARGLIST", 0);
         this.ARG = a;
-        ts.addParams(new Symbol(ARG.getID().getID(), VARIABLE, ARG.getType().getType(), null));
+        ts.addParams(new Symbol(ARG.getID().getID(), VARIABLE, ARG.getType().getType(), null,null));
     }
 
     public SymARGLIST(SymARG a, SymARGLIST b) {
         super("ARGLIST", 0);
         this.ARG = a;
         this.ARGLIST = b;
-        ts.addParams(new Symbol(ARG.getID().getID(), VARIABLE, ARG.getType().getType(), null));
+        ts.addParams(new Symbol(ARG.getID().getID(), VARIABLE, ARG.getType().getType(), null,null));
     }
 
 }

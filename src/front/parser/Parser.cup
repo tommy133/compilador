@@ -23,7 +23,7 @@ parser code {:
 terminal    
 
 colons, assign, scolon, op_and, op_or, add, sub, mult, div, mod,
-lparen, rparen, gte, lt,  If,  print, read, then, endif, Else,
+lparen, rparen, lbrckt, rbrckt, dotdot, gte, lt,  If,  print, read, then, endif, Else,
 While, Repeat, Until, loop, endloop, prog, end, method, func,
 Const, integer, string, logic, comma, Return,
 val_int, val_id, val_str, lte, noteq, gt, equals, True, False;
@@ -50,6 +50,7 @@ non terminal  SymCALLMET        CALLMET;
 non terminal  SymCALLFUNC       CALLFUNC;
 non terminal  SymASSIGN          ASSIGN;
 non terminal  SymDECVAR        DECVAR;
+non terminal  SymDECARRAY       DECARRAY;
 non terminal  SymOPERANDX         OPERANDX;
 non terminal  SymSUBTYPE           SUBTYPE;
 non terminal  SymVALUE         VALUE;
@@ -73,6 +74,7 @@ non terminal  SymANDOR    ANDOR;
 non terminal  SymRETURNTYPE     RETURNTYPE;
 non terminal  SymSENTLISTSEP      SENTLISTSEP; //Llista de sentències amb separador
 non terminal  SymIDLISTSEP       IDLISTSEP;
+non terminal  SymIDLISTDIM       IDLISTDIM;
 non terminal  SymDECCONSTLIST     DECCONSTLIST;
 non terminal  SymASSIGNCONST     ASSIGNCONST;
 non terminal  SymOPERATION        OPERATION;
@@ -83,6 +85,7 @@ non terminal  SymELSE            ELSE;
 non terminal  SymSTARTLOOP            STARTLOOP;
 non terminal  SymGSTARTLOOP            GSTARTLOOP;
 non terminal  SymSTARTPROC            STARTPROC;
+non terminal  SymSUBRANGE            SUBRANGE;
 non terminal  SymPMB            PMB;
 non terminal  SymINCSCOPE          INCSCOPE;
 non terminal  SymDICSCOPE          DICSCOPE;
@@ -132,6 +135,7 @@ start with START;
               |     CALLMET:f scolon          {: RESULT = new SymSENT(f); :}
               |     ASSIGN:g scolon             {: RESULT = new SymSENT(g); :}
               |     DECVAR:h scolon           {: RESULT = new SymSENT(h); :}
+              |     DECARRAY:i scolon           {: RESULT = new SymSENT(i); :}
               ;
 
     OPERANDX       ::= OPERANDX:a OPARITH:b SUBTYPE:c            {:  RESULT = new SymOPERANDX(a, b, c); :}
@@ -236,6 +240,16 @@ start with START;
               |                                     {:  RESULT = new SymIDLISTSEP(); :}
               ;
 
+/**********DECLARACIÓ TAULA**********************/
+    DECARRAY     ::=    TYPE:a colons ID:b  IDLISTDIM:c          {:   RESULT = new SymDECARRAY(a, b, c, scanner.getLineColumn());   :}
+                ;
+    IDLISTDIM     ::=    IDLISTDIM:a lbrckt SUBRANGE:b rbrckt           {:   RESULT = new SymIDLISTDIM(a, b);     :}
+                |   lbrckt SUBRANGE:a rbrckt                          {:   RESULT = new SymIDLISTDIM(a);     :}
+                ;
+/**********SUBRANG**********************/
+    SUBRANGE     ::=     ID:a dotdot ID:b                          {:   RESULT = new SymSUBRANGE(a, b);     :}
+                    |   NUM:a dotdot NUM:b                {:   RESULT = new SymSUBRANGE(a,b);     :}
+                ;
 /*****************LLISTA ARGUMENTS****************************/
 
     ARGLIST      ::= ARG:a                                {: RESULT = new SymARGLIST(a);:}

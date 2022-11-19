@@ -14,13 +14,12 @@ prog main()
    integer: n2;
    read(n2);
 
-   repeat
-   print(n1);
-   print(separador);
-   n1 := n1 + 1;
-   until n1 <= n2
-   endloop
+    while n1 <= n2 loop
+           print(n1);
+           print(separador);
+           n1 := n1 + 1;
+      endloop
 
-
+    integer: array [0..2];
 
 end

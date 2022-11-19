@@ -99,6 +99,9 @@ space         = [' ' | '\t']+
 ","       { writeToken(this.yytext()); return symbol(ParserSym.comma, this.yytext()); }
 "("       { writeToken(this.yytext()); return symbol(ParserSym.lparen, this.yytext()); }
 ")"       { writeToken(this.yytext()); return symbol(ParserSym.rparen, this.yytext()); }
+"["       { writeToken(this.yytext()); return symbol(ParserSym.lbrckt, this.yytext()); }
+"]"       { writeToken(this.yytext()); return symbol(ParserSym.rbrckt, this.yytext()); }
+".."      { writeToken(this.yytext()); return symbol(ParserSym.dotdot, this.yytext()); }
 
 /*PARAULES RESERVADES*/
 

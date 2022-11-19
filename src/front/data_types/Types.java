@@ -7,5 +7,5 @@ package front.data_types;
 
 
 public enum Types {
-    MAINPROG, VARIABLE, CONSTANT, FUNCTION, METHOD
+    MAINPROG, VARIABLE, CONSTANT, FUNCTION, METHOD, ARRAY
 }
