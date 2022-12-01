@@ -9,6 +9,7 @@ package front.symbols;
 public class SymSUBTYPE extends SymBase {
 
     private SymID ID;
+    private SymIDARRAY IDARRAY;
     private SymSTR STR;
     private SymLOGIC LOGIC;
     private SymNUM NUM;
@@ -22,6 +23,12 @@ public class SymSUBTYPE extends SymBase {
         this.type = a.getType();
         this.name = a.getID();
         tac.getOperands().add(a.getID());
+    }
+
+    public SymSUBTYPE(SymIDARRAY IDARRAY) {
+        super("T", 0);
+        this.IDARRAY = IDARRAY;
+        this.type = IDARRAY.getID().getType();
     }
 
     public SymSUBTYPE(SymNUM a) {
@@ -77,5 +84,11 @@ public class SymSUBTYPE extends SymBase {
         return name;
     }
 
+    public SymIDARRAY getIDARRAY() {
+        return IDARRAY;
+    }
 
+    public boolean isArray() {
+        return this.IDARRAY != null;
+    }
 }

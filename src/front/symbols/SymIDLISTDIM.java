@@ -2,24 +2,26 @@ package front.symbols;
 
 public class SymIDLISTDIM extends SymBase {
     private SymIDLISTDIM IDLISTDIM;
-    private SymSUBRANGE SUBRANGE;
+    private SymOPERANDX OPERANDX;
 
-    public SymIDLISTDIM(SymIDLISTDIM a, SymSUBRANGE b) {
+
+    public SymIDLISTDIM(SymIDLISTDIM a, SymOPERANDX b) {
         super("ID", 0);
-        this.IDLISTDIM =a;
-        this.SUBRANGE =b;
+        this.IDLISTDIM = a;
+        this.OPERANDX = b;
     }
 
-    public SymIDLISTDIM(SymSUBRANGE a) {
-        super("SUBRANGE", 0);
-        this.SUBRANGE = a;
+    public SymIDLISTDIM(SymOPERANDX OPERANDX) {
+        super("OPERANDX", 0);
+        this.OPERANDX = OPERANDX;
     }
 
     public SymIDLISTDIM getIDLISTDIM() {
         return IDLISTDIM;
     }
 
-    public SymSUBRANGE getSUBRANGE() {
-        return SUBRANGE;
+    public SymOPERANDX getOPERANDX() {
+        return OPERANDX;
     }
+
 }

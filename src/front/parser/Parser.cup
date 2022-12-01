@@ -51,10 +51,13 @@ non terminal  SymCALLFUNC       CALLFUNC;
 non terminal  SymASSIGN          ASSIGN;
 non terminal  SymDECVAR        DECVAR;
 non terminal  SymDECARRAY       DECARRAY;
+non terminal  SymDECLISTDIM      DECLISTDIM;
 non terminal  SymOPERANDX         OPERANDX;
 non terminal  SymSUBTYPE           SUBTYPE;
 non terminal  SymVALUE         VALUE;
 non terminal  SymID          ID;
+non terminal  SymIDLISTDIM       IDLISTDIM;
+non terminal  SymIDARRAY      IDARRAY;
 non terminal  SymCONDITION        CONDITION;
 non terminal  SymPRINT          PRINT;
 non terminal  SymVALUELIST       VALUELIST;
@@ -74,7 +77,6 @@ non terminal  SymANDOR    ANDOR;
 non terminal  SymRETURNTYPE     RETURNTYPE;
 non terminal  SymSENTLISTSEP      SENTLISTSEP; //Llista de sentències amb separador
 non terminal  SymIDLISTSEP       IDLISTSEP;
-non terminal  SymIDLISTDIM       IDLISTDIM;
 non terminal  SymDECCONSTLIST     DECCONSTLIST;
 non terminal  SymASSIGNCONST     ASSIGNCONST;
 non terminal  SymOPERATION        OPERATION;
@@ -144,10 +146,11 @@ start with START;
               ;
 
     SUBTYPE         ::= ID:a                  {:  RESULT = new SymSUBTYPE(a); :}
-              | NUM:b                   {:  RESULT = new SymSUBTYPE(b); :}
-              | CALLFUNC:c                {:  RESULT = new SymSUBTYPE(c); :}
-              | LOGIC:d                   {:  RESULT = new SymSUBTYPE(d); :}
-              | STR:e                   {:  RESULT = new SymSUBTYPE(e); :}
+              | IDARRAY:b               {:  RESULT = new SymSUBTYPE(b); :}
+              | NUM:c                   {:  RESULT = new SymSUBTYPE(c); :}
+              | CALLFUNC:d                {:  RESULT = new SymSUBTYPE(d); :}
+              | LOGIC:e                   {:  RESULT = new SymSUBTYPE(e); :}
+              | STR:f                   {:  RESULT = new SymSUBTYPE(f); :}
           ;
 
 /****CONDICIONALS****/
@@ -156,6 +159,7 @@ start with START;
 
     CONDITION ::= OPERANDX:a OPERATION:b OPERANDX:c CONDEXT:d      {: RESULT = new SymCONDITION(a, b, c, d); :}
           | ID:a                        {: RESULT = new SymCONDITION(a); :}
+          | IDARRAY:a                   {: RESULT = new SymCONDITION(a); :}
           ; 
 
     CONDEXT    ::= OPERATION:a CONDITION:b         {: RESULT = new SymCONDEXT(a, b); :}
@@ -215,6 +219,7 @@ start with START;
 /***************ASSIGNACIÓ********************/
 
     ASSIGN        ::= ID:a assign OPERANDX:b               {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
+                  | IDARRAY:a assign OPERANDX:b             {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
               ;
 
     ASSIGNCONST   ::= ID:a assign OPERANDX:b               {: RESULT = new SymASSIGNCONST(a, b); :}
@@ -241,11 +246,19 @@ start with START;
               ;
 
 /**********DECLARACIÓ TAULA**********************/
-    DECARRAY     ::=    TYPE:a colons ID:b  IDLISTDIM:c          {:   RESULT = new SymDECARRAY(a, b, c, scanner.getLineColumn());   :}
+    DECARRAY     ::=    TYPE:a colons ID:b  DECLISTDIM:c          {:   RESULT = new SymDECARRAY(a, b, c, scanner.getLineColumn());   :}
                 ;
-    IDLISTDIM     ::=    IDLISTDIM:a lbrckt SUBRANGE:b rbrckt           {:   RESULT = new SymIDLISTDIM(a, b);     :}
-                |   lbrckt SUBRANGE:a rbrckt                          {:   RESULT = new SymIDLISTDIM(a);     :}
+    DECLISTDIM     ::=    DECLISTDIM:a lbrckt SUBRANGE:b rbrckt           {:   RESULT = new SymDECLISTDIM(a, b);     :}
+                |   lbrckt SUBRANGE:a rbrckt                          {:   RESULT = new SymDECLISTDIM(a);     :}
                 ;
+
+/**********ACCÉS A TAULA**********************/
+    IDARRAY     ::=     ID:a IDLISTDIM:b          {:  RESULT = new SymIDARRAY(a,b);   :}
+                ;
+    IDLISTDIM   ::=     IDLISTDIM:a lbrckt OPERANDX:b rbrckt   {:  RESULT = new SymIDLISTDIM(a,b);  :}
+                |       lbrckt OPERANDX:a rbrckt                 {:  RESULT = new SymIDLISTDIM(a);  :}
+                ;
+
 /**********SUBRANG**********************/
     SUBRANGE     ::=     ID:a dotdot ID:b                          {:   RESULT = new SymSUBRANGE(a, b);     :}
                     |   NUM:a dotdot NUM:b                {:   RESULT = new SymSUBRANGE(a,b);     :}

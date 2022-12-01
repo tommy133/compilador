@@ -5,6 +5,9 @@
  */
 package front.symbols;
 
+import front.data_structures.symbol.Symbol;
+import front.data_structures.variable.VariableTable;
+import front.data_types.Subrange;
 import front.error.ErrorConstAssign;
 import front.error.ErrorVarNotDec;
 import front.data_types.Types;
@@ -16,7 +19,11 @@ import java.util.Collections;
 public class SymASSIGN extends SymBase {
 
     private SymID ID;
+    private SymIDARRAY IDARRAY;
     private SymOPERANDX OPERANDX;
+
+    private ArrayList<String> operators = new ArrayList<>();
+    private ArrayList<String> operands = new ArrayList<>();
 
     public SymASSIGN(SymID a, SymOPERANDX b, int[] lc) {
         super("ASSIGN", 0);
@@ -31,9 +38,6 @@ public class SymASSIGN extends SymBase {
             new ErrorConstAssign().printError(lc, ID.getID());
         }
 
-
-        ArrayList<String> operators = new ArrayList<>();
-        ArrayList<String> operands = new ArrayList<>();
 
         while (OPERANDX.getOPARITH() != null) {
             operands.add(OPERANDX.getSUBTYPE().getName());
@@ -56,7 +60,22 @@ public class SymASSIGN extends SymBase {
 
 
         //Càlcul d'ocupacions
+        if (OPERANDX.getSUBTYPE().isArray()){
+            calcOcupArray();
+        } else {
+            calcOcup();
+        }
 
+
+    }
+
+    public SymASSIGN(SymIDARRAY a, SymOPERANDX b, int[] lc) {
+        super("ASSIGN", 0);
+        this.IDARRAY = a;
+        this.OPERANDX = b;
+    }
+
+    private void calcOcup(){
         Collections.reverse(operands);
 
         if (operands.size() > 2) {
@@ -96,6 +115,43 @@ public class SymASSIGN extends SymBase {
             tac.generateCode(tac.newVar(ID.getID(), ID.getType(), OPERANDX.getSUBTYPE().getValor()) + " = " + temp_var + "\n");
         }
         tac.setTemp_id(null);
+    }
+
+    private void calcOcupArray(){//fórmula apunts
+        Symbol array = ts.get(OPERANDX.getSUBTYPE().getIDARRAY().getID().getID());
+        int b = array.getB();
+        int nbytes = new VariableTable().calculateStore(array.getSubtype(),"");
+        String temp_var="", temp_var_post="", temp_t5="", temp_t6="";
+        ArrayList<Subrange> subranges = array.getSubranges();
+        int dk=0, t1=0, t2=0, t5=0, t6=0;
+        operands.remove(0);
+        int idx = Integer.parseInt(operands.get(0)); //obtenir el primer desplaçament
+
+        for (int i=1; i < operands.size(); i++){
+            if (i>1) idx=t2;
+            dk = subranges.get(i).getVal2() - subranges.get(i).getVal1() + 1;
+            t1 = (idx*dk);
+            temp_var = tac.newTempVar("integer", ""+t1);
+
+            tac.generateCode(temp_var + " = ");
+            tac.generateCode(((i==1)?(idx) : temp_var_post) + " * " + dk +"\n");
+
+            idx = Integer.parseInt(operands.get(i));
+
+            t2 = (t1 + idx);
+            temp_var_post = tac.newTempVar("integer", ""+t2);
+            tac.generateCode(temp_var_post + " = ");
+            tac.generateCode(temp_var + " + "+ idx + "\n");
+        }
+        t5 = t2 - b;
+        temp_t5 = tac.newTempVar("integer", ""+t5);
+        tac.generateCode(temp_t5 + " = ");
+        tac.generateCode(temp_var_post + " - "+ b + "\n");
+
+        t6 = t5 * nbytes;
+        temp_t6 = tac.newTempVar("integer", ""+t6);
+        tac.generateCode(temp_t6 + " = ");
+        tac.generateCode(temp_t5 + " * "+ nbytes + "\n");
     }
 
 }

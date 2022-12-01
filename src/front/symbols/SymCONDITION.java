@@ -13,6 +13,7 @@ public class SymCONDITION extends SymBase {
     private SymOPERATION OPERATION;
     private SymCONDEXT CONDEXT;
     private SymID ID;
+    private SymIDARRAY IDARRAY;
 
     private String type_op;
 
@@ -44,6 +45,13 @@ public class SymCONDITION extends SymBase {
         this.ID = a;
         this.type_op = ID.getType();
         tac.generateCode(ID.getID() + " then ");
+    }
+
+    public SymCONDITION(SymIDARRAY IDARRAY) {
+        super("CONDITION", 0);
+
+        this.IDARRAY = IDARRAY;
+        this.type_op = IDARRAY.getID().getType();
     }
 
     @Override
