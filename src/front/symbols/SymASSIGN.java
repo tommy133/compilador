@@ -34,7 +34,7 @@ public class SymASSIGN extends SymBase {
             new ErrorVarNotDec().printError(lc, ID.getID());
         }
 
-        if (ts.get(ID.getID()).getType().equals(Types.CONSTANT)) {
+        else if (ts.get(ID.getID()).getType().equals(Types.CONSTANT)) {
             new ErrorConstAssign().printError(lc, ID.getID());
         }
 
@@ -61,7 +61,7 @@ public class SymASSIGN extends SymBase {
 
         //Càlcul d'ocupacions
         if (OPERANDX.getSUBTYPE().isArray()){
-            calcOcupArray();
+            calcOcupArray(false);
         } else {
             calcOcup();
         }
@@ -73,6 +73,15 @@ public class SymASSIGN extends SymBase {
         super("ASSIGN", 0);
         this.IDARRAY = a;
         this.OPERANDX = b;
+
+        if (ts.get(IDARRAY.getID().getID()) == null) {
+            new ErrorVarNotDec().printError(lc, IDARRAY.getID().getID());
+        }
+
+        operands.add(OPERANDX.getSUBTYPE().getValor());
+
+        calcOcupArray(true);
+
     }
 
     private void calcOcup(){
@@ -117,41 +126,67 @@ public class SymASSIGN extends SymBase {
         tac.setTemp_id(null);
     }
 
-    private void calcOcupArray(){//fórmula apunts
-        Symbol array = ts.get(OPERANDX.getSUBTYPE().getIDARRAY().getID().getID());
+    private void calcOcupArray(boolean left){//fórmula apunts
+        Symbol array;
+        if (left){
+            array = ts.get(IDARRAY.getID().getID());
+        } else {
+            array = ts.get(OPERANDX.getSUBTYPE().getIDARRAY().getID().getID());
+        }
+
         int b = array.getB();
         int nbytes = new VariableTable().calculateStore(array.getSubtype(),"");
-        String temp_var="", temp_var_post="", temp_t5="", temp_t6="";
+        String temp_var="", temp_var_post="", temp_t5="", temp_t6="", temp_t7="";
         ArrayList<Subrange> subranges = array.getSubranges();
         int dk=0, t1=0, t2=0, t5=0, t6=0;
-        operands.remove(0);
+        if (operands.size() > 1) operands.remove(0);
         int idx = Integer.parseInt(operands.get(0)); //obtenir el primer desplaçament
 
-        for (int i=1; i < operands.size(); i++){
-            if (i>1) idx=t2;
-            dk = subranges.get(i).getVal2() - subranges.get(i).getVal1() + 1;
-            t1 = (idx*dk);
+        if (operands.size() > 1){
+            for (int i=1; i < operands.size(); i++){
+                if (i>1) idx=t2;
+                dk = subranges.get(i).getVal2() - subranges.get(i).getVal1() + 1;
+                t1 = (idx*dk);
+                temp_var = tac.newTempVar("integer", ""+t1);
+
+                tac.generateCode(temp_var + " = ");
+                tac.generateCode(((i==1)?(idx) : temp_var_post) + " * " + dk +"\n");
+
+                idx = Integer.parseInt(operands.get(i));
+
+                t2 = (t1 + idx);
+                temp_var_post = tac.newTempVar("integer", ""+t2);
+                tac.generateCode(temp_var_post + " = ");
+                tac.generateCode(temp_var + " + "+ idx + "\n");
+            }
+            t5 = t2 - b;
+            temp_t5 = tac.newTempVar("integer", ""+t5);
+            tac.generateCode(temp_t5 + " = ");
+            tac.generateCode(temp_var_post + " - "+ b + "\n");
+
+            t6 = t5 * nbytes;
+            temp_t6 = tac.newTempVar("integer", ""+t6);
+            tac.generateCode(temp_t6 + " = ");
+            tac.generateCode(temp_t5 + " * "+ nbytes + "\n");
+
+            temp_t7 = tac.newTempVar("integer");
+            tac.generateCode(temp_t7 + " = "+ array.getId()+"["+temp_t6+"]"+ "\n");
+        } else {
+            t1 = idx - subranges.get(0).getVal1();
             temp_var = tac.newTempVar("integer", ""+t1);
+            tac.generateCode(temp_var + " = " + idx + " - " + subranges.get(0).getVal1()+ "\n");
+            temp_var_post = tac.newTempVar("integer", ""+ t1*nbytes);
+            tac.generateCode(temp_var_post + " = " + temp_var +" * " + nbytes+ "\n");
 
-            tac.generateCode(temp_var + " = ");
-            tac.generateCode(((i==1)?(idx) : temp_var_post) + " * " + dk +"\n");
-
-            idx = Integer.parseInt(operands.get(i));
-
-            t2 = (t1 + idx);
-            temp_var_post = tac.newTempVar("integer", ""+t2);
-            tac.generateCode(temp_var_post + " = ");
-            tac.generateCode(temp_var + " + "+ idx + "\n");
+            temp_t7 = tac.newTempVar("integer");
+            tac.generateCode(temp_t7 + " = "+ array.getId()+"["+temp_var_post+"]"+ "\n");
         }
-        t5 = t2 - b;
-        temp_t5 = tac.newTempVar("integer", ""+t5);
-        tac.generateCode(temp_t5 + " = ");
-        tac.generateCode(temp_var_post + " - "+ b + "\n");
+//        if (left){ //part esquerra es array
+//            tac.generateCode(array.getId()+"["+temp_t7+"]"+ " = "+ tac.newVar(OPERANDX.getSUBTYPE().getID().getID(), OPERANDX.getSUBTYPE().getType(), OPERANDX.getSUBTYPE().getValor()) );
+//        } else {
+//            tac.generateCode(tac.newVar(ID.getID(), ID.getType()) + " = " + temp_t7 + "\n");
+//        }
 
-        t6 = t5 * nbytes;
-        temp_t6 = tac.newTempVar("integer", ""+t6);
-        tac.generateCode(temp_t6 + " = ");
-        tac.generateCode(temp_t5 + " * "+ nbytes + "\n");
     }
 
 }

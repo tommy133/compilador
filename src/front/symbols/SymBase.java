@@ -5,7 +5,6 @@
  */
 package front.symbols;
 
-import front.data_structures.instruction.InstructionList;
 import front.data_structures.procedure.ProcedureTable;
 import front.data_structures.variable.VariableTable;
 import front.code_generator.ThreeAddressCode;
@@ -20,7 +19,6 @@ public abstract class SymBase extends ComplexSymbol {
     protected static VariableTable variableTable = new VariableTable();
     protected static ProcedureTable procedureTable = new ProcedureTable();
     protected static ThreeAddressCode tac = new ThreeAddressCode(variableTable, procedureTable);
-    protected static InstructionList instructionList = new InstructionList();
 
     public SymBase(String variable, Integer valor) {
         super(variable, idAutoIncrement++, valor);

@@ -84,6 +84,10 @@ public class SymSUBTYPE extends SymBase {
         return name;
     }
 
+    public SymID getID() {
+        return ID;
+    }
+
     public SymIDARRAY getIDARRAY() {
         return IDARRAY;
     }
