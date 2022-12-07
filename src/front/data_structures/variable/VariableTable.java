@@ -84,7 +84,7 @@ public class VariableTable {
 
     private String TableHeader() {
         return "\n"
-                + "Nombre\t\t\t\t\t\t"
+                + "Nombre\t\t\t"
                 + "NV\t\t\t"
                 + "Subprograma\t\t\t"
                 + "Ocupació\t\t\t"
@@ -96,12 +96,12 @@ public class VariableTable {
 
     private String AddTableRow(Variable node) {
         return "\n"
-                + node.getName() + "\t\t\t\t\t\t"
+                + node.getName() + "\t\t\t"
                 + node.getN_var() + "\t\t\t"
                 + node.getSubprog() + "\t\t\t"
-                + node.getStore() + "\t\t\t\t\t\t"
-                + node.getOffset() + "\t\t\t\t\t\t"
-                + node.getType() + "\t\t\t\t\t\t"
+                + node.getStore() + "\t\t\t"
+                + node.getOffset() + "\t\t\t"
+                + node.getType() + "\t\t\t"
                 + node.getValue()
                 + "\n";
     }
