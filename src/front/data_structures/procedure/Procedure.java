@@ -1,11 +1,16 @@
 package front.data_structures.procedure;
 
+import back.data_structures.Parametro;
+
+import java.util.ArrayList;
+
 public class Procedure {
 
     private int num_proc;
     private int depth;
     private String start_label;
     private int n_params;
+    private ArrayList<Parametro> parametros;
     private int total_store;
 
 
@@ -28,6 +33,8 @@ public class Procedure {
     public int getN_params() {
         return n_params;
     }
+
+    public ArrayList<Parametro> getParametros() { return parametros; }
 
     public int getTotal_store() {
         return total_store;

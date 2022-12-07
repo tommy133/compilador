@@ -149,7 +149,7 @@ public class SymbolTable {
                 + stack.Size() + "\t\t"
                 + node.getType() + "\t\t"
                 + node.getSubtype() + "\t"
-                + "\n");
+                + ((node.getArgs()!=null)? node.getArgs().toString() : "") +"\n");
 
     }
 }

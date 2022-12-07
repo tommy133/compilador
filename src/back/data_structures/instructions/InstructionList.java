@@ -1,5 +1,7 @@
 package back.data_structures.instructions;
 
+import back.data_structures.Operation;
+
 import java.util.ArrayList;
 
 public class InstructionList {
@@ -10,9 +12,9 @@ public class InstructionList {
     }
 
 
-    public void addInst(String operator, String op1, String op2, String destination) {
+    public void addInst(Operation operation, String op1, String op2, String destination) {
 
-        inst_list.add(new Instruction(operator, op1, op2, destination));
+        inst_list.add(new Instruction(operation, op1, op2, destination));
     }
 
     //Borra una instrucció

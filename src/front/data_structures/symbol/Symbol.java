@@ -62,4 +62,9 @@ public class Symbol {
     public int getB() {
         return b;
     }
+
+    @Override
+    public String toString() {
+        return id;
+    }
 }
