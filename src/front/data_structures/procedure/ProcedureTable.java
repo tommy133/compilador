@@ -1,5 +1,6 @@
 package front.data_structures.procedure;
 
+import front.data_structures.variable.Variable;
 import front.data_structures.variable.VariableTable;
 
 import java.io.*;
@@ -71,6 +72,15 @@ public class ProcedureTable {
         return row_list;
     }
 
+    public Procedure getProc(String id){
+        for(Procedure p : this.row_list){
+            if(p.getStart_label().equals(id)){
+                return p;
+            }
+        }
+        return null;
+    }
+
 
     private String Title() {
         return TABLE_NAME + "\n";
@@ -81,17 +91,19 @@ public class ProcedureTable {
                 + "NP\t"
                 + "Profunditat\t"
                 + "Etiqueta inici\t"
-                + "Número de parámetres\t"
-                + "Ocupació variables locals\t";
+                + "Ocupació variables locals\t"
+                + "Parámetres\t"
+                + "Tipus retorn\t";
     }
 
     private String AddTableRow(Procedure node) {
         return "\n"
                 + node.getNum_proc() + "\t\t"
                 + node.getDepth() + "\t\t\t"
-                + node.getStart_label() + "\t\t\t\t"
-                + node.getN_params() + "\t\t\t\t\t\t\t"
-                + node.getTotal_store()
+                + node.getStart_label() + "\t\t\t"
+                + node.getTotal_store() + "\t\t\t\t\t\t"
+                + node.getParametros().toString() + "\t\t\t"
+                + ((node.getType_return()!=null)? node.getType_return() : "") +"\n"
                 + "\n";
     }
 

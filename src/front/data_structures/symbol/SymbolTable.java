@@ -1,7 +1,9 @@
 package front.data_structures.symbol;
 
 
+import back.data_structures.Parametro;
 import front.data_types.Stack;
+import front.data_types.TypeSub;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -83,9 +85,6 @@ public class SymbolTable {
         temp.add(a);
     }
 
-    public int  getNTempVars() {
-        return  temp.size();
-    }
 
     public ArrayList<Symbol> getParams() {
         Collections.reverse(temp);
@@ -143,6 +142,7 @@ public class SymbolTable {
     }
 
     private StringBuilder AddTableRow(Symbol node) {
+        if (node.getArgs()!=null) Collections.reverse(node.getArgs());
         return
         new StringBuilder("\t"
                 +  node.getId() + "\t\t"

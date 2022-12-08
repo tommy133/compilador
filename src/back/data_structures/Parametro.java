@@ -18,4 +18,9 @@ public class Parametro {
     public TypeSub getTipo() {
         return tipo;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }

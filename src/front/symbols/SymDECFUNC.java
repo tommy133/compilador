@@ -6,6 +6,7 @@
 package front.symbols;
 
 import front.data_structures.symbol.Symbol;
+import front.data_types.TypeSub;
 import front.error.ErrorProcExists;
 import java.util.ArrayList;
 
@@ -40,7 +41,7 @@ public class SymDECFUNC extends SymBase {
             ts.insertElement(n);
         }
         ts.emptyParams();
-
+        procedureTable.getProc(ID.getID()).setType_return(TypeSub.valueOf(TYPE.getType().toUpperCase()));
     }
 
     public SymTYPE getType() {

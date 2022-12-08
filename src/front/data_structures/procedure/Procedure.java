@@ -1,6 +1,7 @@
 package front.data_structures.procedure;
 
 import back.data_structures.Parametro;
+import front.data_types.TypeSub;
 
 import java.util.ArrayList;
 
@@ -9,17 +10,17 @@ public class Procedure {
     private int num_proc;
     private int depth;
     private String start_label;
-    private int n_params;
     private ArrayList<Parametro> parametros;
     private int total_store;
+    private TypeSub type_return;
 
-
-    public Procedure(int num_proc, int depth, String start_label, int n_params, int total_store) {
+    public Procedure(int num_proc, int depth, String start_label, ArrayList<Parametro> parametros, int total_store, TypeSub type_return) {
         this.num_proc = num_proc;
         this.depth = depth;
         this.start_label = start_label;
-        this.n_params = n_params;
+        this.parametros = parametros;
         this.total_store = total_store;
+        this.type_return = type_return;
     }
 
     public int getNum_proc() {
@@ -28,10 +29,6 @@ public class Procedure {
 
     public int getDepth() {
         return depth;
-    }
-
-    public int getN_params() {
-        return n_params;
     }
 
     public ArrayList<Parametro> getParametros() { return parametros; }
@@ -44,7 +41,15 @@ public class Procedure {
         this.total_store = total_store;
     }
 
+    public void setType_return(TypeSub type_return) {
+        this.type_return = type_return;
+    }
+
     public String getStart_label() {
         return start_label;
+    }
+
+    public TypeSub getType_return() {
+        return type_return;
     }
 }
