@@ -91,8 +91,8 @@ public class ProcedureTable {
                 + "NP\t"
                 + "Profunditat\t"
                 + "Etiqueta inici\t"
-                + "Ocupació variables locals\t"
                 + "Parámetres\t"
+                + "Ocupació variables locals\t"
                 + "Tipus retorn\t";
     }
 
@@ -101,8 +101,8 @@ public class ProcedureTable {
                 + node.getNum_proc() + "\t\t"
                 + node.getDepth() + "\t\t\t"
                 + node.getStart_label() + "\t\t\t"
-                + node.getTotal_store() + "\t\t\t\t\t\t"
                 + node.getParametros().toString() + "\t\t\t"
+                + node.getTotal_store() + "\t\t\t\t\t\t"
                 + ((node.getType_return()!=null)? node.getType_return() : "") +"\n"
                 + "\n";
     }

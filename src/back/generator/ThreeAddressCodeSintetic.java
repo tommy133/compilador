@@ -1,14 +1,18 @@
 package back.generator;
 
 
+import back.data_structures.Parametro;
 import back.data_structures.instructions.InstructionList;
 import front.data_structures.procedure.Procedure;
 import front.data_structures.variable.Variable;
+import front.data_types.TypeSub;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static back.data_structures.Operation.*;
 
@@ -22,8 +26,9 @@ public class ThreeAddressCodeSintetic {
     private ArrayList<Procedure> tp = new ArrayList<>();
 
     public ThreeAddressCodeSintetic() {
-        //loadInstructions();
-        //loadTv();
+        loadInstructions();
+        loadTv();
+        loadTp();
     }
 
     private void loadInstructions() {
@@ -117,7 +122,7 @@ public class ThreeAddressCodeSintetic {
 
     private void loadTv(){
         try {
-            BufferedReader br = baseTv();
+            BufferedReader br = baseTable(TVAR_PATH);
             String variable;
             String [] split;
 
@@ -142,12 +147,34 @@ public class ThreeAddressCodeSintetic {
     }
 
     private void loadTp(){
+        try {
+            BufferedReader br = baseTable(TPROC_PATH);
+            String variable;
+            String [] split;
 
+            while ((variable = br.readLine()) != null) {
+                if (!variable.equals("")) {
+                    split = variable.split("\\t+");
+
+                    tp.add(new Procedure(
+                            Integer.parseInt(split[0]),
+                            Integer.parseInt(split[1]),
+                            split[2],
+                            new ArrayList<Parametro>(), //FIXME
+                            Integer.parseInt(split[4]),
+                            TypeSub.valueOf(split[5])
+                    ));
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private BufferedReader baseTv() {
+    private BufferedReader baseTable(String path) {
         try {
-            FileReader fr = new FileReader(TVAR_PATH);
+            FileReader fr = new FileReader(path);
             BufferedReader br = new BufferedReader(fr);
 
             for (int i=0; i<3 && (br.readLine()) != null; i++){
@@ -160,4 +187,35 @@ public class ThreeAddressCodeSintetic {
         }
         return null;
     }
+
+    public InstructionList getInstructionList() {
+        return instructionList;
+    }
+
+    public ArrayList<Variable> getTv() {
+        return tv;
+    }
+
+    public ArrayList<Procedure> getTp() {
+        return tp;
+    }
+
+    public Variable getVar(String id){
+        for(Variable v : this.tv){
+            if(v.getName().equals(id)){
+                return v;
+            }
+        }
+        return null;
+    }
+
+    public Procedure getProc(String id){
+        for(Procedure p : this.tp){
+            if(p.getStart_label().equals(id)){
+                return p;
+            }
+        }
+        return null;
+    }
+
 }
