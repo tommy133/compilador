@@ -13,19 +13,15 @@ public class SymOUTPUT extends SymBase {
         super("OUTPUT", 0);
         this.PRINT = a;
 
-        if (a != null) {
-            if (ts.get(a.getID().getID()).getSubtype().equalsIgnoreCase("logic")) {
-                tac.generateCode("param " + a.getVALUELIST() + "\n");
-                tac.generateCode("call printLogic\n");
-            } else {
-                tac.generateCode("param " + a.getVALUELIST() + "\n");
-                tac.generateCode("call print\n");
-            }
-        } else {
-            tac.generateCode("call printLogic\n");
-        }
+        tac.generateCode(paramType()+" " + a.getVALUELIST() + "\n");
+        tac.generateCode("call print\n");
+
         tac.setTemp_id(null);
     }
 
+    private String paramType(){
+        if (ts.get(PRINT.getID().getID()).getSubtype().equalsIgnoreCase("string")) return "param_c";
+        return "param_s";
+    }
 
 }

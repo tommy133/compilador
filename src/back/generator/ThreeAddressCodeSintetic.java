@@ -55,15 +55,12 @@ public class ThreeAddressCodeSintetic {
                         case "call":
                             instructionList.addInst(CALL, null, null, instruction.split(" ")[1]);
                             break;
-                        case "param":
-                            if (instruction.split(" ")[1] instanceof String){
-                                instructionList.addInst(PARAM_C, instruction.split(" ")[1], null, null);
-                            } else {
-                                instructionList.addInst(PARAM_S, instruction.split(" ")[1], null, null);
-                            }
-
+                        case "param_c":
+                            instructionList.addInst(PARAM_C, null, null, instruction.split(" ")[1]);
                             break;
-
+                        case "param_s":
+                            instructionList.addInst(PARAM_S, null, null, instruction.split(" ")[1]);
+                            break;
                         case "rtn":
                             instructionList.addInst(RTN, null, null, instruction.split(" ")[1]);
                             break;
@@ -129,6 +126,7 @@ public class ThreeAddressCodeSintetic {
             while ((variable = br.readLine()) != null) {
                 if (!variable.equals("")) {
                     split = variable.split("\\t+");
+
                     tv.add(new Variable(
                             split[0],
                             Integer.parseInt(split[1]),
@@ -136,7 +134,7 @@ public class ThreeAddressCodeSintetic {
                             Integer.parseInt(split[3]),
                             Integer.parseInt(split[4]),
                             split[5],
-                            split[6]
+                            (split.length==7)? split[6] : null //variable pot tenir valor o no
                     ));
                 }
 
@@ -149,12 +147,12 @@ public class ThreeAddressCodeSintetic {
     private void loadTp(){
         try {
             BufferedReader br = baseTable(TPROC_PATH);
-            String variable;
+            String proc;
             String [] split;
 
-            while ((variable = br.readLine()) != null) {
-                if (!variable.equals("")) {
-                    split = variable.split("\\t+");
+            while ((proc = br.readLine()) != null) {
+                if (!proc.equals("")) {
+                    split = proc.split("\\t+");
 
                     tp.add(new Procedure(
                             Integer.parseInt(split[0]),

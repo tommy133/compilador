@@ -74,7 +74,7 @@ public class SymCALLFUNC extends SymBase {
 
         Collections.reverse(args_call);
         for (SymID symID : args_call) {
-            tac.generateCode("param " + symID + "\n");
+            tac.generateCode("param " + symID + "\n");//TODO param s/c
         }
 
         if (tac.getTemp_id() != null) {

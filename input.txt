@@ -1,17 +1,14 @@
 
+
 prog main()
 
-   integer: n1;
-   n1 := 1;
-   integer: n2;
-   n2  := 5;
+   const string: pregunta := "Has escrit";
+       integer: valorEnter;
+       read(valorEnter);
 
-    while n1 <= n2 loop
-
-           n1 := n1 + 1;
-      endloop
-
-
+       print(pregunta);
+       print(valorEnter);
 
 
 end
+

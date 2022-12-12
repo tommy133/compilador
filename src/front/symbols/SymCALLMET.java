@@ -74,7 +74,7 @@ public class SymCALLMET extends SymBase {
 
         Collections.reverse(args_call);
         for (SymID symID : args_call) {
-            tac.generateCode("param " + symID + "\n");
+            tac.generateCode("param " + symID + "\n");//TODO param_s/c
         }
 
         tac.generateCode("call " + ID.getID() + "\n");

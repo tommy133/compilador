@@ -13,10 +13,14 @@ public class SymINPUT extends SymBase {
     public SymINPUT(SymID a) {
         super("F", 0);
         this.ID = a;
-        tac.generateCode("param " + ID + "\n");
+        tac.generateCode(paramType()+" " + ID + "\n");
         tac.generateCode("call read \n");
+        tac.generateCode(tac.newVar(ID.getID(), ID.getType()) +" = " + "retInt" + "\n"); //FIXME discernir entre string/int
         tac.setTemp_id(null);
     }
 
-
+    private String paramType(){
+        if (ID.getType().equalsIgnoreCase("string")) return "param_c";
+        return "param_s";
+    }
 }
