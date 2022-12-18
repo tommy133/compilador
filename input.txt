@@ -1,14 +1,23 @@
 
 
 prog main()
+   const string: pregunta1 := "Escriu un nombre: ";
+   const string: pregunta2 := "Escriu un texte: ";
+   const string: resposta := "Has escrit ";
 
-   const string: pregunta := "Has escrit";
-       integer: valorEnter;
-       read(valorEnter);
+   print(pregunta1);
+   integer: valorEnter;
+   read(valorEnter);
 
-       print(pregunta);
-       print(valorEnter);
+   print(resposta);
+   print(valorEnter);
 
 
+   print(pregunta2);
+   string: valorCadena;
+   read(valorCadena);
+
+    print(resposta);
+    print(valorCadena);
 end
 

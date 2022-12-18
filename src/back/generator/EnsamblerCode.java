@@ -223,11 +223,11 @@ public class EnsamblerCode {
                         code.add("\tADDA.L #4,A7");
                     }
                     break;
-                case "getStr":  //FIXME Com discernim entre si és un string o un int amb read?
+                case "getStr":
                     code.add("\tMOVE.L #strout,-(A7)");
                     code.add("\tJSR GETSTR");
                     break;
-                case "read":
+                case "getInt":
                     code.add("\tSUBA.L #2,A7");
                     code.add("\tJSR GETINT");
                     break;

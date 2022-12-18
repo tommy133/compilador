@@ -135,6 +135,8 @@ space         = [' ' | '\t']+
 {space}            { } /*Ignorar*/
 {linia}           { n_linia++; }
 
+//TODO //Comments
+
 [^]              {
 
     Writer w = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Errors.txt", true),  "utf-8"));
