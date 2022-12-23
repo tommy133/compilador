@@ -4,8 +4,10 @@ package back.generator;
 import back.data_structures.Parametro;
 import back.data_structures.instructions.InstructionList;
 import front.data_structures.procedure.Procedure;
+import front.data_structures.symbol.Symbol;
 import front.data_structures.variable.Variable;
 import front.data_types.TypeSub;
+import front.data_types.Types;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -20,13 +22,16 @@ public class ThreeAddressCodeSintetic {
     private final String TAC_PATH = "files_output/codiIntermitg.txt";
     private final String TVAR_PATH = "files_output/Tables/Taula_variables.txt";
     private final String TPROC_PATH = "files_output/Tables/Taula_procediments.txt";
+    private final String TSYM_PATH = "files_output/Tables/Taula_simbols.txt";
 
     private InstructionList instructionList = new InstructionList();
     private ArrayList<Variable> tv = new ArrayList<>();
     private ArrayList<Procedure> tp = new ArrayList<>();
+    private ArrayList<Symbol> ts = new ArrayList<>();
 
     public ThreeAddressCodeSintetic() {
         loadInstructions();
+        loadTs();
         loadTv();
         loadTp();
     }
@@ -158,9 +163,33 @@ public class ThreeAddressCodeSintetic {
                             Integer.parseInt(split[0]),
                             Integer.parseInt(split[1]),
                             split[2],
-                            new ArrayList<Parametro>(), //FIXME
+                            (split[3].equals("[]"))? null : extractParamsTs(split[3]),
                             Integer.parseInt(split[4]),
                             TypeSub.valueOf(split[5])
+                    ));
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadTs(){
+        try {
+            BufferedReader br = baseTable(TSYM_PATH);
+            String sym;
+            String [] split;
+
+            while ((sym = br.readLine()) != null) {
+                if (!sym.equals("")) {
+                    split = sym.split("\\t+");
+                    ts.add(new Symbol(
+                            split[0],
+                            Types.valueOf(split[2]),
+                            split[3],
+                            null,
+                            null
                     ));
                 }
 
@@ -182,6 +211,27 @@ public class ThreeAddressCodeSintetic {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    private ArrayList<Parametro> extractParamsTs(String params){
+        params = params.substring(1, params.length() - 1);
+
+        String[] stringArray = params.split(", ");
+
+        ArrayList<Parametro> parametros = new ArrayList<>();
+
+        for (String s : stringArray) {
+            Symbol sym = getSymbol(s);
+            parametros.add(new Parametro(sym.getId(), TypeSub.valueOf(sym.getSubtype().toUpperCase())));
+        }
+        return parametros;
+    }
+
+    private Symbol getSymbol(String id){
+        for (Symbol s : ts){
+            if (s.getId().equals(id)) return s;
         }
         return null;
     }

@@ -37,10 +37,18 @@ public class SymDECMET extends SymBase {
                 ts.insertElement(n);
             }
         } else {
+            insertSymbolArgs(n.getArgs());
             ts.insertElement(n);
         }
         ts.emptyParams();
 
     }
 
+    private void insertSymbolArgs(ArrayList<Symbol> args){
+        if (args != null){
+            for (Symbol s : args){
+                ts.insertElement(s);
+            }
+        }
+    }
 }

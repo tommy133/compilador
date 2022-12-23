@@ -13,7 +13,7 @@ public class VariableTable {
     private static final int LOGIC_STORE = 4;
     private static final int NULL_STORE = 1;
 
-    private static final String TABLE_NAME = "Taula de variables";
+    private static final String TABLE_NAME = "Taula de variables";  //TODO Victor: Generar una tabla decente que se vea bien la correspondencia, idem per tp i tsimbols
 
     public Writer writer;
     private ArrayList<Variable> rows_list = new ArrayList<>();

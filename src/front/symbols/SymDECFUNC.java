@@ -30,6 +30,7 @@ public class SymDECFUNC extends SymBase {
         this.RETURN = e;
 
         Symbol n = new Symbol(ID.getID(), FUNCTION, TYPE.getType(),null, (ArrayList<Symbol>) ts.getParams().clone());
+
         if (ts.exist(n.getId())) {
             Symbol node = ts.get(n.getId());
             if (node.getType() == METHOD || node.getType() == FUNCTION) {
@@ -38,10 +39,19 @@ public class SymDECFUNC extends SymBase {
                 ts.insertElement(n);
             }
         } else {
+            insertSymbolArgs(n.getArgs());
             ts.insertElement(n);
         }
         ts.emptyParams();
         procedureTable.getProc(ID.getID()).setType_return(TypeSub.valueOf(TYPE.getType().toUpperCase()));
+    }
+
+    private void insertSymbolArgs(ArrayList<Symbol> args){
+        if (args != null){
+            for (Symbol s : args){
+                ts.insertElement(s);
+            }
+        }
     }
 
     public SymTYPE getType() {

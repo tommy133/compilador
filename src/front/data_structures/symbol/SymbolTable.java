@@ -141,15 +141,15 @@ public class SymbolTable {
                 + "\n";
     }
 
-    private StringBuilder AddTableRow(Symbol node) {
+    private String AddTableRow(Symbol node) {
         if (node.getArgs()!=null) Collections.reverse(node.getArgs());
-        return
-        new StringBuilder("\t"
+        return  "\n"
                 +  node.getId() + "\t\t"
                 + stack.Size() + "\t\t"
                 + node.getType() + "\t\t"
                 + node.getSubtype() + "\t"
-                + ((node.getArgs()!=null)? node.getArgs().toString() : "") +"\n");
+                + ((node.getArgs()!=null)? node.getArgs().toString() : "") +"\n"
+                + "\n";
 
     }
 }
