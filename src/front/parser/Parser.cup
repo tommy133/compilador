@@ -46,8 +46,7 @@ non terminal  SymCONDIF      CONDIF;
 non terminal  SymCONDLABEL   CONDLABEL;
 non terminal  SymWHILE      WHILE;
 non terminal  SymREPUNTIL   REPUNTIL;
-non terminal  SymCALLMET        CALLMET;
-non terminal  SymCALLFUNC       CALLFUNC;
+non terminal  SymCALLPROC       CALLPROC;
 non terminal  SymASSIGN          ASSIGN;
 non terminal  SymDECVAR        DECVAR;
 non terminal  SymDECARRAY       DECARRAY;
@@ -134,7 +133,7 @@ start with START;
               |     CONDIF:c endif            {: RESULT = new SymSENT(c); :}
               |     WHILE:d DICSCOPE endloop    {: RESULT = new SymSENT(d); :}
               |     REPUNTIL:e DICSCOPE endloop    {: RESULT = new SymSENT(e); :}
-              |     CALLMET:f scolon          {: RESULT = new SymSENT(f); :}
+              |     CALLPROC:f scolon          {: RESULT = new SymSENT(f); :}
               |     ASSIGN:g scolon             {: RESULT = new SymSENT(g); :}
               |     DECVAR:h scolon           {: RESULT = new SymSENT(h); :}
               |     DECARRAY:i scolon           {: RESULT = new SymSENT(i); :}
@@ -148,7 +147,7 @@ start with START;
     SUBTYPE         ::= ID:a                  {:  RESULT = new SymSUBTYPE(a); :}
               | IDARRAY:b               {:  RESULT = new SymSUBTYPE(b); :}
               | NUM:c                   {:  RESULT = new SymSUBTYPE(c); :}
-              | CALLFUNC:d                {:  RESULT = new SymSUBTYPE(d); :}
+              | CALLPROC:d                {:  RESULT = new SymSUBTYPE(d); :}
               | LOGIC:e                   {:  RESULT = new SymSUBTYPE(e); :}
               | STR:f                   {:  RESULT = new SymSUBTYPE(f); :}
           ;
@@ -196,12 +195,6 @@ start with START;
     DECMET      ::= method ID:a STARTPROC lparen ARGLIST:b rparen PMB INCSCOPE SENTLIST:c DICSCOPE end    {: RESULT = new SymDECMET(a, b, c, scanner.getLineColumn()); :}
               ;
 
-/*******CRIDADA MÈTODE*********/
-
-    CALLMET     ::= ID:a lparen IDLIST:b rparen                  {: RESULT = new SymCALLMET(a, b, scanner.getLineColumn()); :}
-          | ID:a lparen rparen                  {: RESULT = new SymCALLMET(a, scanner.getLineColumn()); :}
-          ;
-
 /************DECLARACIÓ FUNCIÓ****************/
 
     DECFUNC     ::= TYPE:a func ID:b STARTPROC lparen ARGLIST:c rparen PMB INCSCOPE SENTLIST:d RETURN:e DICSCOPE end    {: RESULT = new SymDECFUNC(a, b, c, d, e, scanner.getLineColumn()); :}
@@ -210,10 +203,10 @@ start with START;
     RETURN       ::= Return RETURNTYPE:a scolon             {: RESULT = new SymRETURN(a); :}
               ;
 
-/*************CRIDADA FUNCIÓ**************/
+/*************CRIDADA MÈTODE/FUNCIÓ**************/
 
-    CALLFUNC    ::= ID:a lparen IDLIST:b rparen      {: RESULT = new SymCALLFUNC(a, b, scanner.getLineColumn()); :}
-              | ID:a lparen rparen              {: RESULT = new SymCALLFUNC(a, scanner.getLineColumn()); :}
+    CALLPROC    ::= ID:a lparen IDLIST:b rparen      {: RESULT = new SymCALLPROC(a, b, scanner.getLineColumn()); :}
+              | ID:a lparen rparen              {: RESULT = new SymCALLPROC(a, scanner.getLineColumn()); :}
               ;
 
 /***************ASSIGNACIÓ********************/
@@ -312,7 +305,7 @@ start with START;
 
     RETURNTYPE ::= NUM:a                             {: RESULT = new SymRETURNTYPE(a); :}
               | ID:b                              {: RESULT = new SymRETURNTYPE(b); :}
-              | CALLFUNC:c                          {: RESULT = new SymRETURNTYPE(c); :}
+              | CALLPROC:c                          {: RESULT = new SymRETURNTYPE(c); :}
               | LOGIC:d                             {: RESULT = new SymRETURNTYPE(d); :}
               | STR:e                             {: RESULT = new SymRETURNTYPE(e); :}
               ;

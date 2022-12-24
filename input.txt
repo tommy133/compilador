@@ -1,23 +1,14 @@
-
+integer func suma(integer a, integer b)
+    integer: x;
+    x := a + b;
+    return x;
+end
 
 prog main()
-   const string: pregunta1 := "Escriu un nombre: ";
-   const string: pregunta2 := "Escriu un texte: ";
-   const string: resposta := "Has escrit ";
-
-   print(pregunta1);
-   integer: valorEnter;
-   read(valorEnter);
-
-   print(resposta);
-   print(valorEnter);
-
-
-   print(pregunta2);
-   string: valorCadena;
-   read(valorCadena);
-
-    print(resposta);
-    print(valorCadena);
+    integer: n1;
+    n1 := 1;
+    integer: n2;
+    n2 := 2;
+    suma(n1, n2);
 end
 

@@ -13,7 +13,7 @@ public class SymSUBTYPE extends SymBase {
     private SymSTR STR;
     private SymLOGIC LOGIC;
     private SymNUM NUM;
-    private SymCALLFUNC CALLFUNC;
+    private SymCALLPROC CALLPROC;
     private String type;
     private String name;
 
@@ -53,9 +53,9 @@ public class SymSUBTYPE extends SymBase {
         tac.getOperands().add(a.getValue());
     }
 
-    public SymSUBTYPE(SymCALLFUNC a) {
+    public SymSUBTYPE(SymCALLPROC a) {
         super("T", 0);
-        this.CALLFUNC = a;
+        this.CALLPROC = a;
         this.type = a.getType();
     }
 

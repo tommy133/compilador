@@ -10,7 +10,7 @@ public class SymRETURNTYPE extends SymBase {
 
     private SymNUM NUM;
     private SymID ID;
-    private SymCALLFUNC CALLFUNC;
+    private SymCALLPROC CALLPROC;
     private SymLOGIC LOGIC;
     private SymSTR STR;
 
@@ -29,9 +29,9 @@ public class SymRETURNTYPE extends SymBase {
 
     }
 
-    public SymRETURNTYPE(SymCALLFUNC a) {
+    public SymRETURNTYPE(SymCALLPROC a) {
         super("RETURNTYPE", 0);
-        this.CALLFUNC = a;
+        this.CALLPROC = a;
         type = a.getType();
 
     }

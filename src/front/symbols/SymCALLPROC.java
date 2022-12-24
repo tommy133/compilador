@@ -6,43 +6,45 @@
 package front.symbols;
 
 import front.data_structures.symbol.Symbol;
-import front.error.*;
+import front.error.ErrorArgTypes;
+import front.error.ErrorFewParam;
+import front.error.ErrorMuchParam;
+import front.error.ErrorProcNotExists;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SymCALLMET extends SymBase {
+
+public class SymCALLPROC extends SymBase { //TODO Fusionar amb CALLPROC
 
     private SymID ID;
     private SymIDLIST IDLIST;
 
-    public SymCALLMET(SymID a, int[] lc) {
-        super("CALLMET", 0);
+    public SymCALLPROC(SymID a, int[] lc) {
+        super("CALLPROC", 0);
         this.ID = a;
 
         if (!ts.exist(ID.getID())) {
             new ErrorProcNotExists().printError(lc, ID.getID());
-
         }
 
         tac.generateCode("call " + ID.getID() + "\n");
         tac.generateCode(ID.getID() + "Return" + ":skip\n");
     }
 
-    public SymCALLMET(SymID a, SymIDLIST b, int[] lc) {
-        super("CALLMET", 0);
-
+    public SymCALLPROC(SymID a, SymIDLIST b, int[] lc) {
+        super("CALLPROC", 0);
         this.ID = a;
         this.IDLIST = b;
 
-        //Comprovar existencia metode.
+        //Comprovar existencia de la funció
 
         if (!ts.exist(ID.getID())) {
             new ErrorProcNotExists().printError(lc, ID.getID());
 
         }
 
-        //Carregar arguments
         ArrayList<SymID> args_call = new ArrayList();
         while (IDLIST.getIDLISTSEP() != null) {
             args_call.add(IDLIST.getID());
@@ -50,35 +52,47 @@ public class SymCALLMET extends SymBase {
         }
         args_call.add(IDLIST.getID());
 
-        ArrayList<Symbol> args_real;
+        //Carregar arguments
+        ArrayList<Symbol> real_args;
+        real_args = (ArrayList<Symbol>) ts.get(ID.getID()).getArgs().clone();
 
-        if (ts.get(ID.getID()) != null) {
-
-            args_real = (ArrayList<Symbol>) ts.get(ID.getID()).getArgs().clone();
-        } else {
-
-            args_real = new ArrayList();
-
-        }
-        if (args_call.size() > args_real.size()) {
+        if (args_call.size() > real_args.size()) {
             new ErrorMuchParam().printError(lc, ID.getID());
-        } else if (args_call.size() < args_real.size()) {
-            new ErrorFewParam().printError(lc, ID.getID());
-        }
-        for (int i = 0; i < args_real.size(); i++) {
 
-            if (!args_call.get(i).getType().equalsIgnoreCase(args_real.get(i).getSubtype())) {
+        } else if (args_call.size() < real_args.size()) {
+            new ErrorFewParam().printError(lc, ID.getID());
+
+        }
+
+        for (int i = 0; i < args_call.size(); i++) {
+
+            if (!args_call.get(i).getType().equalsIgnoreCase(real_args.get(i).getSubtype())) {
                 new ErrorArgTypes().printError(lc, ID.getID());
+
             }
         }
 
         Collections.reverse(args_call);
         for (SymID symID : args_call) {
-            tac.generateCode("param " + symID + "\n");//TODO param_s/c
+            tac.generateCode(paramType(symID) + " " + symID + "\n");//TODO param s/c
+        }
+
+        if (tac.getTemp_id() != null) {
+            tac.generateCode(tac.newVar(tac.getTemp_id(), "integer") + " = ");
         }
 
         tac.generateCode("call " + ID.getID() + "\n");
         tac.generateCode(ID.getID() + "Return" + ":skip\n");
+
+    }
+
+    private String paramType(SymID symID){
+        if (symID.getType().equalsIgnoreCase("string")) return "param_c";
+        return "param_s";
+    }
+
+    public String getType() {
+        return (ts.get(ID.getID()).getSubtype());
     }
 
 

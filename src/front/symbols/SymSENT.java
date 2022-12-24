@@ -13,7 +13,7 @@ public class SymSENT extends SymBase {
     private SymCONDIF CONDIF;
     private SymWHILE WHILE;
     private SymREPUNTIL REPUNTIL;
-    private SymCALLMET CALLMET;
+    private SymCALLPROC CALLPROC;
     private SymASSIGN ASSIGN;
     private SymDECVAR DECVAR;
     private SymDECARRAY DECARRAY;
@@ -43,9 +43,9 @@ public class SymSENT extends SymBase {
         this.REPUNTIL = a;
     }
 
-    public SymSENT(SymCALLMET a) {
+    public SymSENT(SymCALLPROC a) {
         super("SENT", 0);
-        this.CALLMET = a;
+        this.CALLPROC = a;
     }
 
     public SymSENT(SymASSIGN a) {
