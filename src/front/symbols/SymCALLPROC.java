@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class SymCALLPROC extends SymBase { //TODO Fusionar amb CALLPROC
+public class SymCALLPROC extends SymBase {
 
     private SymID ID;
     private SymIDLIST IDLIST;
@@ -74,7 +74,7 @@ public class SymCALLPROC extends SymBase { //TODO Fusionar amb CALLPROC
 
         Collections.reverse(args_call);
         for (SymID symID : args_call) {
-            tac.generateCode(paramType(symID) + " " + symID + "\n");//TODO param s/c
+            tac.generateCode(paramType(symID) + " " + symID + "\n");
         }
 
         if (tac.getTemp_id() != null) {

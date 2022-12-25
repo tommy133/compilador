@@ -50,6 +50,7 @@ public class SymDECFUNC extends SymBase {
         if (args != null){
             for (Symbol s : args){
                 ts.insertElement(s);
+                tac.newVar(s.getId(), s.getSubtype());
             }
         }
     }

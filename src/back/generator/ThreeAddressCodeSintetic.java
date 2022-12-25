@@ -163,7 +163,7 @@ public class ThreeAddressCodeSintetic {
                             Integer.parseInt(split[0]),
                             Integer.parseInt(split[1]),
                             split[2],
-                            (split[3].equals("[]"))? null : extractParamsTs(split[3]),
+                            (split[3].equals("[]"))? new ArrayList<Parametro>() : extractParamsTs(split[3]),
                             Integer.parseInt(split[4]),
                             TypeSub.valueOf(split[5])
                     ));

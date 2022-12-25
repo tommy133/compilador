@@ -6,6 +6,7 @@
 package front.symbols;
 
 import front.data_structures.symbol.Symbol;
+import front.data_types.Types;
 import front.error.ErrorProcExists;
 import java.util.ArrayList;
 
@@ -48,6 +49,7 @@ public class SymDECMET extends SymBase {
         if (args != null){
             for (Symbol s : args){
                 ts.insertElement(s);
+                tac.newVar(s.getId(), s.getSubtype());
             }
         }
     }
