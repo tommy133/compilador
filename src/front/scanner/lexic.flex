@@ -135,7 +135,7 @@ space         = [' ' | '\t']+
 {space}            { } /*Ignorar*/
 {linia}           { n_linia++; }
 
-//TODO //Comments
+//TODO Victor: //Comments
 
 [^]              {
 

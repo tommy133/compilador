@@ -67,7 +67,7 @@ public class ThreeAddressCodeSintetic {
                             instructionList.addInst(PARAM_S, null, null, instruction.split(" ")[1]);
                             break;
                         case "rtn":
-                            instructionList.addInst(RTN, null, null, instruction.split(" ")[1]);
+                            instructionList.addInst(RTN, instruction.split(" ")[2], null, instruction.split(" ")[1]);
                             break;
 
                         default:

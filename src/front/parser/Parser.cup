@@ -85,6 +85,7 @@ non terminal  SymCONDBRANCH            CONDBRANCHINV; //Condbranch with inverter
 non terminal  SymELSE            ELSE;
 non terminal  SymSTARTLOOP            STARTLOOP;
 non terminal  SymGSTARTLOOP            GSTARTLOOP;
+non terminal  SymSTARTMAIN            STARTMAIN;
 non terminal  SymSTARTPROC            STARTPROC;
 non terminal  SymSUBRANGE            SUBRANGE;
 non terminal  SymPMB            PMB;
@@ -100,7 +101,7 @@ start with START;
 
 /*****GRAMÀTICA *******/
 
-    START     ::= METFUNC:a DECMP:b            {: RESULT = new SymSTART(a, b);
+    START     ::= STARTMAIN METFUNC:a DECMP:b            {: RESULT = new SymSTART(a, b);
      :}
               ;                        
 
@@ -359,6 +360,9 @@ start with START;
 
     GSTARTLOOP      ::=                               {: RESULT = new SymGSTARTLOOP(); :}
             ;
+
+    STARTMAIN     ::=                               {: RESULT = new SymSTARTMAIN(); :}
+                ;
 
     STARTPROC      ::=                               {: RESULT = new SymSTARTPROC(); :}
             ;

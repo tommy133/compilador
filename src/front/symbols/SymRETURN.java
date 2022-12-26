@@ -16,7 +16,7 @@ public class SymRETURN extends SymBase {
 
         tac.pop(tac.getStart_stack());
         tac.setTemp_id(null);
-        tac.generateCode("rtn " + RETURNTYPE.getID().getID() + "\n\n");
+        tac.generateCode("rtn "+ tac.getCur_prog() + " " + RETURNTYPE.getID().getID() + "\n\n");
         tac.resetDisplacement();
     }
 

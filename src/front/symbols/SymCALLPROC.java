@@ -38,7 +38,7 @@ public class SymCALLPROC extends SymBase {
         this.ID = a;
         this.IDLIST = b;
 
-        //Comprovar existencia de la funció
+        //Comprovar existencia
 
         if (!ts.exist(ID.getID())) {
             new ErrorProcNotExists().printError(lc, ID.getID());
@@ -81,6 +81,7 @@ public class SymCALLPROC extends SymBase {
             tac.generateCode(tac.newVar(tac.getTemp_id(), "integer") + " = ");
         }
 
+        //TODO Checkea si es una funció i si si asigna valora retInt, retStr...
         tac.generateCode("call " + ID.getID() + "\n");
         tac.generateCode(ID.getID() + "Return" + ":skip\n");
 

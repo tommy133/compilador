@@ -188,6 +188,10 @@ public class ThreeAddressCode {
 
     public boolean isOperand(){return operand;}
 
+    public String getCur_prog() {
+        return cur_prog;
+    }
+
     public void setCur_prog(String cur_prog){this.cur_prog = cur_prog;}
     
 
