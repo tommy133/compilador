@@ -386,7 +386,7 @@ public class EnsamblerCode {
                     code.add("\tMOVE.L #" + varnom(r) + ",4(A7)");
                     break;
             }
-        } else if (i.getOperand1() != null){
+        } else if (i.getOperand1() != null){ //TODO retorn de constant
             switch (i.getOperand1()){
                 case "retInt":
                 case "retBool":

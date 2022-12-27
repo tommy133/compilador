@@ -9,8 +9,10 @@ prog main()
     n1 := 1;
     integer: n2;
     n2 := 2;
+
     integer: res;
     res := suma(n1, n2);
+
     print(res);
 end
 

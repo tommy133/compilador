@@ -21,7 +21,7 @@ public class SymCALLPROC extends SymBase {
     private SymID ID;
     private SymIDLIST IDLIST;
 
-    public SymCALLPROC(SymID a, int[] lc) {
+    public SymCALLPROC(SymID a, int[] lc) { //NoArgs
         super("CALLPROC", 0);
         this.ID = a;
 
@@ -30,10 +30,10 @@ public class SymCALLPROC extends SymBase {
         }
 
         tac.generateCode("call " + ID.getID() + "\n");
-        tac.generateCode(ID.getID() + "Return" + ":skip\n");
+
     }
 
-    public SymCALLPROC(SymID a, SymIDLIST b, int[] lc) {
+    public SymCALLPROC(SymID a, SymIDLIST b, int[] lc) { //WithArgs
         super("CALLPROC", 0);
         this.ID = a;
         this.IDLIST = b;
@@ -81,9 +81,7 @@ public class SymCALLPROC extends SymBase {
             tac.generateCode(tac.newVar(tac.getTemp_id(), "integer") + " = ");
         }
 
-        //TODO Checkea si es una funció i si si asigna valora retInt, retStr...
         tac.generateCode("call " + ID.getID() + "\n");
-        tac.generateCode(ID.getID() + "Return" + ":skip\n");
 
     }
 

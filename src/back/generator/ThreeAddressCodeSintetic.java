@@ -30,10 +30,10 @@ public class ThreeAddressCodeSintetic {
     private ArrayList<Symbol> ts = new ArrayList<>();
 
     public ThreeAddressCodeSintetic() {
-        loadInstructions();
         loadTs();
         loadTv();
         loadTp();
+        loadInstructions();
     }
 
     private void loadInstructions() {
@@ -110,7 +110,10 @@ public class ThreeAddressCodeSintetic {
                                         instructionList.addInst(IFDIFERENTE,  instruction.split(" ")[1], instruction.split(" ")[3], instruction.split(" ")[5]);
                                 }
                             } else if (instruction.split(" ")[2].equals("call")) {
-                                instructionList.addInst(CALL, instruction.split(" ")[0], null, instruction.split(" ")[3]);
+                                instructionList.addInst(CALL, null, null, instruction.split(" ")[3]);
+                                if (instruction.split(" ")[1].equals("=")){
+                                    instructionList.addInst(ASIGNA, getReturnProc(instruction.split(" ")[3]), null, instruction.split(" ")[0]);
+                                }
                             }
                     }
                 }
@@ -264,6 +267,20 @@ public class ThreeAddressCodeSintetic {
             }
         }
         return null;
+    }
+
+    public String getReturnProc(String id){
+        Procedure proc = getProc(id);
+        if (proc == null) return null;
+        switch (proc.getType_return()){
+            case INTEGER:
+                return "retInt";
+            case LOGIC:
+                return "retBool";
+            case STRING:
+                return "retStr";
+            default: return null;
+        }
     }
 
 }
