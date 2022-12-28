@@ -14,5 +14,7 @@ prog main()
     res := suma(n1, n2);
 
     print(res);
+    print('Hola caracola');
 end
 
+//TODO Operations.smart

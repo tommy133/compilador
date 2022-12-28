@@ -5,6 +5,8 @@
  */
 package front.symbols;
 
+import front.data_structures.symbol.Symbol;
+
 public class SymOUTPUT extends SymBase {
 
     private SymPRINT PRINT;
@@ -20,8 +22,13 @@ public class SymOUTPUT extends SymBase {
     }
 
     private String paramType(){
-        if (ts.get(PRINT.getID().getID()).getSubtype().equalsIgnoreCase("string")) return "param_c";
+        Symbol print_id = ts.get(PRINT.getID().getID());
+        if (print_id == null){
+            //TODO print constant
+        }
+        if (print_id.getSubtype().equalsIgnoreCase("string")) return "param_c";
         return "param_s";
+
     }
 
 }

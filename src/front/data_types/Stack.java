@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Stack<T> {
-
+    //TODO Move Stack and subrange to data_structures
     private List<T> elements;
 
     public Stack(){
