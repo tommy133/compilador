@@ -22,6 +22,9 @@ cadena     = \"(\\.|[^\"])*\"
 enter       = [0-9]+
 linia      = ['\r' | '\n' | '\r\n']
 space         = [' ' | '\t']+
+whatever = [^\r\n]
+endofline = \r|\n|\r\n
+comment = "#" {whatever}* {endofline}?
 
 %{
   Writer bw;
@@ -133,6 +136,7 @@ space         = [' ' | '\t']+
 {cadena}  { writeToken(this.yytext()); return symbol(ParserSym.val_str, this.yytext()); }
 
 {space}            { } /*Ignorar*/
+{comment}           { } /*Ignorar*/
 {linia}           { n_linia++; }
 
 //TODO Victor: //Comments
