@@ -23,7 +23,7 @@ parser code {:
 terminal    
 
 colons, assign, scolon, op_and, op_or, add, sub, mult, div, mod,
-lparen, rparen, lbrckt, rbrckt, dotdot, gte, lt,  If,  print, read, then, endif, Else,
+lparen, rparen, lbrckt, rbrckt, dotdot, gte, lt,  If,  print, line, read, then, endif, Else,
 While, Repeat, Until, loop, endloop, prog, end, method, func,
 Const, integer, string, logic, comma, Return,
 val_int, val_id, val_str, lte, noteq, gt, equals, True, False;
@@ -327,7 +327,8 @@ start with START;
 
     /****IMPRIMIR PER PANTALLA****/
 
-    OUTPUT       ::= print lparen PRINT:a rparen                {: RESULT = new SymOUTPUT(a); :}
+    OUTPUT       ::= print lparen PRINT:a rparen                {: RESULT = new SymOUTPUT(a, false); :}
+                |   line   lparen PRINT:a rparen                {: RESULT = new SymOUTPUT(a, true); :}
               ;
 
     PRINT         ::= VALUELIST:a PRINT:b                                {: RESULT = new SymPRINT(a, b); :}

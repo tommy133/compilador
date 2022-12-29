@@ -11,12 +11,12 @@ public class SymOUTPUT extends SymBase {
 
     private SymPRINT PRINT;
 
-    public SymOUTPUT(SymPRINT a) {
+    public SymOUTPUT(SymPRINT a, boolean println) {
         super("OUTPUT", 0);
         this.PRINT = a;
 
         tac.generateCode(paramType()+" " + a.getVALUELIST() + "\n");
-        tac.generateCode("call print\n");
+        tac.generateCode("call "+((println)?"line" : "print")+"\n");
 
         tac.setTemp_id(null);
     }

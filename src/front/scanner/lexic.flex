@@ -129,6 +129,7 @@ comment = "#" {whatever}* {endofline}?
 "else"     { writeToken(this.yytext()); return symbol(ParserSym.Else, this.yytext()); }
 "return"   { writeToken(this.yytext()); return symbol(ParserSym.Return, this.yytext()); }
 "print"   { writeToken(this.yytext()); return symbol(ParserSym.print, this.yytext()); }
+"line"   { writeToken(this.yytext()); return symbol(ParserSym.line, this.yytext()); }
 "read" { writeToken(this.yytext()); return symbol(ParserSym.read, this.yytext()); }
 
 {id}            { writeToken(this.yytext()); return symbol(ParserSym.val_id, this.yytext()); }
@@ -139,7 +140,6 @@ comment = "#" {whatever}* {endofline}?
 {comment}           { } /*Ignorar*/
 {linia}           { n_linia++; }
 
-//TODO Victor: //Comments
 
 [^]              {
 
