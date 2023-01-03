@@ -214,6 +214,7 @@ start with START;
 
     ASSIGN        ::= ID:a assign OPERANDX:b               {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
                   | IDARRAY:a assign OPERANDX:b             {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
+                  | TYPE:a colons ID:b assign OPERANDX:c       {:  RESULT = new SymASSIGN(a, b, c, scanner.getLineColumn()); :}
               ;
 
     ASSIGNCONST   ::= ID:a assign OPERANDX:b               {: RESULT = new SymASSIGNCONST(a, b); :}

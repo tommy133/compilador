@@ -9,6 +9,7 @@ import front.data_structures.symbol.Symbol;
 import front.data_structures.variable.VariableTable;
 import front.data_types.Subrange;
 import front.error.ErrorConstAssign;
+import front.error.ErrorVarExists;
 import front.error.ErrorVarNotDec;
 import front.data_types.Types;
 
@@ -16,11 +17,14 @@ import front.data_types.Types;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static front.data_types.Types.VARIABLE;
+
 public class SymASSIGN extends SymBase {
 
     private SymID ID;
     private SymIDARRAY IDARRAY;
     private SymOPERANDX OPERANDX;
+    private SymTYPE TYPE;
 
     private ArrayList<String> operators = new ArrayList<>();
     private ArrayList<String> operands = new ArrayList<>();
@@ -82,6 +86,47 @@ public class SymASSIGN extends SymBase {
 
         calcOcupArray(true);
 
+    }
+
+    public SymASSIGN(SymTYPE a, SymID b, SymOPERANDX c, int[] lc) {
+        super("ASSIGN", 0);
+        this.TYPE = a;
+        this.ID = b;
+        this.OPERANDX = c;
+
+        Symbol n = new Symbol(ID.getID(), VARIABLE, TYPE.getType(),null, null); //TODO Subranges?
+        if (!ts.exist(n.getId())) {
+            ts.insertElement(n);
+        } else {
+            new ErrorVarExists().printError(lc, ID.getID());
+        }
+
+        while (OPERANDX.getOPARITH() != null) {
+            operands.add(OPERANDX.getSUBTYPE().getName());
+            operators.add(OPERANDX.getOPARITH().getType());
+            OPERANDX = OPERANDX.getOPERANDX();
+        }
+
+        if (OPERANDX.getSUBTYPE().getName() != null) {
+            operands.add(OPERANDX.getSUBTYPE().getName());
+        } else {
+            operands.add(OPERANDX.getSUBTYPE().getValor());
+        }
+
+        if (tac.isOperand()) {
+            operands = (ArrayList<String>) tac.getOperands().clone();
+            tac.resetOperands();
+        }
+
+        tac.setOperand(true);
+
+
+        //Càlcul d'ocupacions
+        if (OPERANDX.getSUBTYPE().isArray()){
+            calcOcupArray(false);
+        } else {
+            calcOcup();
+        }
     }
 
     private void calcOcup(){
