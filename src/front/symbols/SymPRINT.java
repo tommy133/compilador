@@ -32,7 +32,11 @@ public class SymPRINT extends SymBase {
         super("PRINT", 0);
     }
 
-    public String getVALUELIST() {
+    public SymVALUELIST getVALUELIST() {
+        return VALUELIST;
+    }
+
+    public String getVALID() {
         if (VALUELIST != null) {
             return VALUELIST.getVAL();
         } else {

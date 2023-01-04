@@ -61,7 +61,7 @@ public class ThreeAddressCodeSintetic {
                             instructionList.addInst(CALL, null, null, instruction.split(" ")[1]);
                             break;
                         case "param_c":
-                            instructionList.addInst(PARAM_C, null, null, instruction.split(" ")[1]);
+                            instructionList.addInst(PARAM_C, null, null, instruction.split(" ")[1].replace("\"", ""));
                             break;
                         case "param_s":
                             instructionList.addInst(PARAM_S, null, null, instruction.split(" ")[1]);

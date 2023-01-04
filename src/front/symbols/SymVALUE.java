@@ -28,14 +28,23 @@ public class SymVALUE extends SymBase {
 
     public String getVal() {
         if (NUM != null) {
-            System.out.println("NUM");
             return NUM.getValue();
         } else if (LOGIC != null) {
-            System.out.println("LOGIC");
             return LOGIC.getValue();
         } else if (STR != null) {
-            System.out.println("STR");
             return STR.getVal();
+        }
+
+        return null;
+    }
+
+    public String getType() {
+        if (NUM != null) {
+            return NUM.getType();
+        } else if (LOGIC != null) {
+            return LOGIC.getType();
+        } else if (STR != null) {
+            return STR.getType();
         }
 
         return null;

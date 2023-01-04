@@ -21,6 +21,10 @@ public class SymVALUELIST extends SymBase {
         this.VALUELIST = b;
     }
 
+    public SymVALUE getVALUE() {
+        return VAL;
+    }
+
     public String getVAL() {
         return VAL.getVal();
     }

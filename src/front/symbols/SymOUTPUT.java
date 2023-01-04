@@ -15,19 +15,23 @@ public class SymOUTPUT extends SymBase {
         super("OUTPUT", 0);
         this.PRINT = a;
 
-        tac.generateCode(paramType()+" " + a.getVALUELIST() + "\n");
+        tac.generateCode(paramType()+" " + a.getVALID() + "\n");
         tac.generateCode("call "+((println)?"line" : "print")+"\n");
 
         tac.setTemp_id(null);
     }
 
     private String paramType(){
-        Symbol print_id = ts.get(PRINT.getID().getID());
-        if (print_id == null){
-            //TODO print constant
+        String val_id = PRINT.getVALID();
+        Symbol id = ts.get(val_id);
+
+        if (id != null){
+            if (id.getSubtype().equalsIgnoreCase("string")) return "param_c";
+            else return "param_s";
         }
-        if (print_id.getSubtype().equalsIgnoreCase("string")) return "param_c";
-        return "param_s";
+
+        if (PRINT.getVALUELIST().getVALUE().getType().equalsIgnoreCase("string")) return "param_c";
+        else return "param_s";
 
     }
 
