@@ -1,0 +1,64 @@
+integer func suma(integer a, integer b)
+    integer: x;
+    x := a + b;
+    return x;
+end
+
+integer func resta(integer a, integer b)
+    integer: x;
+    x := a - b;
+    return x;
+end
+
+integer func mult(integer a, integer b)
+    integer: x;
+    x := a * b;
+    return x;
+end
+
+integer func divisio(integer a, integer b)
+    integer: x;
+    x := a / b;
+    return x;
+end
+
+prog main()
+    integer: n1 := 4;
+    integer: n2 := 2;
+
+    integer:sum := suma(n1, n2);
+    integer:res := resta(n1, n2);
+    integer:mul := mult(n1, n2);
+    integer:div := divisio(n1, n2);
+
+    print("Suma:");
+    print(n1);
+    print("+");
+    print(n2);
+    print("=");
+    line(sum);
+
+    print("Resta:");
+    print(n1);
+    print("-");
+    print(n2);
+    print("=");
+    line(res);
+
+    print("Multiplicació:");
+    print(n1);
+    print("*");
+    print(n2);
+    print("=");
+    line(mul);
+
+    print("Divisió:");
+    print(n1);
+    print("/");
+    print(n2);
+    print("=");
+    line(div);
+
+
+
+end
