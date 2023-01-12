@@ -16,6 +16,7 @@ public class SymSENT extends SymBase {
     private SymCALLPROC CALLPROC;
     private SymASSIGN ASSIGN;
     private SymDECVAR DECVAR;
+    private SymDECLARECONST DECLARECONST;
     private SymDECARRAY DECARRAY;
 
     public SymSENT(SymOUTPUT a) {
@@ -56,6 +57,11 @@ public class SymSENT extends SymBase {
     public SymSENT(SymDECVAR a) {
         super("SENT", 0);
         this.DECVAR = a;
+    }
+
+    public SymSENT(SymDECLARECONST a) {
+        super("SENT", 0);
+        this.DECLARECONST = a;
     }
 
     public SymSENT(SymDECARRAY a) {

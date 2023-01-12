@@ -48,7 +48,9 @@ non terminal  SymWHILE      WHILE;
 non terminal  SymREPUNTIL   REPUNTIL;
 non terminal  SymCALLPROC       CALLPROC;
 non terminal  SymASSIGN          ASSIGN;
+non terminal  SymASSIGNCONST          ASSIGNCONST;
 non terminal  SymDECVAR        DECVAR;
+non terminal  SymDECLARECONST       DECLARECONST;
 non terminal  SymDECARRAY       DECARRAY;
 non terminal  SymDECLISTDIM      DECLISTDIM;
 non terminal  SymOPERANDX         OPERANDX;
@@ -134,7 +136,8 @@ start with START;
               |     CALLPROC:f scolon          {: RESULT = new SymSENT(f); :}
               |     ASSIGN:g scolon             {: RESULT = new SymSENT(g); :}
               |     DECVAR:h scolon           {: RESULT = new SymSENT(h); :}
-              |     DECARRAY:i scolon           {: RESULT = new SymSENT(i); :}
+              |     DECLARECONST:i scolon           {: RESULT = new SymSENT(i); :}
+              |     DECARRAY:j scolon           {: RESULT = new SymSENT(j); :}
               ;
 
     OPERANDX       ::= OPERANDX:a OPARITH:b SUBTYPE:c            {:  RESULT = new SymOPERANDX(a, b, c); :}
@@ -214,6 +217,9 @@ start with START;
                   | TYPE:a colons ID:b assign OPERANDX:c       {:  RESULT = new SymASSIGN(a, b, c, scanner.getLineColumn()); :}
               ;
 
+  ASSIGNCONST   ::= ID:a assign OPERANDX:b               {: RESULT = new SymASSIGNCONST(a, b); :}
+                            ;
+
 /**********DECLARACIÓ VARIABLES******************/
     DECVAR      ::= TYPE:a colons IDLIST:b       {:  RESULT = new SymDECVAR(a, b, scanner.getLineColumn()); :}
               ;
@@ -224,6 +230,10 @@ start with START;
     IDLISTSEP      ::= comma IDLIST:a                       {:  RESULT = new SymIDLISTSEP(a); :}
               |                                     {:  RESULT = new SymIDLISTSEP(); :}
               ;
+
+    /**********DECLARACIÓ CONSTANT******************/
+    DECLARECONST    ::= Const TYPE:a colons ASSIGNCONST:b          {: RESULT = new SymDECLARECONST(a, b, scanner.getLineColumn()); :}
+          ;
 
 /**********DECLARACIÓ TAULA**********************/
     DECARRAY     ::=    TYPE:a colons ID:b  DECLISTDIM:c          {:   RESULT = new SymDECARRAY(a, b, c, scanner.getLineColumn());   :}
