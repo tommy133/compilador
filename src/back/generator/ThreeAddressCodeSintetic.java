@@ -243,6 +243,10 @@ public class ThreeAddressCodeSintetic {
         return instructionList;
     }
 
+    public void updateInstructionList(InstructionList instructionList){
+        this.instructionList = instructionList;
+    }
+
     public ArrayList<Variable> getTv() {
         return tv;
     }
@@ -258,6 +262,14 @@ public class ThreeAddressCodeSintetic {
             }
         }
         return null;
+    }
+
+    public void deleteVar(String id){
+        for(int i = 0; i < tv.size(); i++){
+            if(tv.get(i).getName().equals(id)){
+                this.tv.remove(i);
+            }
+        }
     }
 
     public Procedure getProc(String id){
