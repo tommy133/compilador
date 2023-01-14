@@ -21,7 +21,7 @@ public class SymDECLARECONST extends SymBase {
         this.TYPE = a;
         this.ASSIGNCONST = b;
 
-        Symbol n = new Symbol(ASSIGNCONST.getID().getID(), CONSTANT, TYPE.getType(), null,null);
+        Symbol n = new Symbol(ASSIGNCONST.getID().getID(), CONSTANT, TYPE.getType(), null);
 
         if (!ts.exist(n.getId())) {
             ts.insertElement(n);

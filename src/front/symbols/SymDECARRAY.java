@@ -1,5 +1,6 @@
 package front.symbols;
 
+import front.data_structures.Dimension;
 import front.data_structures.symbol.Symbol;
 import front.data_structures.Subrange;
 import front.data_types.TypeSub;
@@ -24,13 +25,13 @@ public class SymDECARRAY extends SymBase {
         this.ID = b;
         this.IDLISTDIM = c;
 
-        ArrayList<Subrange> subranges = new ArrayList();
+        ArrayList<Dimension> dimensions = new ArrayList();
         while (IDLISTDIM != null) {
             if (IDLISTDIM.getSUBRANGE().getType().equalsIgnoreCase(String.valueOf(TypeSub.INTEGER))) {
                 int val1 = Integer.parseInt(IDLISTDIM.getSUBRANGE().getNum1().getValue());
                 int val2 = Integer.parseInt(IDLISTDIM.getSUBRANGE().getNum2().getValue());
                 Subrange subrange = new Subrange(val1, val2);
-                subranges.add(subrange);
+                dimensions.add(new Dimension(subrange));
             }
             else {
                 new ErrorRangeTypes().printError(lc, ID.getID());
@@ -39,9 +40,9 @@ public class SymDECARRAY extends SymBase {
             IDLISTDIM = IDLISTDIM.getDECLISTDIM();
         }
 
-        Collections.reverse(subranges);
+        Collections.reverse(dimensions);
 
-        Symbol s = new Symbol(ID.getID(), ARRAY, TYPE.getType(), subranges,null);
+        Symbol s = new Symbol(ID.getID(), ARRAY, TYPE.getType(), dimensions,null);
         if (!ts.exist(ID.getID())) {
             ts.insertElement(s);
         } else {

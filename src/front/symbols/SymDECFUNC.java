@@ -29,7 +29,7 @@ public class SymDECFUNC extends SymBase {
         this.SENTLIST = d;
         this.RETURN = e;
 
-        Symbol n = new Symbol(ID.getID(), FUNCTION, TYPE.getType(),null, (ArrayList<Symbol>) ts.getParams().clone());
+        Symbol n = new Symbol(ID.getID(), FUNCTION, TYPE.getType(), (ArrayList<Symbol>) ts.getParams().clone());
 
         if (ts.exist(n.getId())) {
             Symbol node = ts.get(n.getId());

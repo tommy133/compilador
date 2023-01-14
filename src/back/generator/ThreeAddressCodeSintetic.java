@@ -191,7 +191,6 @@ public class ThreeAddressCodeSintetic {
                             split[0],
                             Types.valueOf(split[2]),
                             split[3],
-                            null,
                             null
                     ));
                 }

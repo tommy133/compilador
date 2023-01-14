@@ -23,7 +23,7 @@ public class SymDECVAR extends SymBase {
         this.IDLIST = b;
 
         while (IDLIST.getIDLISTSEP() != null) {
-            Symbol n = new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(),null, null);
+            Symbol n = new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(),null);
             if (!ts.exist(n.getId())) {
                 ts.insertElement(n);
             } else {
@@ -32,7 +32,7 @@ public class SymDECVAR extends SymBase {
             IDLIST = IDLIST.getIDLISTSEP().getLID();
         }
         if (!ts.exist(IDLIST.getID().getID())) {
-            ts.insertElement(new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(), null,null));
+            ts.insertElement(new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(), null));
         } else {
             new ErrorVarExists().printError(lc, IDLIST.getID().getID());
         }
