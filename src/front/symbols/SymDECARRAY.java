@@ -1,7 +1,7 @@
 package front.symbols;
 
 import front.data_structures.symbol.Symbol;
-import front.data_types.Subrange;
+import front.data_structures.Subrange;
 import front.data_types.TypeSub;
 import front.error.ErrorRangeTypes;
 import front.error.ErrorVarExists;

@@ -1,4 +1,4 @@
-package front.data_types;
+package front.data_structures;
 
 public class Subrange {
     private int val1;

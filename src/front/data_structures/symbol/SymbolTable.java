@@ -2,7 +2,7 @@ package front.data_structures.symbol;
 
 
 import back.data_structures.Parametro;
-import front.data_types.Stack;
+import front.data_structures.Stack;
 import front.data_types.TypeSub;
 
 import java.io.*;

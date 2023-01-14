@@ -1,6 +1,6 @@
 package front.data_structures.symbol;
 
-import front.data_types.Subrange;
+import front.data_structures.Subrange;
 import front.data_types.Types;
 
 import java.util.ArrayList;

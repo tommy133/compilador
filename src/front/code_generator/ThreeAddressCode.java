@@ -4,7 +4,7 @@ package front.code_generator;
 import front.data_structures.procedure.ProcedureTable;
 import front.data_structures.variable.Variable;
 import front.data_structures.variable.VariableTable;
-import front.data_types.Stack;
+import front.data_structures.Stack;
 
 import java.io.*;
 import java.util.ArrayList;

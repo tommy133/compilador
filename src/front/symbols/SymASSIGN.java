@@ -7,7 +7,7 @@ package front.symbols;
 
 import front.data_structures.symbol.Symbol;
 import front.data_structures.variable.VariableTable;
-import front.data_types.Subrange;
+import front.data_structures.Subrange;
 import front.error.ErrorConstAssign;
 import front.error.ErrorVarExists;
 import front.error.ErrorVarNotDec;
