@@ -175,13 +175,16 @@ public class SymASSIGN extends SymBase {
 
     private void calcOcupArray(boolean left){//fórmula apunts
         Symbol array;
+        ArrayList<Dimension> dim;
+
         if (left){
             array = ts.get(IDARRAY.getID().getID());
+            dim = setIdxs(array.getDimensions(), IDARRAY.getIdxs());
         } else {
             array = ts.get(OPERANDX.getSUBTYPE().getIDARRAY().getID().getID());
+            dim = setIdxs(array.getDimensions(), OPERANDX.getSUBTYPE().getIDARRAY().getIdxs());
         }
 
-        ArrayList<Dimension> dim = setIdxs(array.getDimensions());
 
         int b = array.getB();
         int nbytes = new VariableTable().calculateStore(array.getSubtype(),"");
@@ -207,6 +210,7 @@ public class SymASSIGN extends SymBase {
                         (dim.get(i+1).getSubrange().getVal2() - dim.get(i+1).getSubrange().getVal1() + 1)+"\n");
             }
             tn1 = tn + dim.get(dim.size()-1).getIdx();
+            temp_prev = temp_var;
             temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn1);
             tac.generateCode(temp_var + " = " + temp_prev + " + "+dim.get(dim.size()-1).getIdx()+"\n");
 
@@ -230,13 +234,15 @@ public class SymASSIGN extends SymBase {
         }
 
         if (left){
-            tac.generateCode(IDARRAY.getID().getID()+"["+temp_var+"]"+" = "+OPERANDX.getSUBTYPE().getName()+"\n");
+            tac.generateCode(tac.newVar(IDARRAY.getID().getID(), IDARRAY.getID().getType())+
+                    "["+temp_var+"]"+" = "+OPERANDX.getSUBTYPE().getName()+"\n");
+        } else {
+            tac.generateCode(ID.getID() + " = "+ tac.newVar(OPERANDX.getSUBTYPE().getIDARRAY().getID().getID(),
+                    OPERANDX.getSUBTYPE().getIDARRAY().getID().getType())+ "["+temp_var+"]");
         }
     }
 
-    private ArrayList<Dimension> setIdxs(ArrayList<Dimension> dim){
-        ArrayList idxs = IDARRAY.getIdxs();
-
+    private ArrayList<Dimension> setIdxs(ArrayList<Dimension> dim, ArrayList<Integer> idxs){
         for (int i=0; i<dim.size(); i++){
             dim.get(i).setIdx((int) idxs.get(i));
         }
