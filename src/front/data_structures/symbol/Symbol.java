@@ -14,13 +14,13 @@ public class Symbol {
     private ArrayList<Dimension> dimensions;
     private ArrayList<Symbol> args;
     private int b; //base del desplaçament del array coneguda en temps de compilació
+    private int length; //nombre d'elements si es tracta d'un array
 
     public Symbol(String id, Types types, String subtype, ArrayList<Symbol> args) {
         this.id = id;
         this.type = types;
         this.subtype = subtype;
         this.args = args;
-        this.b = (dimensions !=null)? calcBase(dimensions.size()-1) : 0;
     }
 
     public Symbol(String id, Types types, String subtype, ArrayList<Dimension> dimensions, ArrayList<Symbol> args) {
@@ -29,7 +29,7 @@ public class Symbol {
         this.subtype = subtype;
         this.dimensions = dimensions;
         this.b = (this.dimensions !=null)? calcBase(this.dimensions.size()-1) : 0;
-        this.args = args;
+        this.length = (dimensions !=null)? calcLength() : 0;
     }
 
     private int calcBase(int i){
@@ -40,7 +40,14 @@ public class Symbol {
 
         if (i == 0) return lik;
         return lik + dk * calcBase(i-1);
+    }
 
+    private int calcLength(){
+        int len=0;
+        for (Dimension dim : dimensions){
+            len += dim.getSubrange().getVal2() + 1;
+        }
+        return len;
     }
 
     public void setId(String a) {
@@ -57,6 +64,10 @@ public class Symbol {
 
     public String getSubtype() {
         return subtype;
+    }
+
+    public int getLength() {
+        return length;
     }
 
     public ArrayList<Dimension> getDimensions() {

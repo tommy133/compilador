@@ -210,7 +210,7 @@ public class SymASSIGN extends SymBase {
                         (dim.get(i+1).getSubrange().getVal2() - dim.get(i+1).getSubrange().getVal1() + 1)+"\n");
             }
             tn1 = tn + dim.get(dim.size()-1).getIdx();
-            temp_prev = temp_var;
+            if (!temp_var.equals("")) temp_prev = temp_var;
             temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn1);
             tac.generateCode(temp_var + " = " + temp_prev + " + "+dim.get(dim.size()-1).getIdx()+"\n");
 
@@ -234,11 +234,11 @@ public class SymASSIGN extends SymBase {
         }
 
         if (left){
-            tac.generateCode(tac.newVar(IDARRAY.getID().getID(), IDARRAY.getID().getType())+
+            tac.generateCode(tac.newVarArray(IDARRAY.getID().getID(), IDARRAY.getID().getType(), ts.get(IDARRAY.getID().getID()).getLength())+
                     "["+temp_var+"]"+" = "+OPERANDX.getSUBTYPE().getName()+"\n");
         } else {
-            tac.generateCode(ID.getID() + " = "+ tac.newVar(OPERANDX.getSUBTYPE().getIDARRAY().getID().getID(),
-                    OPERANDX.getSUBTYPE().getIDARRAY().getID().getType())+ "["+temp_var+"]");
+            tac.generateCode(tac.newVar(ID.getID(), ID.getType()) + " = "+ OPERANDX.getSUBTYPE().getIDARRAY().getID().getID()
+                    + "["+temp_var+"]"+"\n");
         }
     }
 

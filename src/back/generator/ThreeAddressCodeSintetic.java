@@ -77,12 +77,15 @@ public class ThreeAddressCodeSintetic {
                             } else if (instruction.split(" ")[1].equalsIgnoreCase("=") && !instruction.split(" ")[2].equals("call")) {
 
                                 if (instruction.split(" ").length < 4) { //asignació simple (a = b).
-                                    String [] split = instruction.split(" ");
+                                    String [] splitCode = instruction.split(" ");
                                     if (instruction.contains("[")) {
-                                        split = instruction.split("[\\[\\]=\\s]+");
-                                        instructionList.addInst(ASIGNA, split[2], split[1], split[0]);
-                                        //TODO checkear array a part dreta
-                                    } else instructionList.addInst(ASIGNA, split[2], null, split[0]);
+                                        String [] splitAdress = instruction.split("[\\[\\]=\\s]+");
+                                        if (splitCode[0].contains("[")){
+                                            instructionList.addInst(ASIGNA, splitAdress[2], splitAdress[1], splitAdress[0]);
+                                        }
+                                        else instructionList.addInst(ASIGNA, splitAdress[1], splitAdress[2], splitAdress[0]);
+
+                                    } else instructionList.addInst(ASIGNA, splitCode[2], null, splitCode[0]);
 
                                 } else {
                                     switch (instruction.split(" ")[3]) {

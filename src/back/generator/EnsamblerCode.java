@@ -6,6 +6,7 @@ import back.data_structures.Parametro;
 import back.data_structures.instructions.Instruction;
 import front.data_structures.procedure.Procedure;
 import front.data_structures.variable.Variable;
+import front.data_structures.variable.VariableTable;
 import front.data_types.TypeSub;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class EnsamblerCode {
                         bytes = false;
                         code.add("\tDC.W 0");
                     }
-                    code.add(name + ": DS.W 1");
+                    code.add(name + ": DS.W "+v.getStore()/new VariableTable().calculateStore(v.getType(),""));
                     break;
                 case STRING:
                     bytes = true;
@@ -162,7 +163,7 @@ public class EnsamblerCode {
         }
     }
 
-    private void iasigna(Instruction i){
+    private void iasigna(Instruction i){ //TODO Generate array displacement
         Variable d = tac.getVar(i.getDestiny());
         switch (TypeSub.valueOf(d.getType().toUpperCase())){
             case STRING:

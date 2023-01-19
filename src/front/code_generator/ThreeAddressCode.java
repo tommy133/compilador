@@ -127,6 +127,22 @@ public class ThreeAddressCode {
         return name;
     }
 
+    public String newVarArray(String name, String type, int length) {
+        int store = tv.calculateStore(type, "") * length;
+        tv.addRow(new Variable
+                (name,
+                        n_var,
+                        cur_prog,
+                        store,
+                        disp,
+                        type, "")
+        );
+
+        incDisplacement(store);
+        n_var++;
+
+        return name;
+    }
 
     public String getTemp_id(){return temp_id;}
     
