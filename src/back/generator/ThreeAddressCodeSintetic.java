@@ -240,7 +240,7 @@ public class ThreeAddressCodeSintetic {
         return parametros;
     }
 
-    private Symbol getSymbol(String id){
+    public Symbol getSymbol(String id){
         for (Symbol s : ts){
             if (s.getId().equals(id)) return s;
         }
