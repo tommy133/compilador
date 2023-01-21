@@ -8,7 +8,6 @@ package front.symbols;
 import front.data_structures.Dimension;
 import front.data_structures.symbol.Symbol;
 import front.data_structures.variable.VariableTable;
-import front.data_types.Subrange;
 import front.data_types.TypeSub;
 import front.error.*;
 import front.data_types.Types;
@@ -78,13 +77,17 @@ public class SymASSIGN extends SymBase {
 
     }
 
-    public SymASSIGN(SymIDARRAY a, SymOPERANDX b, int[] lc) {
+    public SymASSIGN(SymIDARRAY a, SymOPERANDX b, int[] lc) throws ErrorVarNotDec, ErrorArgTypes {
         super("ASSIGN", 0);
         this.IDARRAY = a;
         this.OPERANDX = b;
 
         if (ts.get(IDARRAY.getID().getID()) == null) {
             new ErrorVarNotDec().printError(place,lc, IDARRAY.getID().getID());
+        }
+        if(!ts.get(IDARRAY.getID().getID()).getSubtype().equalsIgnoreCase(this.OPERANDX.getSUBTYPE().getType())){
+            new ErrorArgTypes().printError(place, lc, IDARRAY.getID().getID());
+            throw new ErrorArgTypes();
         }
 
         operands.add(OPERANDX.getSUBTYPE().getValor());
@@ -181,7 +184,7 @@ public class SymASSIGN extends SymBase {
         tac.setTemp_id(null);
     }
 
-    private void calcOcupArray(boolean left){//fórmula apunts
+    private void calcOcupArray(boolean left) throws ErrorVarNotDec {//fórmula apunts
         Symbol array;
         ArrayList<Dimension> dim;
 

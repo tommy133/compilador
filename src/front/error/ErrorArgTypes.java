@@ -21,7 +21,7 @@ public class ErrorArgTypes extends SintaxErrorException {
             
             writer.write(place + " [Error SEMÀNTIC]:"
                 + "[" + column_line[0] + ":" + column_line[1] + "]"
-                + " Els tipus dels arguments de la funció o mètode " 
+                + " Els tipus dels arguments de la funció, mètode o assignacio "
                 + "'" + var_err + "'" + " són incorrectes.\n");
 
             writer.close();
