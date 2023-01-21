@@ -1,6 +1,7 @@
 package front.parser;
 
 import front.scanner.LexicalScanner;
+import java_cup.Main;
 import java_cup.runtime.ComplexSymbolFactory;
 import java_cup.runtime.Symbol;
 import java_cup.runtime.SymbolFactory;
@@ -18,6 +19,17 @@ public class TestParser {
       String filename = args[0];
       LexicalScanner scanner;
       Parser parser = null;
+
+      if(args.length == 1){
+          System.out.println("Hola");
+          String[] values = {"-parser", "Parser", "src/front/parser/Parser.cup"};
+          try {
+              Main.main(values);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+          System.exit(0);
+      }
 
     try {
         clean("Tokens.txt");
