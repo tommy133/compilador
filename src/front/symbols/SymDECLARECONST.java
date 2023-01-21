@@ -7,6 +7,7 @@ package front.symbols;
 
 import front.data_structures.symbol.Symbol;
 import front.error.ErrorConstExists;
+import front.error.ErrorVarNotDec;
 
 
 import static front.data_types.Types.CONSTANT;
@@ -15,8 +16,9 @@ public class SymDECLARECONST extends SymBase {
 
     private SymTYPE TYPE;
     private SymASSIGNCONST ASSIGNCONST;
+    private final String place = "SymDECLARECONST";
 
-    public SymDECLARECONST(SymTYPE a, SymASSIGNCONST b, int[] lc) {
+    public SymDECLARECONST(SymTYPE a, SymASSIGNCONST b, int[] lc) throws ErrorVarNotDec, ErrorConstExists {
         super("DECLARECONST", 0);
         this.TYPE = a;
         this.ASSIGNCONST = b;
@@ -28,7 +30,8 @@ public class SymDECLARECONST extends SymBase {
             tac.assign(tac.newVar(ASSIGNCONST.getID().getID(), ASSIGNCONST.getID().getType(),
                     ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor()), ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor());
         } else {
-            new ErrorConstExists().printError(lc, n.getId());
+            new ErrorConstExists().printError(place,lc, n.getId());
+            throw new ErrorConstExists();
         }
     }
 

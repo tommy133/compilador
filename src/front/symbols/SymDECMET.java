@@ -18,8 +18,9 @@ public class SymDECMET extends SymBase {
     private SymID ID;
     private SymARGLIST ARGLIST;
     private SymSENTLIST SENTLIST;
+    private final String place = "SymDECMET";
 
-    public SymDECMET(SymID a, SymARGLIST b, SymSENTLIST c, int[] lc) {
+    public SymDECMET(SymID a, SymARGLIST b, SymSENTLIST c, int[] lc) throws ErrorProcExists {
         super("F", 0);
 
         this.ID = a;
@@ -33,7 +34,8 @@ public class SymDECMET extends SymBase {
             Symbol node = ts.get(n.getId());
 
             if (node.getType() == METHOD || node.getType() == FUNCTION) {
-                new ErrorProcExists().printError(lc, n.getId());
+                new ErrorProcExists().printError(place,lc, n.getId());
+                throw new ErrorProcExists();
             } else {
                 ts.insertElement(n);
             }

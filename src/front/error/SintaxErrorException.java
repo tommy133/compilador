@@ -7,9 +7,9 @@
 package front.error;
 
 import java.io.Writer;
-
+// TODO: REMEMBER TO DELETE STRING PLACE BTW
 public abstract class SintaxErrorException extends Exception {
     Writer writer;
-    public abstract int printError(int[] lc, String variableError);
+    public abstract int printError(String place, int[] lc, String variableError);
 }
 

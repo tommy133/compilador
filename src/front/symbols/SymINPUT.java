@@ -6,11 +6,13 @@
 package front.symbols;
 
 
+import front.error.ErrorVarNotDec;
+
 public class SymINPUT extends SymBase {
 
     private SymID ID;
 
-    public SymINPUT(SymID a) {
+    public SymINPUT(SymID a) throws ErrorVarNotDec {
         super("F", 0);
         this.ID = a;
         tac.generateCode(paramType()+" " + ID + "\n");
@@ -19,12 +21,12 @@ public class SymINPUT extends SymBase {
         tac.setTemp_id(null);
     }
 
-    private String paramType(){
+    private String paramType() throws ErrorVarNotDec {
         if (ID.getType().equalsIgnoreCase("string")) return "param_c";
         return "param_s";
     }
 
-    private String returnType() {
+    private String returnType() throws ErrorVarNotDec {
         switch (ID.getType()){
             case "string": return "retStr";
             case "integer": return "retInt";

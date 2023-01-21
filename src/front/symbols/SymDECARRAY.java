@@ -16,9 +16,9 @@ public class SymDECARRAY extends SymBase {
     private SymTYPE TYPE;
     private SymID ID;
     private SymDECLISTDIM IDLISTDIM;
+    private final String place = "SymDECARRAY";
 
-
-    public SymDECARRAY(SymTYPE a, SymID b, SymDECLISTDIM c, int[] lc) {
+    public SymDECARRAY(SymTYPE a, SymID b, SymDECLISTDIM c, int[] lc) throws ErrorRangeTypes, ErrorVarExists {
         super("DECARRAY", 0);
         this.TYPE = a;
         this.ID = b;
@@ -33,7 +33,8 @@ public class SymDECARRAY extends SymBase {
                 subranges.add(subrange);
             }
             else {
-                new ErrorRangeTypes().printError(lc, ID.getID());
+                new ErrorRangeTypes().printError(place,lc, ID.getID());
+                throw new ErrorRangeTypes();
             }
 
             IDLISTDIM = IDLISTDIM.getDECLISTDIM();
@@ -45,7 +46,8 @@ public class SymDECARRAY extends SymBase {
         if (!ts.exist(ID.getID())) {
             ts.insertElement(s);
         } else {
-            new ErrorVarExists().printError(lc, ID.getID());
+            new ErrorVarExists().printError(place,lc, ID.getID());
+            throw new ErrorVarExists();
         }
 
 

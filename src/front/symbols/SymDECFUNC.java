@@ -7,6 +7,7 @@ package front.symbols;
 
 import front.data_structures.symbol.Symbol;
 import front.data_types.TypeSub;
+import front.error.ErrorArgTypes;
 import front.error.ErrorProcExists;
 import java.util.ArrayList;
 
@@ -20,8 +21,9 @@ public class SymDECFUNC extends SymBase {
     private SymARGLIST ARGLIST;
     private SymSENTLIST SENTLIST;
     private SymRETURN RETURN;
+    private final String place = "SymDECFUNC";
 
-    public SymDECFUNC(SymTYPE a, SymID b, SymARGLIST c, SymSENTLIST d, SymRETURN e, int[] lc) {
+    public SymDECFUNC(SymTYPE a, SymID b, SymARGLIST c, SymSENTLIST d, SymRETURN e, int[] lc) throws ErrorArgTypes, ErrorProcExists {
         super("F", 0);
         this.TYPE = a;
         this.ID = b;
@@ -30,11 +32,15 @@ public class SymDECFUNC extends SymBase {
         this.RETURN = e;
 
         Symbol n = new Symbol(ID.getID(), FUNCTION, TYPE.getType(),null, (ArrayList<Symbol>) ts.getParams().clone());
-
+        if(!this.TYPE.getType().equals(this.RETURN.getRETURNTYPE().getType())) {
+            new ErrorArgTypes().printError(place, lc, ID.getID());
+            throw new ErrorArgTypes();
+        }
         if (ts.exist(n.getId())) {
             Symbol node = ts.get(n.getId());
             if (node.getType() == METHOD || node.getType() == FUNCTION) {
-                new ErrorProcExists().printError(lc, n.getId());
+                new ErrorProcExists().printError(place,lc, n.getId());
+                throw new ErrorProcExists();
             } else {
                 ts.insertElement(n);
             }

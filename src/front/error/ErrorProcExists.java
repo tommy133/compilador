@@ -13,11 +13,11 @@ import java.util.logging.Level;
 public class ErrorProcExists extends SintaxErrorException {
 
     @Override
-    public int printError(int[] column_line, String var_err) {
+    public int printError(String place, int[] column_line, String var_err) {
         try {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Errors.txt", true), StandardCharsets.UTF_8));
             
-            writer.write("[Error SEMÀNTIC]:"
+            writer.write(place + " [Error SEMÀNTIC]:"
                 + "[" + column_line[0] + ":" + column_line[1] + "]"
                 + " El métode o funció " + "'"
                 + var_err + "'" + " ja existeix.\n");

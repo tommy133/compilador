@@ -6,10 +6,7 @@
 package front.symbols;
 
 import front.data_structures.symbol.Symbol;
-import front.error.ErrorArgTypes;
-import front.error.ErrorFewParam;
-import front.error.ErrorMuchParam;
-import front.error.ErrorProcNotExists;
+import front.error.*;
 
 
 import java.util.ArrayList;
@@ -20,29 +17,28 @@ public class SymCALLPROC extends SymBase {
 
     private SymID ID;
     private SymIDLIST IDLIST;
-
+    private final String place = "SymCALLPROC";
     public SymCALLPROC(SymID a, int[] lc) { //NoArgs
         super("CALLPROC", 0);
         this.ID = a;
 
         if (!ts.exist(ID.getID())) {
-            new ErrorProcNotExists().printError(lc, ID.getID());
+            new ErrorProcNotExists().printError(place,lc, ID.getID());
         }
 
         tac.generateCode("call " + ID.getID() + "\n");
 
     }
 
-    public SymCALLPROC(SymID a, SymIDLIST b, int[] lc) { //WithArgs
+    public SymCALLPROC(SymID a, SymIDLIST b, int[] lc) throws ErrorVarNotDec, ErrorMuchParam, ErrorFewParam, ErrorArgTypes, ErrorProcNotExists { //WithArgs
         super("CALLPROC", 0);
         this.ID = a;
         this.IDLIST = b;
 
         //Comprovar existencia
-
         if (!ts.exist(ID.getID())) {
-            new ErrorProcNotExists().printError(lc, ID.getID());
-
+            new ErrorProcNotExists().printError(place,lc, ID.getID());
+            throw new ErrorProcNotExists();
         }
 
         ArrayList<SymID> args_call = new ArrayList();
@@ -57,18 +53,20 @@ public class SymCALLPROC extends SymBase {
         real_args = (ArrayList<Symbol>) ts.get(ID.getID()).getArgs().clone();
 
         if (args_call.size() > real_args.size()) {
-            new ErrorMuchParam().printError(lc, ID.getID());
+            new ErrorMuchParam().printError(place,lc, ID.getID());
+            throw new ErrorMuchParam();
 
         } else if (args_call.size() < real_args.size()) {
-            new ErrorFewParam().printError(lc, ID.getID());
+            new ErrorFewParam().printError(place,lc, ID.getID());
+            throw new ErrorFewParam();
 
         }
 
         for (int i = 0; i < args_call.size(); i++) {
 
             if (!args_call.get(i).getType().equalsIgnoreCase(real_args.get(i).getSubtype())) {
-                new ErrorArgTypes().printError(lc, ID.getID());
-
+                new ErrorArgTypes().printError(place,lc, ID.getID());
+                throw new ErrorArgTypes();
             }
         }
 
@@ -85,7 +83,7 @@ public class SymCALLPROC extends SymBase {
 
     }
 
-    private String paramType(SymID symID){
+    private String paramType(SymID symID) throws ErrorVarNotDec {
         if (symID.getType().equalsIgnoreCase("string")) return "param_c";
         return "param_s";
     }

@@ -6,11 +6,13 @@
 package front.symbols;
 
 
+import front.error.ErrorVarNotDec;
+
 public class SymRETURN extends SymBase {
 
     private SymRETURNTYPE RETURNTYPE;
 
-    public SymRETURN(SymRETURNTYPE a) {
+    public SymRETURN(SymRETURNTYPE a) throws ErrorVarNotDec {
         super("F", 0);
         this.RETURNTYPE = a;
 
@@ -20,5 +22,7 @@ public class SymRETURN extends SymBase {
         tac.resetDisplacement();
     }
 
-
+    public SymRETURNTYPE getRETURNTYPE() {
+        return RETURNTYPE;
+    }
 }

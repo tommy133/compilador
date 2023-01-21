@@ -6,6 +6,8 @@
 package front.symbols;
 
 
+import front.error.ErrorVarNotDec;
+
 public class SymCONDITION extends SymBase {
 
     private SymOPERANDX OPERANDX1;
@@ -39,7 +41,7 @@ public class SymCONDITION extends SymBase {
         while (CONDEXT != null);
     }
 
-    public SymCONDITION(SymID a) {
+    public SymCONDITION(SymID a) throws ErrorVarNotDec {
         super("CONDITION", 0);
 
         this.ID = a;
@@ -47,7 +49,7 @@ public class SymCONDITION extends SymBase {
         tac.generateCode(ID.getID() + " then ");
     }
 
-    public SymCONDITION(SymIDARRAY IDARRAY) {
+    public SymCONDITION(SymIDARRAY IDARRAY) throws ErrorVarNotDec {
         super("CONDITION", 0);
 
         this.IDARRAY = IDARRAY;

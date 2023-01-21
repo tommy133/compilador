@@ -6,6 +6,8 @@
 package front.symbols;
 
 
+import front.error.ErrorVarNotDec;
+
 public class SymRETURNTYPE extends SymBase {
 
     private SymNUM NUM;
@@ -15,6 +17,7 @@ public class SymRETURNTYPE extends SymBase {
     private SymSTR STR;
 
     private String type;
+    private final String place = "SymRETURNTYPE";
 
     public SymRETURNTYPE(SymNUM a) {
         super("RETURNTYPE", 0);
@@ -22,7 +25,7 @@ public class SymRETURNTYPE extends SymBase {
         type = a.getType();
     }
 
-    public SymRETURNTYPE(SymID a) {
+    public SymRETURNTYPE(SymID a, int[] lc) throws ErrorVarNotDec {
         super("RETURNTYPE", 0);
         this.ID = a;
         type = a.getType();

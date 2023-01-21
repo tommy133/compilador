@@ -8,6 +8,7 @@ package compiler;
 
 import back.generator.EnsamblerCode;
 import back.generator.ThreeAddressCodeSintetic;
+import front.error.SintaxErrorException;
 import front.parser.Parser;
 import front.scanner.LexicalScanner;
 import java_cup.runtime.ComplexSymbolFactory;
@@ -24,9 +25,6 @@ public class Compiler {
     private static EnsamblerCode ens;
 
     public static void main(String[] args) {
-
-
-
         try {
             if (args.length < 1) {
                 System.err.println("Indica un fitxer d' entrada.");
@@ -53,6 +51,8 @@ public class Compiler {
         } catch (FileNotFoundException ex) {
             System.out.println("Fitxer no trobat!!");
             Logger.getLogger(Compiler.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SintaxErrorException ex) {
+            System.out.println("Error de compilacion, comprueba errors.txt para mas info.");
         } catch (Exception ex) {
             Logger.getLogger(Compiler.class.getName()).log(Level.SEVERE, null, ex);
             int[] line_column = new int[2];

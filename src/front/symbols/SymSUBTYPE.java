@@ -6,6 +6,8 @@
 package front.symbols;
 
 
+import front.error.ErrorVarNotDec;
+
 public class SymSUBTYPE extends SymBase {
 
     private SymID ID;
@@ -17,7 +19,7 @@ public class SymSUBTYPE extends SymBase {
     private String type;
     private String name;
 
-    public SymSUBTYPE(SymID a) {
+    public SymSUBTYPE(SymID a) throws ErrorVarNotDec {
         super("T", 0);
         this.ID = a;
         this.type = a.getType();
@@ -25,7 +27,7 @@ public class SymSUBTYPE extends SymBase {
         tac.getOperands().add(a.getID());
     }
 
-    public SymSUBTYPE(SymIDARRAY IDARRAY) {
+    public SymSUBTYPE(SymIDARRAY IDARRAY) throws ErrorVarNotDec {
         super("T", 0);
         this.IDARRAY = IDARRAY;
         this.type = IDARRAY.getID().getType();

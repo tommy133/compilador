@@ -8,9 +8,7 @@ package front.symbols;
 import front.data_structures.symbol.Symbol;
 import front.data_structures.variable.VariableTable;
 import front.data_types.Subrange;
-import front.error.ErrorConstAssign;
-import front.error.ErrorVarExists;
-import front.error.ErrorVarNotDec;
+import front.error.*;
 import front.data_types.Types;
 
 
@@ -25,21 +23,26 @@ public class SymASSIGN extends SymBase {
     private SymIDARRAY IDARRAY;
     private SymOPERANDX OPERANDX;
     private SymTYPE TYPE;
-
+    private final String place = "SymASSIGN";
     private ArrayList<String> operators = new ArrayList<>();
     private ArrayList<String> operands = new ArrayList<>();
 
-    public SymASSIGN(SymID a, SymOPERANDX b, int[] lc) {
+    public SymASSIGN(SymID a, SymOPERANDX b, int[] lc) throws SintaxErrorException {
         super("ASSIGN", 0);
         this.ID = a;
         this.OPERANDX = b;
-
+        if(!this.ID.getType().equalsIgnoreCase(this.OPERANDX.getSUBTYPE().getType())){
+            new ErrorArgTypes().printError(place, lc, this.ID.getID());
+            throw new ErrorArgTypes();
+        }
         if (ts.get(ID.getID()) == null) {
-            new ErrorVarNotDec().printError(lc, ID.getID());
+            new ErrorVarNotDec().printError(place,lc, ID.getID());
+            throw new ErrorVarNotDec();
         }
 
         else if (ts.get(ID.getID()).getType().equals(Types.CONSTANT)) {
-            new ErrorConstAssign().printError(lc, ID.getID());
+            new ErrorConstAssign().printError(place,lc, ID.getID());
+            throw new ErrorConstAssign();
         }
 
 
@@ -79,7 +82,7 @@ public class SymASSIGN extends SymBase {
         this.OPERANDX = b;
 
         if (ts.get(IDARRAY.getID().getID()) == null) {
-            new ErrorVarNotDec().printError(lc, IDARRAY.getID().getID());
+            new ErrorVarNotDec().printError(place,lc, IDARRAY.getID().getID());
         }
 
         operands.add(OPERANDX.getSUBTYPE().getValor());
@@ -88,17 +91,21 @@ public class SymASSIGN extends SymBase {
 
     }
 
-    public SymASSIGN(SymTYPE a, SymID b, SymOPERANDX c, int[] lc) {
+    public SymASSIGN(SymTYPE a, SymID b, SymOPERANDX c, int[] lc) throws ErrorVarNotDec, ErrorArgTypes, ErrorVarExists {
         super("ASSIGN", 0);
         this.TYPE = a;
         this.ID = b;
         this.OPERANDX = c;
-
+        if(!this.TYPE.getType().equalsIgnoreCase(this.OPERANDX.getSUBTYPE().getType())) {
+            new ErrorArgTypes().printError(place, lc, this.ID.getID());
+            throw new ErrorArgTypes();
+        }
         Symbol n = new Symbol(ID.getID(), VARIABLE, TYPE.getType(),null, null); //TODO Subranges?
         if (!ts.exist(n.getId())) {
             ts.insertElement(n);
         } else {
-            new ErrorVarExists().printError(lc, ID.getID());
+            new ErrorVarExists().printError(place,lc, ID.getID());
+            throw new ErrorVarExists();
         }
 
         while (OPERANDX.getOPARITH() != null) {
@@ -129,7 +136,7 @@ public class SymASSIGN extends SymBase {
         }
     }
 
-    private void calcOcup(){
+    private void calcOcup() throws ErrorVarNotDec {
         Collections.reverse(operands);
 
         if (operands.size() > 2) {
