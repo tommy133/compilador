@@ -57,12 +57,12 @@ public class SymASSIGN extends SymBase {
             operands.add(OPERANDX.getSUBTYPE().getValor());
         }
 
-        if (tac.isOperand()) {
-            operands = (ArrayList<String>) tac.getOperands().clone();
-            tac.resetOperands();
-        }
-
-        tac.setOperand(true);
+//        if (tac.isOperand()) {
+//            operands = (ArrayList<String>) tac.getOperands().clone();
+//            tac.resetOperands();
+//        }
+//
+//        tac.setOperand(true);
 
 
         //Càlcul d'ocupacions
@@ -96,7 +96,8 @@ public class SymASSIGN extends SymBase {
         this.ID = b;
         this.OPERANDX = c;
 
-        Symbol n = new Symbol(ID.getID(), VARIABLE, TYPE.getType(),null); //TODO Subranges?
+        Symbol n = new Symbol(ID.getID(), VARIABLE, TYPE.getType(),null);
+
         if (!ts.exist(n.getId())) {
             ts.insertElement(n);
         } else {
@@ -115,12 +116,12 @@ public class SymASSIGN extends SymBase {
             operands.add(OPERANDX.getSUBTYPE().getValor());
         }
 
-        if (tac.isOperand()) {
-            operands = (ArrayList<String>) tac.getOperands().clone();
-            tac.resetOperands();
-        }
-
-        tac.setOperand(true);
+//        if (tac.isOperand()) {
+//            operands = (ArrayList<String>) tac.getOperands().clone();
+//            tac.resetOperands();
+//        }
+//
+//        tac.setOperand(true);
 
 
         //Càlcul d'ocupacions
@@ -224,9 +225,14 @@ public class SymASSIGN extends SymBase {
             temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn3);
             tac.generateCode(temp_var + " = " + temp_prev + " * "+ nbytes+"\n");
         } else {
+            String i="";
+            if (OPERANDX.getSUBTYPE().getID()!=null) i = OPERANDX.getSUBTYPE().getID().getID();
+            else if (OPERANDX.getSUBTYPE().isArray()) i = OPERANDX.getSUBTYPE().getIDARRAY().getIDLISTDIM().getOPERANDX().getSUBTYPE().getID().getID();
+            else i = dim.get(0).getIdx()+"";
+
             tn = dim.get(0).getIdx() - dim.get(0).getSubrange().getVal1();
             temp_prev = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn);
-            tac.generateCode(temp_prev + " = "+dim.get(0).getIdx()+" - "+dim.get(0).getSubrange().getVal1()+"\n");
+            tac.generateCode(temp_prev + " = "+i+" - "+dim.get(0).getSubrange().getVal1()+"\n");
 
             tn1 = tn * nbytes;
             temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn1);

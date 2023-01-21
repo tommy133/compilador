@@ -117,6 +117,8 @@ public class ThreeAddressCodeSintetic {
                                         break;
                                     case "!=":
                                         instructionList.addInst(IFDIFERENTE,  instruction.split(" ")[1], instruction.split(" ")[3], instruction.split(" ")[5]);
+                                    default:
+                                        instructionList.addInst(IF,  instruction.split(" ")[1], null, instruction.split(" ")[4]);
                                 }
                             } else if (instruction.split(" ")[2].equals("call")) {
                                 instructionList.addInst(CALL, null, null, instruction.split(" ")[3]);

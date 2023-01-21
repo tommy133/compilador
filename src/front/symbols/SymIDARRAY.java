@@ -27,11 +27,18 @@ public class SymIDARRAY extends SymBase{
     }
 
     public ArrayList<Integer> getIdxs(){
+        SymIDLISTDIM IDLISTDIMLOCAL = this.IDLISTDIM;
         ArrayList idxs = new ArrayList<Integer>();
-        while (IDLISTDIM != null) {
-            idxs.add(Integer.parseInt(IDLISTDIM.getOPERANDX().getSUBTYPE().getValor()));
+        while (IDLISTDIMLOCAL != null) {
+            SymSUBTYPE idx = IDLISTDIMLOCAL.getOPERANDX().getSUBTYPE();
+            if (idx.getID() == null){
+                idxs.add(Integer.parseInt(idx.getValor()));
+            } else {
+                String value = tac.getVar(idx.getID().getID()).getValue();
+                idxs.add(Integer.parseInt(value));
+            }
 
-            IDLISTDIM = IDLISTDIM.getIDLISTDIM();
+            IDLISTDIMLOCAL = IDLISTDIMLOCAL.getIDLISTDIM();
         }
 
         Collections.reverse(idxs);

@@ -164,7 +164,7 @@ public class EnsamblerCode {
         }
     }
 
-    private void iasigna(Instruction i){ //TODO Generate array displacement
+    private void iasigna(Instruction i){
         Variable d = tac.getVar(i.getDestiny());
         switch (TypeSub.valueOf(d.getType().toUpperCase())){
             case STRING:
@@ -580,6 +580,8 @@ public class EnsamblerCode {
             if (identificador.startsWith("ret")){
                 return "(A7)+";
             } else {
+                if (identificador.equals("true")) identificador = "-1";
+                else if (identificador.equals("false")) identificador = "0";
                 return "#" + identificador;
             }
         } else{

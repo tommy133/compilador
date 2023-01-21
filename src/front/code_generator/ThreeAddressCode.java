@@ -144,6 +144,10 @@ public class ThreeAddressCode {
         return name;
     }
 
+    public Variable getVar(String id){
+        return this.tv.getVar(id);
+    }
+
     public String getTemp_id(){return temp_id;}
     
 
