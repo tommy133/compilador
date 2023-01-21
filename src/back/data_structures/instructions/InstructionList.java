@@ -11,6 +11,9 @@ public class InstructionList {
         inst_list = new ArrayList<>();
     }
 
+    public Instruction getInstruction(int idx){
+        return inst_list.get(idx);
+    }
 
     public void addInst(Operation operation, String op1, String op2, String destination) {
 
@@ -26,6 +29,8 @@ public class InstructionList {
     public ArrayList<Instruction> getInst_list() {
         return inst_list;
     }
+
+    public int getSize(){return inst_list.size();}
 
     @Override
     public String toString() {

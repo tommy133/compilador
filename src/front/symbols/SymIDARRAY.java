@@ -1,6 +1,12 @@
 package front.symbols;
 
-import front.error.ErrorVarNotDec;
+import front.data_structures.Dimension;
+import front.data_structures.Subrange;
+import front.data_types.TypeSub;
+import front.error.ErrorRangeTypes;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class SymIDARRAY extends SymBase{
     private SymID ID;
@@ -18,6 +24,19 @@ public class SymIDARRAY extends SymBase{
 
     public SymIDLISTDIM getIDLISTDIM() {
         return IDLISTDIM;
+    }
+
+    public ArrayList<Integer> getIdxs(){
+        ArrayList idxs = new ArrayList<Integer>();
+        while (IDLISTDIM != null) {
+            idxs.add(Integer.parseInt(IDLISTDIM.getOPERANDX().getSUBTYPE().getValor()));
+
+            IDLISTDIM = IDLISTDIM.getIDLISTDIM();
+        }
+
+        Collections.reverse(idxs);
+
+        return idxs;
     }
 
 }

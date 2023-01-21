@@ -4,7 +4,7 @@ package front.code_generator;
 import front.data_structures.procedure.ProcedureTable;
 import front.data_structures.variable.Variable;
 import front.data_structures.variable.VariableTable;
-import front.data_types.Stack;
+import front.data_structures.Stack;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -127,6 +127,22 @@ public class ThreeAddressCode {
         return name;
     }
 
+    public String newVarArray(String name, String type, int length) {
+        int store = tv.calculateStore(type, "") * length;
+        tv.addRow(new Variable
+                (name,
+                        n_var,
+                        cur_prog,
+                        store,
+                        disp,
+                        type, "")
+        );
+
+        incDisplacement(store);
+        n_var++;
+
+        return name;
+    }
 
     public String getTemp_id(){return temp_id;}
     

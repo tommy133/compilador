@@ -6,7 +6,9 @@ import back.data_structures.Parametro;
 import back.data_structures.instructions.Instruction;
 import front.data_structures.procedure.Procedure;
 import front.data_structures.variable.Variable;
+import front.data_structures.variable.VariableTable;
 import front.data_types.TypeSub;
+import front.data_types.Types;
 
 import java.util.ArrayList;
 
@@ -72,7 +74,7 @@ public class EnsamblerCode {
                         bytes = false;
                         code.add("\tDC.W 0");
                     }
-                    code.add(name + ": DS.W 1");
+                    code.add(name + ": DS.W "+v.getStore()/new VariableTable().calculateStore(v.getType(),""));
                     break;
                 case STRING:
                     bytes = true;
@@ -162,7 +164,7 @@ public class EnsamblerCode {
         }
     }
 
-    private void iasigna(Instruction i){
+    private void iasigna(Instruction i){ //TODO Generate array displacement
         Variable d = tac.getVar(i.getDestiny());
         switch (TypeSub.valueOf(d.getType().toUpperCase())){
             case STRING:
@@ -192,7 +194,23 @@ public class EnsamblerCode {
                 }
                 break;
             case INTEGER:
-                if (!i.getOperand1().equals("retInt")) {
+                if (checkHasAllFields(i)){
+                    Variable o1 = tac.getVar(i.getOperand1());
+                    Variable o2 = tac.getVar(i.getOperand2());
+                    if (tac.getSymbol(i.getDestiny()).getType().equals(Types.ARRAY)){
+                        code.add("\tLEA.L "+varnom(d)+ ",A0");
+                        code.add("\tMOVE.W "+varnom(o2)+ ",A1");
+                        code.add("\tADD.L A1,A0");
+                        code.add("\tMOVE.W "+varnom(o1)+ ",D0");
+                        code.add("\tMOVE.W D0,(A0)");
+                    } else {
+                        code.add("\tLEA.L "+varnom(o1)+ ",A0");
+                        code.add("\tMOVE.W "+varnom(o2)+ ",A1");
+                        code.add("\tADD.L A1,A0");
+                        code.add("\tMOVE.W (A0),D0");
+                        code.add("\tMOVE.W D0,"+varnom(d));
+                    }
+                } else if (!i.getOperand1().equals("retInt")) {
                     code.add("\tMOVE.W " + getop(i.getOperand1()) + "," + getop(i.getDestiny()));
                 } else {
                     code.add("\tMOVE.W (A7)+," + getop(i.getDestiny()));
@@ -745,5 +763,9 @@ public class EnsamblerCode {
         } else {
             return "aux" + idx;
         }
+    }
+
+    private boolean checkHasAllFields(Instruction i){
+        return i.getOperand1() != null && i.getOperand2() != null && i.getDestiny() != null;
     }
 }

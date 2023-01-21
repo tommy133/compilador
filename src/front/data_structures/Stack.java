@@ -1,4 +1,4 @@
-package front.data_types;
+package front.data_structures;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -27,7 +27,7 @@ public class SymDECMET extends SymBase {
         this.ARGLIST = b;
         this.SENTLIST = c;
 
-        Symbol n = new Symbol(ID.getID(), METHOD, "NULL", null, (ArrayList<Symbol>) ts.getParams().clone());
+        Symbol n = new Symbol(ID.getID(), METHOD, "NULL", (ArrayList<Symbol>) ts.getParams().clone());
 
         if (ts.exist(n.getId())) {
 

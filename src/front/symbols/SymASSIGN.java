@@ -5,9 +5,11 @@
  */
 package front.symbols;
 
+import front.data_structures.Dimension;
 import front.data_structures.symbol.Symbol;
 import front.data_structures.variable.VariableTable;
 import front.data_types.Subrange;
+import front.data_types.TypeSub;
 import front.error.*;
 import front.data_types.Types;
 
@@ -100,7 +102,8 @@ public class SymASSIGN extends SymBase {
             new ErrorArgTypes().printError(place, lc, this.ID.getID());
             throw new ErrorArgTypes();
         }
-        Symbol n = new Symbol(ID.getID(), VARIABLE, TYPE.getType(),null, null); //TODO Subranges?
+
+        Symbol n = new Symbol(ID.getID(), VARIABLE, TYPE.getType(),null); //TODO Subranges?
         if (!ts.exist(n.getId())) {
             ts.insertElement(n);
         } else {
@@ -180,65 +183,78 @@ public class SymASSIGN extends SymBase {
 
     private void calcOcupArray(boolean left){//fórmula apunts
         Symbol array;
+        ArrayList<Dimension> dim;
+
         if (left){
             array = ts.get(IDARRAY.getID().getID());
+            dim = setIdxs(array.getDimensions(), IDARRAY.getIdxs());
         } else {
             array = ts.get(OPERANDX.getSUBTYPE().getIDARRAY().getID().getID());
+            dim = setIdxs(array.getDimensions(), OPERANDX.getSUBTYPE().getIDARRAY().getIdxs());
         }
+
 
         int b = array.getB();
         int nbytes = new VariableTable().calculateStore(array.getSubtype(),"");
-        String temp_var="", temp_var_post="", temp_t5="", temp_t6="", temp_t7="";
-        ArrayList<Subrange> subranges = array.getSubranges();
-        int dk=0, t1=0, t2=0, t5=0, t6=0;
-        if (operands.size() > 1) operands.remove(0);
-        int idx = Integer.parseInt(operands.get(0)); //obtenir el primer desplaçament
 
-        if (operands.size() > 1){
-            for (int i=1; i < operands.size(); i++){
-                if (i>1) idx=t2;
-                dk = subranges.get(i).getVal2() - subranges.get(i).getVal1() + 1;
-                t1 = (idx*dk);
-                temp_var = tac.newTempVar("integer", ""+t1);
+        int tn=0, tn1=0, tn2=0, tn3=0; //tn, tn-1
+        String temp_var="", temp_prev="";
 
-                tac.generateCode(temp_var + " = ");
-                tac.generateCode(((i==1)?(idx) : temp_var_post) + " * " + dk +"\n");
+        if (dim.size() > 1) {
+            tn = dim.get(0).getIdx() * (dim.get(1).getSubrange().getVal2() - dim.get(1).getSubrange().getVal1() + 1); //t1 = i1 * d2
+            temp_prev = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn);
+            tac.generateCode(temp_prev + " = "+dim.get(0).getIdx()+" * "+
+                    (dim.get(1).getSubrange().getVal2() - dim.get(1).getSubrange().getVal1() + 1)+"\n");
 
-                idx = Integer.parseInt(operands.get(i));
+            for (int i=1; i< dim.size()-1; i++){
+                tn1 = tn + dim.get(i).getIdx();    //t2 = t1 + i2
+                temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn1);
+                tac.generateCode(temp_var + " = " + temp_prev + " + "+dim.get(i).getIdx()+"\n");
 
-                t2 = (t1 + idx);
-                temp_var_post = tac.newTempVar("integer", ""+t2);
-                tac.generateCode(temp_var_post + " = ");
-                tac.generateCode(temp_var + " + "+ idx + "\n");
+                tn = tn1 * (dim.get(i+1).getSubrange().getVal2() - dim.get(i+1).getSubrange().getVal1() + 1);
+                temp_prev = temp_var;
+                temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn);
+                tac.generateCode(temp_var + " = " + temp_prev + " * "+
+                        (dim.get(i+1).getSubrange().getVal2() - dim.get(i+1).getSubrange().getVal1() + 1)+"\n");
             }
-            t5 = t2 - b;
-            temp_t5 = tac.newTempVar("integer", ""+t5);
-            tac.generateCode(temp_t5 + " = ");
-            tac.generateCode(temp_var_post + " - "+ b + "\n");
+            tn1 = tn + dim.get(dim.size()-1).getIdx();
+            if (!temp_var.equals("")) temp_prev = temp_var;
+            temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn1);
+            tac.generateCode(temp_var + " = " + temp_prev + " + "+dim.get(dim.size()-1).getIdx()+"\n");
 
-            t6 = t5 * nbytes;
-            temp_t6 = tac.newTempVar("integer", ""+t6);
-            tac.generateCode(temp_t6 + " = ");
-            tac.generateCode(temp_t5 + " * "+ nbytes + "\n");
+            tn2 = tn1 - b;
+            temp_prev = temp_var;
+            temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn2);
+            tac.generateCode(temp_var + " = " + temp_prev + " - "+ b+"\n");
 
-            temp_t7 = tac.newTempVar("integer");
-            tac.generateCode(temp_t7 + " = "+ array.getId()+"["+temp_t6+"]"+ "\n");
+            tn3 = tn2 * nbytes;
+            temp_prev = temp_var;
+            temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn3);
+            tac.generateCode(temp_var + " = " + temp_prev + " * "+ nbytes+"\n");
         } else {
-            t1 = idx - subranges.get(0).getVal1();
-            temp_var = tac.newTempVar("integer", ""+t1);
-            tac.generateCode(temp_var + " = " + idx + " - " + subranges.get(0).getVal1()+ "\n");
-            temp_var_post = tac.newTempVar("integer", ""+ t1*nbytes);
-            tac.generateCode(temp_var_post + " = " + temp_var +" * " + nbytes+ "\n");
+            tn = dim.get(0).getIdx() - dim.get(0).getSubrange().getVal1();
+            temp_prev = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn);
+            tac.generateCode(temp_prev + " = "+dim.get(0).getIdx()+" - "+dim.get(0).getSubrange().getVal1()+"\n");
 
-            temp_t7 = tac.newTempVar("integer");
-            tac.generateCode(temp_t7 + " = "+ array.getId()+"["+temp_var_post+"]"+ "\n");
+            tn1 = tn * nbytes;
+            temp_var = tac.newTempVar(String.valueOf(TypeSub.INTEGER), ""+tn1);
+            tac.generateCode(temp_var + " = "+temp_prev+" * "+nbytes+"\n");
         }
-//        if (left){ //part esquerra es array
-//            tac.generateCode(array.getId()+"["+temp_t7+"]"+ " = "+ tac.newVar(OPERANDX.getSUBTYPE().getID().getID(), OPERANDX.getSUBTYPE().getType(), OPERANDX.getSUBTYPE().getValor()) );
-//        } else {
-//            tac.generateCode(tac.newVar(ID.getID(), ID.getType()) + " = " + temp_t7 + "\n");
-//        }
 
+        if (left){
+            tac.generateCode(tac.newVarArray(IDARRAY.getID().getID(), IDARRAY.getID().getType(), ts.get(IDARRAY.getID().getID()).getLength())+
+                    "["+temp_var+"]"+" = "+OPERANDX.getSUBTYPE().getName()+"\n");
+        } else {
+            tac.generateCode(tac.newVar(ID.getID(), ID.getType()) + " = "+ OPERANDX.getSUBTYPE().getIDARRAY().getID().getID()
+                    + "["+temp_var+"]"+"\n");
+        }
+    }
+
+    private ArrayList<Dimension> setIdxs(ArrayList<Dimension> dim, ArrayList<Integer> idxs){
+        for (int i=0; i<dim.size(); i++){
+            dim.get(i).setIdx((int) idxs.get(i));
+        }
+        return  dim;
     }
 
 }

@@ -77,7 +77,16 @@ public class ThreeAddressCodeSintetic {
                             } else if (instruction.split(" ")[1].equalsIgnoreCase("=") && !instruction.split(" ")[2].equals("call")) {
 
                                 if (instruction.split(" ").length < 4) { //asignació simple (a = b).
-                                    instructionList.addInst(ASIGNA, instruction.split(" ")[2], null, instruction.split(" ")[0]);
+                                    String [] splitCode = instruction.split(" ");
+                                    if (instruction.contains("[")) {
+                                        String [] splitAdress = instruction.split("[\\[\\]=\\s]+");
+                                        if (splitCode[0].contains("[")){
+                                            instructionList.addInst(ASIGNA, splitAdress[2], splitAdress[1], splitAdress[0]);
+                                        }
+                                        else instructionList.addInst(ASIGNA, splitAdress[1], splitAdress[2], splitAdress[0]);
+
+                                    } else instructionList.addInst(ASIGNA, splitCode[2], null, splitCode[0]);
+
                                 } else {
                                     switch (instruction.split(" ")[3]) {
                                         case "+" -> instructionList.addInst(SUMA, instruction.split(" ")[2], instruction.split(" ")[4], instruction.split(" ")[0]);
@@ -191,7 +200,6 @@ public class ThreeAddressCodeSintetic {
                             split[0],
                             Types.valueOf(split[2]),
                             split[3],
-                            null,
                             null
                     ));
                 }
@@ -232,7 +240,7 @@ public class ThreeAddressCodeSintetic {
         return parametros;
     }
 
-    private Symbol getSymbol(String id){
+    public Symbol getSymbol(String id){
         for (Symbol s : ts){
             if (s.getId().equals(id)) return s;
         }
@@ -241,6 +249,10 @@ public class ThreeAddressCodeSintetic {
 
     public InstructionList getInstructionList() {
         return instructionList;
+    }
+
+    public void updateInstructionList(InstructionList instructionList){
+        this.instructionList = instructionList;
     }
 
     public ArrayList<Variable> getTv() {
@@ -258,6 +270,14 @@ public class ThreeAddressCodeSintetic {
             }
         }
         return null;
+    }
+
+    public void deleteVar(String id){
+        for(int i = 0; i < tv.size(); i++){
+            if(tv.get(i).getName().equals(id)){
+                this.tv.remove(i);
+            }
+        }
     }
 
     public Procedure getProc(String id){

@@ -14,17 +14,15 @@ public class SymDECMP extends SymBase {
 
     private SymID ID;
     private SymARGLIST ARGLIST;
-    private SymDECCONSTLIST DECCONSTLIST;
     private SymSENTLIST SENTLIST;
 
-    public SymDECMP(SymID a, SymARGLIST b, SymDECCONSTLIST c, SymSENTLIST d) {
+    public SymDECMP(SymID a, SymARGLIST b, SymSENTLIST c) {
         super("F", 0);
         this.ID = a;
         this.ARGLIST = b;
-        this.DECCONSTLIST = c;
-        this.SENTLIST = d;
+        this.SENTLIST = c;
 
-        ts.insertElement(new Symbol("program", MAINPROG, "NULL",null, ts.getParams()));
+        ts.insertElement(new Symbol("program", MAINPROG, "NULL", ts.getParams()));
         ts.emptyParams();
     }
 

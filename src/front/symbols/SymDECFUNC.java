@@ -31,11 +31,12 @@ public class SymDECFUNC extends SymBase {
         this.SENTLIST = d;
         this.RETURN = e;
 
-        Symbol n = new Symbol(ID.getID(), FUNCTION, TYPE.getType(),null, (ArrayList<Symbol>) ts.getParams().clone());
+        Symbol n = new Symbol(ID.getID(), FUNCTION, TYPE.getType(), (ArrayList<Symbol>) ts.getParams().clone());
         if(!this.TYPE.getType().equals(this.RETURN.getRETURNTYPE().getType())) {
             new ErrorArgTypes().printError(place, lc, ID.getID());
             throw new ErrorArgTypes();
         }
+
         if (ts.exist(n.getId())) {
             Symbol node = ts.get(n.getId());
             if (node.getType() == METHOD || node.getType() == FUNCTION) {

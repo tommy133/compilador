@@ -6,6 +6,7 @@
 package compiler;
 
 
+import back.Optimizador;
 import back.generator.EnsamblerCode;
 import back.generator.ThreeAddressCodeSintetic;
 import front.error.SintaxErrorException;
@@ -23,6 +24,7 @@ public class Compiler {
     private static LexicalScanner scanner = null;
     private static ThreeAddressCodeSintetic tac;
     private static EnsamblerCode ens;
+    private static Optimizador opt;
 
     public static void main(String[] args) {
         try {
@@ -33,8 +35,10 @@ public class Compiler {
 
             clean("Tokens.txt");
             clean("codiIntermitg.txt");
+            clean("codi_intermig_optimizado.txt");
             clean("Errors.txt");
             clean("codi_ensamblador.X68");
+            clean("codi_ensamblador_optimizado.X68");
 
             scanner = new LexicalScanner(new FileReader(args[0]));
             Parser parser = new Parser(scanner, new ComplexSymbolFactory());
@@ -77,13 +81,14 @@ public class Compiler {
     private static void generateBack(String path) throws IOException {
         tac = new ThreeAddressCodeSintetic();
         ens = new EnsamblerCode(tac);
+        opt = new Optimizador(tac);
 
         ens.generate();
         writeFile(path + "codi_ensamblador.X68", ens.getCode());
-        //this.opt.optimizar();
-        //writeFile(path + "codi_intermig_optimizado.txt", tac.viewCode());
-        //ens.generate();
-        //writeFile(path + "codi_ensamblador_optimizado.X68", ens.getCode());
+        opt.optimizar();
+        writeFile(path + "codi_intermig_optimizado.txt", tac.getInstructionList().toString());
+        ens.generate();
+        writeFile(path + "codi_ensamblador_optimizado.X68", ens.getCode());
     }
 
     private static void writeFile(String canonicalFilename, String text)
