@@ -140,7 +140,7 @@ start with START;
               |     DECARRAY:i scolon           {: RESULT = new SymSENT(i); :}
               ;
 
-    OPERANDX       ::= OPERANDX:a OPARITH:b SUBTYPE:c            {:  RESULT = new SymOPERANDX(a, b, c); :}
+    OPERANDX       ::= OPERANDX:a OPARITH:b SUBTYPE:c            {:  RESULT = new SymOPERANDX(a, b, c, scanner.getLineColumn()); :}
               | SUBTYPE:b                         {:  RESULT = new SymOPERANDX(b); :}
               |                             {:  RESULT = new SymOPERANDX(); :}
               ;
@@ -306,7 +306,7 @@ start with START;
               ; 
 
     RETURNTYPE ::= NUM:a                             {: RESULT = new SymRETURNTYPE(a); :}
-              | ID:b                              {: RESULT = new SymRETURNTYPE(b); :}
+              | ID:b                              {: RESULT = new SymRETURNTYPE(b, scanner.getLineColumn()); :}
               | CALLPROC:c                          {: RESULT = new SymRETURNTYPE(c); :}
               | LOGIC:d                             {: RESULT = new SymRETURNTYPE(d); :}
               | STR:e                             {: RESULT = new SymRETURNTYPE(e); :}
