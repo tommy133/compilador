@@ -32,10 +32,16 @@ public class SymASSIGN extends SymBase {
         super("ASSIGN", 0);
         this.ID = a;
         this.OPERANDX = b;
+        if(this.OPERANDX == null) {
+            new ErrorFewParam().printError(place, lc, "");
+            throw new ErrorFewParam();
+        }
+
         if(!this.ID.getType().equalsIgnoreCase(this.OPERANDX.getSUBTYPE().getType())){
             new ErrorArgTypes().printError(place, lc, this.ID.getID());
             throw new ErrorArgTypes();
         }
+
         if (ts.get(ID.getID()) == null) {
             new ErrorVarNotDec().printError(place,lc, ID.getID());
             throw new ErrorVarNotDec();
@@ -101,6 +107,11 @@ public class SymASSIGN extends SymBase {
         this.TYPE = a;
         this.ID = b;
         this.OPERANDX = c;
+
+        if(this.OPERANDX == null){
+            new ErrorArgTypes().printError(place, lc, this.ID.getID());
+            throw new ErrorArgTypes();
+        }
         if(!this.TYPE.getType().equalsIgnoreCase(this.OPERANDX.getSUBTYPE().getType())) {
             new ErrorArgTypes().printError(place, lc, this.ID.getID());
             throw new ErrorArgTypes();

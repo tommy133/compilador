@@ -43,6 +43,14 @@ public class Compiler {
             scanner = new LexicalScanner(new FileReader(args[0]));
             Parser parser = new Parser(scanner, new ComplexSymbolFactory());
             parser.parse();
+            if(parser.getSintacticErrors()){
+                throw new SintaxErrorException() {
+                    @Override
+                    public int printError(String place, int[] lc, String variableError) {
+                        return 0;
+                    }
+                };
+            }
             if (parser != null) {
                 System.out.println(">> OK Parsing ["+args[0]+"]");
                 generateBack("files_output/");

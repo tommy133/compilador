@@ -18,7 +18,7 @@ public class ErrorSintax extends SintaxErrorException {
         try {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Errors.txt", true), StandardCharsets.UTF_8));
             
-            writer.write(place + " [Error SEMÀNTIC]:"
+            writer.write(place + " [Error SINTACTIC]:["
                 + column_line[0] + ":" + column_line[1] +
                 "] Sintaxis incorrecte.\n");
 
