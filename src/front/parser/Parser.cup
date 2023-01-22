@@ -48,66 +48,66 @@ val_int, val_id, val_str, lte, noteq, gt, equals, True, False;
 
 /******** SÍMBOLS NO TERMINALS ******/
 
-non terminal  SymSTART     START;
+non terminal  SymSTART              START;
 
-non terminal  SymMETFUNC  	     METFUNC; //Mètode/funcio
-non terminal  SymDECMP  	     DECMP; //Declaració programa principal
+non terminal  SymMETFUNC  	        METFUNC; //Mètode/funcio
+non terminal  SymDECMP  	        DECMP; //Declaració programa principal
 non terminal  SymDECMETLIST 	    DECMETLIST; //Declaració de mètode (llista)
-non terminal  SymDECFUNCLIST       DECFUNCLIST;
-non terminal  SymDECMET        DECMET;
-non terminal  SymDECFUNC     DECFUNC;
-non terminal  SymSENTLIST       SENTLIST;
-non terminal  SymSENT     SENT;
-non terminal  SymOUTPUT         OUTPUT;
-non terminal  SymINPUT         INPUT;
-non terminal  SymCONDIF      CONDIF;
-non terminal  SymCONDLABEL   CONDLABEL;
-non terminal  SymWHILE      WHILE;
-non terminal  SymREPUNTIL   REPUNTIL;
-non terminal  SymCALLPROC       CALLPROC;
-non terminal  SymASSIGN          ASSIGN;
-non terminal  SymASSIGNCONST          ASSIGNCONST;
-non terminal  SymDECVAR        DECVAR;
+non terminal  SymDECFUNCLIST        DECFUNCLIST;
+non terminal  SymDECMET             DECMET;
+non terminal  SymDECFUNC            DECFUNC;
+non terminal  SymSENTLIST           SENTLIST;
+non terminal  SymSENT               SENT;
+non terminal  SymOUTPUT             OUTPUT;
+non terminal  SymINPUT              INPUT;
+non terminal  SymCONDIF             CONDIF;
+non terminal  SymCONDLABEL          CONDLABEL;
+non terminal  SymWHILE              WHILE;
+non terminal  SymREPUNTIL           REPUNTIL;
+non terminal  SymCALLPROC           CALLPROC;
+non terminal  SymASSIGN             ASSIGN;
+non terminal  SymASSIGNCONST        ASSIGNCONST;
+non terminal  SymDECVAR             DECVAR;
 non terminal  SymDECLARECONST       DECLARECONST;
-non terminal  SymDECARRAY       DECARRAY;
-non terminal  SymDECLISTDIM      DECLISTDIM;
-non terminal  SymOPERANDX         OPERANDX;
-non terminal  SymSUBTYPE           SUBTYPE;
-non terminal  SymVALUE         VALUE;
-non terminal  SymID          ID;
-non terminal  SymIDLISTDIM       IDLISTDIM;
-non terminal  SymIDARRAY      IDARRAY;
-non terminal  SymCONDITION        CONDITION;
-non terminal  SymPRINT          PRINT;
-non terminal  SymVALUELIST       VALUELIST;
-non terminal  SymIDLIST         IDLIST;
-non terminal  SymCONDELSE    CONDELSE;
-non terminal  SymARGLIST       ARGLIST;
-non terminal  SymARG         ARG;
-non terminal  SymTYPE     TYPE;
-non terminal  SymRETURN        RETURN;
-non terminal  SymNUM         NUM;
-non terminal  SymLOGIC         LOGIC;
-non terminal  SymSTR        STR;
-non terminal  SymOPARITH         OPARITH;
-non terminal  SymOPLOGIC       OPLOGIC;
-non terminal  SymANDOR    ANDOR;
-non terminal  SymRETURNTYPE     RETURNTYPE;
-non terminal  SymSENTLISTSEP      SENTLISTSEP; //Llista de sentències amb separador
-non terminal  SymIDLISTSEP       IDLISTSEP;
-non terminal  SymOPERATION        OPERATION;
-non terminal  SymCONDEXT         CONDEXT;
-non terminal  SymCONDBRANCH            CONDBRANCH;
-non terminal  SymCONDBRANCH            CONDBRANCHINV; //Condbranch with inverter
-non terminal  SymELSE            ELSE;
-non terminal  SymSTARTLOOP            STARTLOOP;
-non terminal  SymGSTARTLOOP            GSTARTLOOP;
-non terminal  SymSTARTMAIN            STARTMAIN;
-non terminal  SymSTARTPROC            STARTPROC;
-non terminal  SymSUBRANGE            SUBRANGE;
-non terminal  SymPMB            PMB;
-non terminal  SymINCSCOPE          INCSCOPE;
-non terminal  SymDICSCOPE          DICSCOPE;
+non terminal  SymDECARRAY           DECARRAY;
+non terminal  SymDECLISTDIM         DECLISTDIM;
+non terminal  SymOPERANDX           OPERANDX;
+non terminal  SymSUBTYPE            SUBTYPE;
+non terminal  SymVALUE              VALUE;
+non terminal  SymID                 ID;
+non terminal  SymIDLISTDIM          IDLISTDIM;
+non terminal  SymIDARRAY            IDARRAY;
+non terminal  SymCONDITION          CONDITION;
+non terminal  SymPRINT              PRINT;
+non terminal  SymVALUELIST          VALUELIST;
+non terminal  SymIDLIST             IDLIST;
+non terminal  SymCONDELSE           CONDELSE;
+non terminal  SymARGLIST            ARGLIST;
+non terminal  SymARG                ARG;
+non terminal  SymTYPE               TYPE;
+non terminal  SymRETURN             RETURN;
+non terminal  SymNUM                NUM;
+non terminal  SymLOGIC              LOGIC;
+non terminal  SymSTR                STR;
+non terminal  SymOPARITH            OPARITH;
+non terminal  SymOPLOGIC            OPLOGIC;
+non terminal  SymANDOR              ANDOR;
+non terminal  SymRETURNTYPE         RETURNTYPE;
+non terminal  SymSENTLISTSEP        SENTLISTSEP; //Llista de sentències amb separador
+non terminal  SymIDLISTSEP          IDLISTSEP;
+non terminal  SymOPERATION          OPERATION;
+non terminal  SymCONDEXT            CONDEXT;
+non terminal  SymCONDBRANCH         CONDBRANCH;
+non terminal  SymCONDBRANCH         CONDBRANCHINV; //Condbranch with inverter
+non terminal  SymELSE               ELSE;
+non terminal  SymSTARTLOOP          STARTLOOP;
+non terminal  SymGSTARTLOOP         GSTARTLOOP;
+non terminal  SymSTARTMAIN          STARTMAIN;
+non terminal  SymSTARTPROC          STARTPROC;
+non terminal  SymSUBRANGE           SUBRANGE;
+non terminal  SymPMB                PMB;
+non terminal  SymINCSCOPE           INCSCOPE;
+non terminal  SymDICSCOPE           DICSCOPE;
 
 precedence left add, sub;
 precedence left mult, div, mod;
@@ -121,81 +121,81 @@ start with START;
     START     ::= STARTMAIN METFUNC:a DECMP:b            {: RESULT = new SymSTART(a, b); :}
               ;                        
 
-    METFUNC        ::=  DECMETLIST:a              {: RESULT = new SymMETFUNC(a); :}
-              |    DECFUNCLIST:b             {: RESULT = new SymMETFUNC(b); :}
-              |                         {: RESULT = new SymMETFUNC(); :}
+    METFUNC   ::=  DECMETLIST:a                 {: RESULT = new SymMETFUNC(a); :}
+              |    DECFUNCLIST:b                {: RESULT = new SymMETFUNC(b); :}
+              |                                 {: RESULT = new SymMETFUNC(); :}
               ;
 
     DECMETLIST     ::= DECMET:a METFUNC:b           {: RESULT = new SymDECMETLIST(a, b); :}
-              ;
+                   ;
 
     DECFUNCLIST    ::= DECFUNC:a METFUNC:b          {: RESULT = new SymDECFUNCLIST(a, b, scanner.getLineColumn()); :}
-          ;
+                   ;
 
 /*---------- DECLARACIÓ PROGRAMA PRINCIPAL ----------*/
-    DECMP       ::= prog ID:a STARTPROC lparen ARGLIST:b rparen PMB INCSCOPE SENTLIST:c DICSCOPE end {: RESULT = new SymDECMP(a, b, c); :}
-                    | error {: apuntar_error("DECMP", scanner.getLineColumn()); :}
-              ;
+    DECMP   ::= prog ID:a STARTPROC lparen ARGLIST:b rparen PMB INCSCOPE SENTLIST:c DICSCOPE end        {: RESULT = new SymDECMP(a, b, c); :}
+            |   error                                                                                   {: apuntar_error("DECMP", scanner.getLineColumn()); :}
+            ;
 
 /***SENTENCIES****/
 
-    SENTLIST       ::= SENT:a SENTLISTSEP:b            {: RESULT = new SymSENTLIST(a, b); :}
+    SENTLIST  ::= SENT:a SENTLISTSEP:b            {: RESULT = new SymSENTLIST(a, b); :}
               ; 
 
-    SENTLISTSEP      ::= SENTLIST:a                 {: RESULT = new SymSENTLISTSEP(a); :}
-                |                           {: RESULT = new SymSENTLISTSEP();  :}
+    SENTLISTSEP     ::= SENTLIST:a                      {: RESULT = new SymSENTLISTSEP(a); :}
+                    |                                   {: RESULT = new SymSENTLISTSEP();  :}
+                    ;
+
+    SENT    ::=   OUTPUT:a scolon                   {: RESULT = new SymSENT(a); :}
+            |     INPUT:b scolon                    {: RESULT = new SymSENT(b); :}
+            |     CONDIF:c endif                    {: RESULT = new SymSENT(c); :}
+            |     WHILE:d DICSCOPE endloop          {: RESULT = new SymSENT(d); :}
+            |     REPUNTIL:e DICSCOPE endloop       {: RESULT = new SymSENT(e); :}
+            |     CALLPROC:f scolon                 {: RESULT = new SymSENT(f); :}
+            |     ASSIGN:g scolon                   {: RESULT = new SymSENT(g); :}
+            |     DECVAR:h scolon                   {: RESULT = new SymSENT(h); :}
+            |     DECLARECONST:i scolon             {: RESULT = new SymSENT(i); :}
+            |     DECARRAY:j scolon                 {: RESULT = new SymSENT(j); :}
+            |     error scolon  	                {: apuntar_error("sent", scanner.getLineColumn()); :}
+            ;
+
+    OPERANDX    ::= OPERANDX:a OPARITH:b SUBTYPE:c            {:  RESULT = new SymOPERANDX(a, b, c, scanner.getLineColumn()); :}
+                | SUBTYPE:b                                   {:  RESULT = new SymOPERANDX(b); :}
+                |                                             {:  RESULT = new SymOPERANDX(); :}
                 ;
 
-    SENT      ::=   OUTPUT:a scolon            {: RESULT = new SymSENT(a); :}
-              |     INPUT:b scolon            {: RESULT = new SymSENT(b); :}
-              |     CONDIF:c endif            {: RESULT = new SymSENT(c); :}
-              |     WHILE:d DICSCOPE endloop    {: RESULT = new SymSENT(d); :}
-              |     REPUNTIL:e DICSCOPE endloop    {: RESULT = new SymSENT(e); :}
-              |     CALLPROC:f scolon          {: RESULT = new SymSENT(f); :}
-              |     ASSIGN:g scolon             {: RESULT = new SymSENT(g); :}
-              |     DECVAR:h scolon           {: RESULT = new SymSENT(h); :}
-              |     DECLARECONST:i scolon           {: RESULT = new SymSENT(i); :}
-              |     DECARRAY:j scolon           {: RESULT = new SymSENT(j); :}
-              | error scolon  	 {: apuntar_error("sent", scanner.getLineColumn()); :}
-              ;
-
-    OPERANDX       ::= OPERANDX:a OPARITH:b SUBTYPE:c            {:  RESULT = new SymOPERANDX(a, b, c, scanner.getLineColumn()); :}
-              | SUBTYPE:b                         {:  RESULT = new SymOPERANDX(b); :}
-              |                             {:  RESULT = new SymOPERANDX(); :}
-              ;
-
-    SUBTYPE         ::= ID:a                  {:  RESULT = new SymSUBTYPE(a); :}
-              | IDARRAY:b               {:  RESULT = new SymSUBTYPE(b); :}
-              | NUM:c                   {:  RESULT = new SymSUBTYPE(c); :}
-              | CALLPROC:d                {:  RESULT = new SymSUBTYPE(d); :}
-              | LOGIC:e                   {:  RESULT = new SymSUBTYPE(e); :}
-              | STR:f                   {:  RESULT = new SymSUBTYPE(f); :}
-          ;
+    SUBTYPE     ::= ID:a                      {:  RESULT = new SymSUBTYPE(a); :}
+                | IDARRAY:b                   {:  RESULT = new SymSUBTYPE(b); :}
+                | NUM:c                       {:  RESULT = new SymSUBTYPE(c); :}
+                | CALLPROC:d                  {:  RESULT = new SymSUBTYPE(d); :}
+                | LOGIC:e                     {:  RESULT = new SymSUBTYPE(e); :}
+                | STR:f                       {:  RESULT = new SymSUBTYPE(f); :}
+                ;
 
 /****CONDICIONALS****/
 
 
 
-    CONDITION ::= OPERANDX:a OPERATION:b OPERANDX:c CONDEXT:d      {: RESULT = new SymCONDITION(a, b, c, d, scanner.getLineColumn()); :}
-          | ID:a                        {: RESULT = new SymCONDITION(a, scanner.getLineColumn()); :}
-          | IDARRAY:a                   {: RESULT = new SymCONDITION(a); :}
-          ; 
+    CONDITION   ::= OPERANDX:a OPERATION:b OPERANDX:c CONDEXT:d         {: RESULT = new SymCONDITION(a, b, c, d, scanner.getLineColumn()); :}
+                |   ID:a                                                {: RESULT = new SymCONDITION(a, scanner.getLineColumn()); :}
+                |   IDARRAY:a                                           {: RESULT = new SymCONDITION(a); :}
+                ;
 
-    CONDEXT    ::= OPERATION:a CONDITION:b         {: RESULT = new SymCONDEXT(a, b); :}
-          |                       {: RESULT = new SymCONDEXT(); :}
-          ;
+    CONDEXT     ::= OPERATION:a CONDITION:b         {: RESULT = new SymCONDEXT(a, b); :}
+                |                                   {: RESULT = new SymCONDEXT(); :}
+                ;
 
-    OPERATION ::= ANDOR:a             {: RESULT = new SymOPERATION(a); :}
-           | OPLOGIC:b              {: RESULT = new SymOPERATION(b); :}
-            ;
+    OPERATION   ::= ANDOR:a                 {: RESULT = new SymOPERATION(a); :}
+                | OPLOGIC:b                 {: RESULT = new SymOPERATION(b); :}
+                ;
 
 /*********CONDICIONAL IF***********/
 
-    CONDIF    ::= If CONDLABEL CONDITION:a then CONDBRANCH INCSCOPE SENTLIST:b DICSCOPE ELSE CONDELSE:c  {: RESULT = new SymCONDIF(a, b, c); :}
-                					| If error {: apuntar_error("CONDIF", scanner.getLineColumn()); :}
-              ;
+    CONDIF      ::= If CONDLABEL CONDITION:a then CONDBRANCH INCSCOPE SENTLIST:b DICSCOPE ELSE CONDELSE:c       {: RESULT = new SymCONDIF(a, b, c); :}
+                |   If error                                                                                    {: apuntar_error("CONDIF", scanner.getLineColumn()); :}
+                ;
 
-    CONDELSE  ::= Else INCSCOPE SENTLIST:a DICSCOPE                     {: RESULT = new SymCONDELSE(a); :}
+    CONDELSE  ::= Else INCSCOPE SENTLIST:a DICSCOPE         {: RESULT = new SymCONDELSE(a); :}
               |                                             {: RESULT = new SymCONDELSE(); :}
               ;
 
@@ -203,203 +203,202 @@ start with START;
 
 /*******BUCLE WHILE********/
 
-    WHILE    ::= STARTLOOP While CONDLABEL CONDITION:a loop CONDBRANCH INCSCOPE SENTLIST:b GSTARTLOOP         {: RESULT = new SymWHILE(a, b); :}
-					| 	STARTLOOP While error {: apuntar_error("WHILE", scanner.getLineColumn()); :}
-              ;
+    WHILE   ::= STARTLOOP While CONDLABEL CONDITION:a loop CONDBRANCH INCSCOPE SENTLIST:b GSTARTLOOP            {: RESULT = new SymWHILE(a, b); :}
+		    | 	STARTLOOP While error                                                                           {: apuntar_error("WHILE", scanner.getLineColumn()); :}
+            ;
 
 /*******BUCLE REPEAT UNTIL********/
 
-    REPUNTIL    ::= STARTLOOP Repeat INCSCOPE SENTLIST:a Until CONDLABEL CONDITION:b CONDBRANCHINV  GSTARTLOOP         {: RESULT = new SymREPUNTIL(b, a); :}
-					| 	STARTLOOP Repeat INCSCOPE error GSTARTLOOP {: apuntar_error("REPUNTIL", scanner.getLineColumn()); :}
-              ;
+    REPUNTIL    ::= STARTLOOP Repeat INCSCOPE SENTLIST:a Until CONDLABEL CONDITION:b CONDBRANCHINV  GSTARTLOOP          {: RESULT = new SymREPUNTIL(b, a); :}
+			    | 	STARTLOOP Repeat INCSCOPE error GSTARTLOOP                                                          {: apuntar_error("REPUNTIL", scanner.getLineColumn()); :}
+                ;
 
 /**********DECLARACIÓ MÈTODE*************/
 
-    DECMET      ::= method ID:a STARTPROC lparen ARGLIST:b rparen PMB INCSCOPE SENTLIST:c DICSCOPE end    {: RESULT = new SymDECMET(a, b, c, scanner.getLineColumn()); :}
-              ;
+    DECMET  ::= method ID:a STARTPROC lparen ARGLIST:b rparen PMB INCSCOPE SENTLIST:c DICSCOPE end                      {: RESULT = new SymDECMET(a, b, c, scanner.getLineColumn()); :}
+            ;
 
 /************DECLARACIÓ FUNCIÓ****************/
 
     DECFUNC     ::= TYPE:a func ID:b STARTPROC lparen ARGLIST:c rparen PMB INCSCOPE SENTLIST:d RETURN:e DICSCOPE end    {: RESULT = new SymDECFUNC(a, b, c, d, e, scanner.getLineColumn()); :}
-              ;
+                ;
 
-    RETURN       ::= Return RETURNTYPE:a scolon             {: RESULT = new SymRETURN(a); :}
-              ;
+    RETURN      ::= Return RETURNTYPE:a scolon             {: RESULT = new SymRETURN(a); :}
+                ;
 
 /*************CRIDADA MÈTODE/FUNCIÓ**************/
 
-    CALLPROC    ::= ID:a lparen IDLIST:b rparen      {: RESULT = new SymCALLPROC(a, b, scanner.getLineColumn()); :}
-              | ID:a lparen rparen              {: RESULT = new SymCALLPROC(a, scanner.getLineColumn()); :}
-              ;
+    CALLPROC    ::= ID:a lparen IDLIST:b rparen         {: RESULT = new SymCALLPROC(a, b, scanner.getLineColumn()); :}
+                | ID:a lparen rparen                    {: RESULT = new SymCALLPROC(a, scanner.getLineColumn()); :}
+                ;
 
 /***************ASSIGNACIÓ********************/
 
-    ASSIGN        ::= ID:a assign OPERANDX:b               {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
-                  | IDARRAY:a assign OPERANDX:b             {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
-                  | TYPE:a colons ID:b assign OPERANDX:c       {:  RESULT = new SymASSIGN(a, b, c, scanner.getLineColumn()); :}
-                  | 	ID:a assign error {: apuntar_error("ASSIGN", scanner.getLineColumn()); :}
-                  | 	IDARRAY:a assign error {: apuntar_error("ASSIGN", scanner.getLineColumn()); :}
-              ;
-
-  ASSIGNCONST   ::= ID:a assign OPERANDX:b               {: RESULT = new SymASSIGNCONST(a, b); :}
-                            ;
-
-/**********DECLARACIÓ VARIABLES******************/
-    DECVAR      ::= TYPE:a colons IDLIST:b       {:  RESULT = new SymDECVAR(a, b, scanner.getLineColumn()); :}
-                | 	TYPE:a error {: apuntar_error("DECVAR", scanner.getLineColumn()); :}
-              ;
-
-    IDLIST       ::= ID:a IDLISTSEP:b                       {:  RESULT = new SymIDLIST(a, b); :}
-              ;
-
-    IDLISTSEP      ::= comma IDLIST:a                       {:  RESULT = new SymIDLISTSEP(a); :}
-              |                                     {:  RESULT = new SymIDLISTSEP(); :}
-              ;
-
-    /**********DECLARACIÓ CONSTANT******************/
-    DECLARECONST    ::= Const TYPE:a colons ASSIGNCONST:b          {: RESULT = new SymDECLARECONST(a, b, scanner.getLineColumn()); :}
-            | 	Const error {: apuntar_error("DECLARECONST", scanner.getLineColumn()); :}
-          ;
-
-/**********DECLARACIÓ TAULA**********************/
-    DECARRAY     ::=    TYPE:a colons ID:b  DECLISTDIM:c          {:   RESULT = new SymDECARRAY(a, b, c, scanner.getLineColumn());   :}
-    					| 	TYPE:a colons error {: apuntar_error("DECARRAY", scanner.getLineColumn()); :}
+    ASSIGN      ::= ID:a assign OPERANDX:b                          {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
+                |   IDARRAY:a assign OPERANDX:b                     {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
+                |   TYPE:a colons ID:b assign OPERANDX:c            {: RESULT = new SymASSIGN(a, b, c, scanner.getLineColumn()); :}
+                | 	ID:a assign error                               {: apuntar_error("ASSIGN", scanner.getLineColumn()); :}
+                | 	IDARRAY:a assign error                          {: apuntar_error("ASSIGN", scanner.getLineColumn()); :}
                 ;
 
-    DECLISTDIM     ::=    DECLISTDIM:a lbrckt SUBRANGE:b rbrckt           {:   RESULT = new SymDECLISTDIM(a, b);     :}
-                |   lbrckt SUBRANGE:a rbrckt                          {:   RESULT = new SymDECLISTDIM(a);     :}
+  ASSIGNCONST       ::= ID:a assign OPERANDX:b               {: RESULT = new SymASSIGNCONST(a, b); :}
+                    ;
+
+/**********DECLARACIÓ VARIABLES******************/
+    DECVAR      ::= TYPE:a colons IDLIST:b          {: RESULT = new SymDECVAR(a, b, scanner.getLineColumn()); :}
+                | 	TYPE:a error                    {: apuntar_error("DECVAR", scanner.getLineColumn()); :}
+                ;
+
+    IDLIST      ::= ID:a IDLISTSEP:b                       {: RESULT = new SymIDLIST(a, b); :}
+                ;
+
+    IDLISTSEP   ::= comma IDLIST:a                       {: RESULT = new SymIDLISTSEP(a); :}
+                |                                        {: RESULT = new SymIDLISTSEP(); :}
+                ;
+
+    /**********DECLARACIÓ CONSTANT******************/
+    DECLARECONST    ::= Const TYPE:a colons ASSIGNCONST:b           {: RESULT = new SymDECLARECONST(a, b, scanner.getLineColumn()); :}
+                    | 	Const error                                 {: apuntar_error("DECLARECONST", scanner.getLineColumn()); :}
+                    ;
+
+/**********DECLARACIÓ TAULA**********************/
+    DECARRAY    ::= TYPE:a colons ID:b  DECLISTDIM:c    {: RESULT = new SymDECARRAY(a, b, c, scanner.getLineColumn()); :}
+    		    | 	TYPE:a colons error                 {: apuntar_error("DECARRAY", scanner.getLineColumn()); :}
+                ;
+
+    DECLISTDIM  ::= DECLISTDIM:a lbrckt SUBRANGE:b rbrckt   {:   RESULT = new SymDECLISTDIM(a, b); :}
+                |   lbrckt SUBRANGE:a rbrckt                {: RESULT = new SymDECLISTDIM(a); :}
                 ;
 
 /**********ACCÉS A TAULA**********************/
-    IDARRAY     ::=     ID:a IDLISTDIM:b          {:  RESULT = new SymIDARRAY(a,b);   :}
+    IDARRAY     ::=     ID:a IDLISTDIM:b          {: RESULT = new SymIDARRAY(a,b); :}
                 ;
-    IDLISTDIM   ::=     IDLISTDIM:a lbrckt OPERANDX:b rbrckt   {:  RESULT = new SymIDLISTDIM(a,b);  :}
-                |       lbrckt OPERANDX:a rbrckt                 {:  RESULT = new SymIDLISTDIM(a);  :}
+    IDLISTDIM   ::=     IDLISTDIM:a lbrckt OPERANDX:b rbrckt    {: RESULT = new SymIDLISTDIM(a,b); :}
+                |       lbrckt OPERANDX:a rbrckt                {: RESULT = new SymIDLISTDIM(a); :}
                 ;
 
 /**********SUBRANG**********************/
-    SUBRANGE     ::=     ID:a dotdot ID:b                          {:   RESULT = new SymSUBRANGE(a, b);     :}
-                    |   NUM:a dotdot NUM:b                {:   RESULT = new SymSUBRANGE(a,b);     :}
+    SUBRANGE    ::=     ID:a dotdot ID:b        {: RESULT = new SymSUBRANGE(a, b); :}
+                |       NUM:a dotdot NUM:b      {: RESULT = new SymSUBRANGE(a,b); :}
                 ;
 /*****************LLISTA ARGUMENTS****************************/
 
-    ARGLIST      ::= ARG:a                                {: RESULT = new SymARGLIST(a);:}
-              | ARG:a comma ARGLIST:b                 {: RESULT = new SymARGLIST(a, b); :}
-              |                                      {: RESULT = new SymARGLIST(); :}
-              ;
+    ARGLIST     ::= ARG:a                   {: RESULT = new SymARGLIST(a);:}
+                |   ARG:a comma ARGLIST:b   {: RESULT = new SymARGLIST(a, b); :}
+                |                           {: RESULT = new SymARGLIST(); :}
+                ;
 
-    ARG       ::= TYPE:a ID:b                       {:  RESULT = new SymARG(a, b); :}
+    ARG       ::= TYPE:a ID:b               {:  RESULT = new SymARG(a, b); :}
               ;
 
 /*****************TIPUS DE DADES*********************/
 
-    TYPE     ::= integer:a                          {: RESULT = new SymTYPE(a.toString()); :}
-              | string:a                           {: RESULT = new SymTYPE(a.toString()); :}
-              | logic:a                            {: RESULT = new SymTYPE(a.toString()); :}
-              ;
+    TYPE    ::= integer:a           {: RESULT = new SymTYPE(a.toString()); :}
+            |   string:a            {: RESULT = new SymTYPE(a.toString()); :}
+            |   logic:a             {: RESULT = new SymTYPE(a.toString()); :}
+            ;
 
 /************VALORS VARIABLES*******************/
 
-    VALUELIST      ::= VALUE:a                          {: RESULT = new SymVALUELIST(a); :}
-              | VALUE:a comma VALUELIST:b               {: RESULT = new SymVALUELIST(a, b); :}
-              ;
+    VALUELIST   ::= VALUE:a                         {: RESULT = new SymVALUELIST(a); :}
+                |   VALUE:a comma VALUELIST:b       {: RESULT = new SymVALUELIST(a, b); :}
+                ;
 
-    VALUE       ::= NUM:a                            {: RESULT = new SymVALUE(a); :}
-              | LOGIC:b                              {: RESULT = new SymVALUE(b); :}
-              | STR:c                              {: RESULT = new SymVALUE(c); :}
-              ;
+    VALUE       ::= NUM:a                           {: RESULT = new SymVALUE(a); :}
+                |   LOGIC:b                         {: RESULT = new SymVALUE(b); :}
+                |   STR:c                           {: RESULT = new SymVALUE(c); :}
+                ;
 
-    OPARITH        ::= add:a                           {: RESULT = new SymOPARITH(a.toString()); :}
-              | sub:b                             {: RESULT = new SymOPARITH(b.toString()); :}
-              | mult:c                            {: RESULT = new SymOPARITH(c.toString()); :}
-              | div:d                             {: RESULT = new SymOPARITH(d.toString()); :}
-              | mod:e                             {: RESULT = new SymOPARITH(e.toString()); :}
-              ;
+    OPARITH     ::= add:a               {: RESULT = new SymOPARITH(a.toString()); :}
+                |   sub:b               {: RESULT = new SymOPARITH(b.toString()); :}
+                |   mult:c              {: RESULT = new SymOPARITH(c.toString()); :}
+                |   div:d               {: RESULT = new SymOPARITH(d.toString()); :}
+                |   mod:e               {: RESULT = new SymOPARITH(e.toString()); :}
+                ;
 
-    OPLOGIC     ::= gte:a                         {: RESULT = new SymOPLOGIC(a.toString()); :}
-              | lt:b                            {: RESULT = new SymOPLOGIC(b.toString()); :}
-              | equals:c                           {: RESULT = new SymOPLOGIC(c.toString()); :}
-              | gt:d                            {: RESULT = new SymOPLOGIC(d.toString()); :}
-              | lte:e                           {: RESULT = new SymOPLOGIC(e.toString()); :}
-              | noteq:f                          {: RESULT = new SymOPLOGIC(f.toString()); :}
-              ;
+    OPLOGIC     ::= gte:a               {: RESULT = new SymOPLOGIC(a.toString()); :}
+                |   lt:b                {: RESULT = new SymOPLOGIC(b.toString()); :}
+                |   equals:c            {: RESULT = new SymOPLOGIC(c.toString()); :}
+                |   gt:d                {: RESULT = new SymOPLOGIC(d.toString()); :}
+                |   lte:e               {: RESULT = new SymOPLOGIC(e.toString()); :}
+                |   noteq:f             {: RESULT = new SymOPLOGIC(f.toString()); :}
+                ;
 
-    ANDOR   ::= op_and:a                         {: RESULT = new SymANDOR(a.toString()); :}
-              | op_or:b                            {: RESULT = new SymANDOR(b.toString()); :}
-              ; 
-
-    RETURNTYPE ::= NUM:a                             {: RESULT = new SymRETURNTYPE(a); :}
-              | ID:b                              {: RESULT = new SymRETURNTYPE(b, scanner.getLineColumn()); :}
-              | CALLPROC:c                          {: RESULT = new SymRETURNTYPE(c); :}
-              | LOGIC:d                             {: RESULT = new SymRETURNTYPE(d); :}
-              | STR:e                             {: RESULT = new SymRETURNTYPE(e); :}
-              ;
-
-    NUM       ::= val_int:a                    {: RESULT = new SymNUM(Integer.valueOf(a.toString())); :}
-              ;
-
-    LOGIC       ::= True:a                          {: RESULT = new SymLOGIC(a.toString()); :}
-              | False:b                            {: RESULT = new SymLOGIC(b.toString()); :}
-              ;
-
-    ID       ::= val_id:a                       {: RESULT = new SymID(a.toString(), scanner.getLineColumn()); :}
-              ;
-
-    STR     ::= val_str:a                      {: RESULT = new SymSTR(a.toString()); :}
-
+    ANDOR   ::= op_and:a                {: RESULT = new SymANDOR(a.toString()); :}
+            |   op_or:b                 {: RESULT = new SymANDOR(b.toString()); :}
             ;
+
+    RETURNTYPE  ::= NUM:a               {: RESULT = new SymRETURNTYPE(a); :}
+                |   ID:b                {: RESULT = new SymRETURNTYPE(b, scanner.getLineColumn()); :}
+                |   CALLPROC:c          {: RESULT = new SymRETURNTYPE(c); :}
+                |   LOGIC:d             {: RESULT = new SymRETURNTYPE(d); :}
+                |   STR:e               {: RESULT = new SymRETURNTYPE(e); :}
+                ;
+
+    NUM         ::= val_int:a           {: RESULT = new SymNUM(Integer.valueOf(a.toString())); :}
+                ;
+
+    LOGIC       ::= True:a              {: RESULT = new SymLOGIC(a.toString()); :}
+                |   False:b             {: RESULT = new SymLOGIC(b.toString()); :}
+                ;
+
+    ID          ::= val_id:a            {: RESULT = new SymID(a.toString(), scanner.getLineColumn()); :}
+                ;
+
+    STR         ::= val_str:a           {: RESULT = new SymSTR(a.toString()); :}
+                ;
 
     /****IMPRIMIR PER PANTALLA****/
 
-    OUTPUT       ::= print lparen PRINT:a rparen                {: RESULT = new SymOUTPUT(a, false, scanner.getLineColumn()); :}
-                |   line   lparen PRINT:a rparen                {: RESULT = new SymOUTPUT(a, true, scanner.getLineColumn()); :}
-                					| 	print error {: apuntar_error("OUTPUT", scanner.getLineColumn()); :}
-                					| 	line error  {: apuntar_error("OUTPUT", scanner.getLineColumn()); :}
-              ;
+    OUTPUT      ::= print lparen PRINT:a rparen         {: RESULT = new SymOUTPUT(a, false, scanner.getLineColumn()); :}
+                |   line lparen PRINT:a rparen          {: RESULT = new SymOUTPUT(a, true, scanner.getLineColumn()); :}
+                | 	print error                         {: apuntar_error("OUTPUT", scanner.getLineColumn()); :}
+                | 	line error                          {: apuntar_error("OUTPUT", scanner.getLineColumn()); :}
+                ;
 
-    PRINT         ::= VALUELIST:a PRINT:b                                {: RESULT = new SymPRINT(a, b); :}
-              | IDLIST:c PRINT:b                                   {: RESULT = new SymPRINT(c, b); :}
-              |                                             {: RESULT = new SymPRINT(); :}
-              ;
+    PRINT       ::= VALUELIST:a PRINT:b                 {: RESULT = new SymPRINT(a, b); :}
+                |   IDLIST:c PRINT:b                    {: RESULT = new SymPRINT(c, b); :}
+                |                                       {: RESULT = new SymPRINT(); :}
+                ;
 
 /****ENTRADA DE DADES*****/
 
-    INPUT       ::= read lparen ID:a rparen  {: RESULT = new SymINPUT(a); :}
-    					| 	read error {: apuntar_error("INPUT", scanner.getLineColumn()); :}
-              ;
+    INPUT       ::= read lparen ID:a rparen             {: RESULT = new SymINPUT(a); :}
+    		    | 	read error                          {: apuntar_error("INPUT", scanner.getLineColumn()); :}
+                ;
 
 
 /*****************ETIQUETES I BOTS********************/
 
-    CONDLABEL      ::=                               {: RESULT = new SymCONDLABEL(); :}
-            ;
-
-    CONDBRANCH      ::=                               {: RESULT = new SymCONDBRANCH(false); :}
-            ;
-
-    CONDBRANCHINV      ::=                               {: RESULT = new SymCONDBRANCH(true); :}
+    CONDLABEL   ::=                     {: RESULT = new SymCONDLABEL(); :}
                 ;
 
-    ELSE      ::=                               {: RESULT = new SymELSE(); :}
-            ;
-
-    STARTLOOP      ::=                               {: RESULT = new SymSTARTLOOP(); :}
-            ;
-
-    GSTARTLOOP      ::=                               {: RESULT = new SymGSTARTLOOP(); :}
-            ;
-
-    STARTMAIN     ::=                               {: RESULT = new SymSTARTMAIN(); :}
+    CONDBRANCH  ::=                     {: RESULT = new SymCONDBRANCH(false); :}
                 ;
 
-    STARTPROC      ::=                               {: RESULT = new SymSTARTPROC(); :}
-            ;
-    INCSCOPE      ::=                              {: RESULT = new SymINCSCOPE(); :}
-             ;
-    DICSCOPE      ::=                              {: RESULT = new SymDICSCOPE(); :}
-             ;
+    CONDBRANCHINV   ::=                 {: RESULT = new SymCONDBRANCH(true); :}
+                    ;
+
+    ELSE        ::=                     {: RESULT = new SymELSE(); :}
+                ;
+
+    STARTLOOP       ::=                 {: RESULT = new SymSTARTLOOP(); :}
+                    ;
+
+    GSTARTLOOP      ::=                 {: RESULT = new SymGSTARTLOOP(); :}
+                    ;
+
+    STARTMAIN       ::=                 {: RESULT = new SymSTARTMAIN(); :}
+                    ;
+
+    STARTPROC       ::=                 {: RESULT = new SymSTARTPROC(); :}
+                    ;
+    INCSCOPE        ::=                 {: RESULT = new SymINCSCOPE(); :}
+                    ;
+    DICSCOPE        ::=                 {: RESULT = new SymDICSCOPE(); :}
+                    ;
 
 
   /*****************PREAMBLE********************/      
-   PMB      ::=                               {: RESULT = new SymPMB(); :}
-              ;
+   PMB      ::=                         {: RESULT = new SymPMB(); :}
+            ;
