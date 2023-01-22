@@ -21,7 +21,6 @@ public class SymDECFUNC extends SymBase {
     private SymARGLIST ARGLIST;
     private SymSENTLIST SENTLIST;
     private SymRETURN RETURN;
-    private final String place = "SymDECFUNC";
 
     public SymDECFUNC(SymTYPE a, SymID b, SymARGLIST c, SymSENTLIST d, SymRETURN e, int[] lc) throws ErrorArgTypes, ErrorProcExists {
         super("F", 0);
@@ -33,14 +32,14 @@ public class SymDECFUNC extends SymBase {
 
         Symbol n = new Symbol(ID.getID(), FUNCTION, TYPE.getType(), (ArrayList<Symbol>) ts.getParams().clone());
         if(!this.TYPE.getType().equals(this.RETURN.getRETURNTYPE().getType())) {
-            new ErrorArgTypes().printError(place, lc, ID.getID());
+            new ErrorArgTypes().printError(lc, ID.getID());
             throw new ErrorArgTypes();
         }
 
         if (ts.exist(n.getId())) {
             Symbol node = ts.get(n.getId());
             if (node.getType() == METHOD || node.getType() == FUNCTION) {
-                new ErrorProcExists().printError(place,lc, n.getId());
+                new ErrorProcExists().printError(lc, n.getId());
                 throw new ErrorProcExists();
             } else {
                 ts.insertElement(n);
@@ -63,9 +62,7 @@ public class SymDECFUNC extends SymBase {
     }
 
     public SymTYPE getType() {
-
         return TYPE;
-
     }
 
 }

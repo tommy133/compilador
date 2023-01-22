@@ -46,7 +46,7 @@ public class Compiler {
             if(parser.getSintacticErrors()){
                 throw new SintaxErrorException() {
                     @Override
-                    public int printError(String place, int[] lc, String variableError) {
+                    public int printError(int[] lc, String variableError) {
                         return 0;
                     }
                 };

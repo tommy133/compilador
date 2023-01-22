@@ -19,7 +19,6 @@ public class SymCONDITION extends SymBase {
     private SymIDARRAY IDARRAY;
 
     private String type_op;
-    private String place = "SymCONDITION";
 
     public SymCONDITION(SymOPERANDX a, SymOPERATION c, SymOPERANDX b, SymCONDEXT d, int[] lc) throws ErrorIncompatibleTypesOperation {
         super("CONDITION", 0);
@@ -28,7 +27,7 @@ public class SymCONDITION extends SymBase {
         this.OPERATION = c;
         this.CONDEXT = d;
         if(!this.OPERANDX1.getSUBTYPE().getType().equalsIgnoreCase(this.OPERANDX2.getSUBTYPE().getType())){
-            new ErrorIncompatibleTypesOperation().printError(place,lc, "");
+            new ErrorIncompatibleTypesOperation().printError(lc, "");
             throw new ErrorIncompatibleTypesOperation();
         }
         do {
@@ -52,7 +51,7 @@ public class SymCONDITION extends SymBase {
         this.ID = a;
         this.type_op = ID.getType();
         if(!this.type_op.equalsIgnoreCase("LOGIC")){
-            new ErrorIncompatibleTypesOperation().printError(place,lc, "");
+            new ErrorIncompatibleTypesOperation().printError(lc, "");
             throw new ErrorIncompatibleTypesOperation();
         }
         tac.generateCode(ID.getID() + " then ");

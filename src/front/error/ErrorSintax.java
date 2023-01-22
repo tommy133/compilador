@@ -14,11 +14,11 @@ import java.util.logging.Logger;
 public class ErrorSintax extends SintaxErrorException {
 
     @Override
-    public int printError(String place, int[] column_line, String var_error) {
+    public int printError(int[] column_line, String var_error) {
         try {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Errors.txt", true), StandardCharsets.UTF_8));
             
-            writer.write(place + " [Error SINTACTIC]:["
+            writer.write("[Error SINTACTIC]:["
                 + column_line[0] + ":" + column_line[1] +
                 "] Sintaxis incorrecte.\n");
 

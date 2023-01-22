@@ -16,7 +16,6 @@ public class SymDECLARECONST extends SymBase {
 
     private SymTYPE TYPE;
     private SymASSIGNCONST ASSIGNCONST;
-    private final String place = "SymDECLARECONST";
 
     public SymDECLARECONST(SymTYPE a, SymASSIGNCONST b, int[] lc) throws ErrorVarNotDec, ErrorConstExists {
         super("DECLARECONST", 0);
@@ -30,7 +29,7 @@ public class SymDECLARECONST extends SymBase {
             tac.assign(tac.newVar(ASSIGNCONST.getID().getID(), ASSIGNCONST.getID().getType(),
                     ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor()), ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor());
         } else {
-            new ErrorConstExists().printError(place,lc, n.getId());
+            new ErrorConstExists().printError(lc, n.getId());
             throw new ErrorConstExists();
         }
     }

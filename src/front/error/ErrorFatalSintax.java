@@ -17,11 +17,11 @@ import java.util.logging.Logger;
 public class ErrorFatalSintax extends SintaxErrorException {
 
     @Override
-    public int printError(String place, int[] column_line, String var_error) {
+    public int printError(int[] column_line, String var_error) {
         try {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Errors.txt", true), StandardCharsets.UTF_8));
             
-            writer.write(place + " [Error SINTACTIC]:  Error fatal de compilació, el process de compilació se ha abortat.\n");
+            writer.write("[Error SINTACTIC]:  Error fatal de compilació, el process de compilació se ha abortat.\n");
 
             writer.close();
 

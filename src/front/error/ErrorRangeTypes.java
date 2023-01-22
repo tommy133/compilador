@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class ErrorRangeTypes extends SintaxErrorException {
     @Override
-    public int printError(String place, int[] column_line, String var_err) {
+    public int printError(int[] column_line, String var_err) {
         try {
             writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream("files_output/Errors.txt", true), StandardCharsets.UTF_8));

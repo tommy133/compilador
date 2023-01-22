@@ -14,11 +14,11 @@ import java.util.logging.Level;
 public class ErrorVarNotDec extends SintaxErrorException {
 
     @Override
-    public int printError(String place, int[] column_line, String var_err) {
+    public int printError(int[] column_line, String var_err) {
         try {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Errors.txt", true), StandardCharsets.UTF_8));
             
-            writer.write(place + " [Error SEMÀNTIC]:"
+            writer.write("[Error SEMÀNTIC]:"
                 + "[" + column_line[0] + ":" + column_line[1] + "]"
                 + " La variable " + "'" + var_err + "'" + " no esta declarada\n");
             

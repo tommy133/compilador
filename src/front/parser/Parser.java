@@ -600,8 +600,8 @@ public class Parser extends java_cup.runtime.lr_parser {
 
     private boolean sintacticErrors = false;
 
-    public void apuntar_error(String place, int[] lc) {
-        new ErrorSintax().printError(place, lc, place);
+    public void apuntar_error(int[] lc) {
+        new ErrorSintax().printError(lc, "");
         this.sintacticErrors = true;
     }
 
@@ -610,7 +610,7 @@ public class Parser extends java_cup.runtime.lr_parser {
     }
 
     public void report_fatal_error(String message, Object info) throws Exception {
-        new ErrorFatalSintax().printError(message, new int[]{0, 0}, message);
+        new ErrorFatalSintax().printError(new int[]{0, 0}, message);
         throw new ErrorFatalSintax();
       }
 
@@ -760,7 +760,7 @@ class CUP$Parser$actions {
           case 8: // DECMP ::= error 
             {
               SymDECMP RESULT =null;
-		 apuntar_error("DECMP", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECMP",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -925,7 +925,7 @@ class CUP$Parser$actions {
           case 22: // SENT ::= error scolon 
             {
               SymSENT RESULT =null;
-		 apuntar_error("sent", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("SENT",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1156,7 +1156,7 @@ class CUP$Parser$actions {
           case 40: // CONDIF ::= If error 
             {
               SymCONDIF RESULT =null;
-		 apuntar_error("CONDIF", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("CONDIF",11, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1201,7 +1201,7 @@ class CUP$Parser$actions {
           case 44: // WHILE ::= STARTLOOP While error 
             {
               SymWHILE RESULT =null;
-		 apuntar_error("WHILE", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("WHILE",13, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1225,7 +1225,7 @@ class CUP$Parser$actions {
           case 46: // REPUNTIL ::= STARTLOOP Repeat INCSCOPE error GSTARTLOOP 
             {
               SymREPUNTIL RESULT =null;
-		 apuntar_error("REPUNTIL", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("REPUNTIL",14, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1354,7 +1354,7 @@ class CUP$Parser$actions {
 		int cleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		SymOPERANDX c = (SymOPERANDX)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		  RESULT = new SymASSIGN(a, b, c, scanner.getLineColumn()); 
+		 RESULT = new SymASSIGN(a, b, c, scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ASSIGN",16, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-4)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1366,7 +1366,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		SymID a = (SymID)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
-		 apuntar_error("ASSIGN", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ASSIGN",16, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1378,7 +1378,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		SymIDARRAY a = (SymIDARRAY)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
-		 apuntar_error("ASSIGN", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ASSIGN",16, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1408,7 +1408,7 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		SymIDLIST b = (SymIDLIST)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		  RESULT = new SymDECVAR(a, b, scanner.getLineColumn()); 
+		 RESULT = new SymDECVAR(a, b, scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECVAR",18, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1420,7 +1420,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		SymTYPE a = (SymTYPE)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-		 apuntar_error("DECVAR", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECVAR",18, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1435,7 +1435,7 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		SymIDLISTSEP b = (SymIDLISTSEP)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		  RESULT = new SymIDLIST(a, b); 
+		 RESULT = new SymIDLIST(a, b); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("IDLIST",31, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1447,7 +1447,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		SymIDLIST a = (SymIDLIST)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		  RESULT = new SymIDLISTSEP(a); 
+		 RESULT = new SymIDLISTSEP(a); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("IDLISTSEP",45, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1456,7 +1456,7 @@ class CUP$Parser$actions {
           case 62: // IDLISTSEP ::= 
             {
               SymIDLISTSEP RESULT =null;
-		  RESULT = new SymIDLISTSEP(); 
+		 RESULT = new SymIDLISTSEP(); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("IDLISTSEP",45, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1480,7 +1480,7 @@ class CUP$Parser$actions {
           case 64: // DECLARECONST ::= Const error 
             {
               SymDECLARECONST RESULT =null;
-		 apuntar_error("DECLARECONST", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECLARECONST",19, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1498,7 +1498,7 @@ class CUP$Parser$actions {
 		int cleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		SymDECLISTDIM c = (SymDECLISTDIM)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		   RESULT = new SymDECARRAY(a, b, c, scanner.getLineColumn());   
+		 RESULT = new SymDECARRAY(a, b, c, scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECARRAY",20, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1510,7 +1510,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
 		SymTYPE a = (SymTYPE)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
-		 apuntar_error("DECARRAY", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECARRAY",20, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1525,7 +1525,7 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		SymSUBRANGE b = (SymSUBRANGE)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-		   RESULT = new SymDECLISTDIM(a, b);     
+		   RESULT = new SymDECLISTDIM(a, b); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECLISTDIM",21, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1537,7 +1537,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		SymSUBRANGE a = (SymSUBRANGE)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-		   RESULT = new SymDECLISTDIM(a);     
+		 RESULT = new SymDECLISTDIM(a); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("DECLISTDIM",21, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1552,7 +1552,7 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		SymIDLISTDIM b = (SymIDLISTDIM)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		  RESULT = new SymIDARRAY(a,b);   
+		 RESULT = new SymIDARRAY(a,b); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("IDARRAY",27, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1567,7 +1567,7 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		SymOPERANDX b = (SymOPERANDX)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-		  RESULT = new SymIDLISTDIM(a,b);  
+		 RESULT = new SymIDLISTDIM(a,b); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("IDLISTDIM",26, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1579,7 +1579,7 @@ class CUP$Parser$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		SymOPERANDX a = (SymOPERANDX)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-		  RESULT = new SymIDLISTDIM(a);  
+		 RESULT = new SymIDLISTDIM(a); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("IDLISTDIM",26, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1594,7 +1594,7 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		SymID b = (SymID)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		   RESULT = new SymSUBRANGE(a, b);     
+		 RESULT = new SymSUBRANGE(a, b); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("SUBRANGE",55, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1609,7 +1609,7 @@ class CUP$Parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		SymNUM b = (SymNUM)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		   RESULT = new SymSUBRANGE(a,b);     
+		 RESULT = new SymSUBRANGE(a,b); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("SUBRANGE",55, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -2068,7 +2068,7 @@ class CUP$Parser$actions {
           case 111: // OUTPUT ::= print error 
             {
               SymOUTPUT RESULT =null;
-		 apuntar_error("OUTPUT", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("OUTPUT",9, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -2077,7 +2077,7 @@ class CUP$Parser$actions {
           case 112: // OUTPUT ::= line error 
             {
               SymOUTPUT RESULT =null;
-		 apuntar_error("OUTPUT", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("OUTPUT",9, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -2137,7 +2137,7 @@ class CUP$Parser$actions {
           case 117: // INPUT ::= read error 
             {
               SymINPUT RESULT =null;
-		 apuntar_error("INPUT", scanner.getLineColumn()); 
+		 apuntar_error(scanner.getLineColumn()); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("INPUT",10, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

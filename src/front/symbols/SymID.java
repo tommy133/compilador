@@ -12,7 +12,6 @@ public class SymID extends SymBase {
 
     private String ID;
     int[] lc;
-    private final String place = "SymID";
 
     public SymID(String a, int[] lc) {
         super("ID", 0);
@@ -32,7 +31,7 @@ public class SymID extends SymBase {
     public String getType() throws ErrorVarNotDec {
 
         if (ts.get(ID) == null) {
-            new ErrorVarNotDec().printError(place,lc, ID);
+            new ErrorVarNotDec().printError(lc, ID);
             throw new ErrorVarNotDec();
         } else {
             return ts.get(ID).getSubtype();

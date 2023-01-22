@@ -15,7 +15,6 @@ public class SymDECVAR extends SymBase {
 
     private SymTYPE TYPE;
     private SymIDLIST IDLIST;
-    private final String place = "SymDECVAR";
     public SymDECVAR(SymTYPE a, SymIDLIST b, int[] lc) throws ErrorVarExists {
         super("DVAR", 0);
 
@@ -27,7 +26,7 @@ public class SymDECVAR extends SymBase {
             if (!ts.exist(n.getId())) {
                 ts.insertElement(n);
             } else {
-                new ErrorVarExists().printError(place,lc, IDLIST.getID().getID());
+                new ErrorVarExists().printError(lc, IDLIST.getID().getID());
                 throw new ErrorVarExists();
             }
             IDLIST = IDLIST.getIDLISTSEP().getLID();
@@ -35,7 +34,7 @@ public class SymDECVAR extends SymBase {
         if (!ts.exist(IDLIST.getID().getID())) {
             ts.insertElement(new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(), null));
         } else {
-            new ErrorVarExists().printError(place,lc, IDLIST.getID().getID());
+            new ErrorVarExists().printError(lc, IDLIST.getID().getID());
             throw new ErrorVarExists();
         }
 

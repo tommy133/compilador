@@ -14,8 +14,8 @@ parser code {:
 
     private boolean sintacticErrors = false;
 
-    public void apuntar_error(String place, int[] lc) {
-        new ErrorSintax().printError(place, lc, place);
+    public void apuntar_error(int[] lc) {
+        new ErrorSintax().printError(lc, "");
         this.sintacticErrors = true;
     }
 
@@ -24,7 +24,7 @@ parser code {:
     }
 
     public void report_fatal_error(String message, Object info) throws Exception {
-        new ErrorFatalSintax().printError(message, new int[]{0, 0}, message);
+        new ErrorFatalSintax().printError(new int[]{0, 0}, message);
         throw new ErrorFatalSintax();
       }
 
@@ -134,7 +134,7 @@ start with START;
 
 /*---------- DECLARACIÓ PROGRAMA PRINCIPAL ----------*/
     DECMP   ::= prog ID:a STARTPROC lparen ARGLIST:b rparen PMB INCSCOPE SENTLIST:c DICSCOPE end        {: RESULT = new SymDECMP(a, b, c); :}
-            |   error                                                                                   {: apuntar_error("DECMP", scanner.getLineColumn()); :}
+            |   error                                                                                   {: apuntar_error(scanner.getLineColumn()); :}
             ;
 
 /***SENTENCIES****/
@@ -156,7 +156,7 @@ start with START;
             |     DECVAR:h scolon                   {: RESULT = new SymSENT(h); :}
             |     DECLARECONST:i scolon             {: RESULT = new SymSENT(i); :}
             |     DECARRAY:j scolon                 {: RESULT = new SymSENT(j); :}
-            |     error scolon  	                {: apuntar_error("sent", scanner.getLineColumn()); :}
+            |     error scolon  	                {: apuntar_error(scanner.getLineColumn()); :}
             ;
 
     OPERANDX    ::= OPERANDX:a OPARITH:b SUBTYPE:c            {:  RESULT = new SymOPERANDX(a, b, c, scanner.getLineColumn()); :}
@@ -192,7 +192,7 @@ start with START;
 /*********CONDICIONAL IF***********/
 
     CONDIF      ::= If CONDLABEL CONDITION:a then CONDBRANCH INCSCOPE SENTLIST:b DICSCOPE ELSE CONDELSE:c       {: RESULT = new SymCONDIF(a, b, c); :}
-                |   If error                                                                                    {: apuntar_error("CONDIF", scanner.getLineColumn()); :}
+                |   If error                                                                                    {: apuntar_error(scanner.getLineColumn()); :}
                 ;
 
     CONDELSE  ::= Else INCSCOPE SENTLIST:a DICSCOPE         {: RESULT = new SymCONDELSE(a); :}
@@ -204,13 +204,13 @@ start with START;
 /*******BUCLE WHILE********/
 
     WHILE   ::= STARTLOOP While CONDLABEL CONDITION:a loop CONDBRANCH INCSCOPE SENTLIST:b GSTARTLOOP            {: RESULT = new SymWHILE(a, b); :}
-		    | 	STARTLOOP While error                                                                           {: apuntar_error("WHILE", scanner.getLineColumn()); :}
+		    | 	STARTLOOP While error                                                                           {: apuntar_error(scanner.getLineColumn()); :}
             ;
 
 /*******BUCLE REPEAT UNTIL********/
 
     REPUNTIL    ::= STARTLOOP Repeat INCSCOPE SENTLIST:a Until CONDLABEL CONDITION:b CONDBRANCHINV  GSTARTLOOP          {: RESULT = new SymREPUNTIL(b, a); :}
-			    | 	STARTLOOP Repeat INCSCOPE error GSTARTLOOP                                                          {: apuntar_error("REPUNTIL", scanner.getLineColumn()); :}
+			    | 	STARTLOOP Repeat INCSCOPE error GSTARTLOOP                                                          {: apuntar_error(scanner.getLineColumn()); :}
                 ;
 
 /**********DECLARACIÓ MÈTODE*************/
@@ -237,8 +237,8 @@ start with START;
     ASSIGN      ::= ID:a assign OPERANDX:b                          {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
                 |   IDARRAY:a assign OPERANDX:b                     {: RESULT = new SymASSIGN(a, b, scanner.getLineColumn()); :}
                 |   TYPE:a colons ID:b assign OPERANDX:c            {: RESULT = new SymASSIGN(a, b, c, scanner.getLineColumn()); :}
-                | 	ID:a assign error                               {: apuntar_error("ASSIGN", scanner.getLineColumn()); :}
-                | 	IDARRAY:a assign error                          {: apuntar_error("ASSIGN", scanner.getLineColumn()); :}
+                | 	ID:a assign error                               {: apuntar_error(scanner.getLineColumn()); :}
+                | 	IDARRAY:a assign error                          {: apuntar_error(scanner.getLineColumn()); :}
                 ;
 
   ASSIGNCONST       ::= ID:a assign OPERANDX:b               {: RESULT = new SymASSIGNCONST(a, b); :}
@@ -246,7 +246,7 @@ start with START;
 
 /**********DECLARACIÓ VARIABLES******************/
     DECVAR      ::= TYPE:a colons IDLIST:b          {: RESULT = new SymDECVAR(a, b, scanner.getLineColumn()); :}
-                | 	TYPE:a error                    {: apuntar_error("DECVAR", scanner.getLineColumn()); :}
+                | 	TYPE:a error                    {: apuntar_error(scanner.getLineColumn()); :}
                 ;
 
     IDLIST      ::= ID:a IDLISTSEP:b                       {: RESULT = new SymIDLIST(a, b); :}
@@ -258,12 +258,12 @@ start with START;
 
     /**********DECLARACIÓ CONSTANT******************/
     DECLARECONST    ::= Const TYPE:a colons ASSIGNCONST:b           {: RESULT = new SymDECLARECONST(a, b, scanner.getLineColumn()); :}
-                    | 	Const error                                 {: apuntar_error("DECLARECONST", scanner.getLineColumn()); :}
+                    | 	Const error                                 {: apuntar_error(scanner.getLineColumn()); :}
                     ;
 
 /**********DECLARACIÓ TAULA**********************/
     DECARRAY    ::= TYPE:a colons ID:b  DECLISTDIM:c    {: RESULT = new SymDECARRAY(a, b, c, scanner.getLineColumn()); :}
-    		    | 	TYPE:a colons error                 {: apuntar_error("DECARRAY", scanner.getLineColumn()); :}
+    		    | 	TYPE:a colons error                 {: apuntar_error(scanner.getLineColumn()); :}
                 ;
 
     DECLISTDIM  ::= DECLISTDIM:a lbrckt SUBRANGE:b rbrckt   {:   RESULT = new SymDECLISTDIM(a, b); :}
@@ -352,8 +352,8 @@ start with START;
 
     OUTPUT      ::= print lparen PRINT:a rparen         {: RESULT = new SymOUTPUT(a, false, scanner.getLineColumn()); :}
                 |   line lparen PRINT:a rparen          {: RESULT = new SymOUTPUT(a, true, scanner.getLineColumn()); :}
-                | 	print error                         {: apuntar_error("OUTPUT", scanner.getLineColumn()); :}
-                | 	line error                          {: apuntar_error("OUTPUT", scanner.getLineColumn()); :}
+                | 	print error                         {: apuntar_error(scanner.getLineColumn()); :}
+                | 	line error                          {: apuntar_error(scanner.getLineColumn()); :}
                 ;
 
     PRINT       ::= VALUELIST:a PRINT:b                 {: RESULT = new SymPRINT(a, b); :}
@@ -364,7 +364,7 @@ start with START;
 /****ENTRADA DE DADES*****/
 
     INPUT       ::= read lparen ID:a rparen             {: RESULT = new SymINPUT(a); :}
-    		    | 	read error                          {: apuntar_error("INPUT", scanner.getLineColumn()); :}
+    		    | 	read error                          {: apuntar_error(scanner.getLineColumn()); :}
                 ;
 
 

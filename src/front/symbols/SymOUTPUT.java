@@ -11,14 +11,14 @@ import front.error.ErrorVarNotDec;
 public class SymOUTPUT extends SymBase {
 
     private SymPRINT PRINT;
-    private String place = "SymOUTPUT";
     private int[] lc;
+
     public SymOUTPUT(SymPRINT a, boolean println, int[] lc) throws ErrorVarNotDec {
         super("OUTPUT", 0);
         this.PRINT = a;
         this.lc = lc;
         if(PRINT == null){
-            new ErrorVarNotDec().printError(place,lc, "");
+            new ErrorVarNotDec().printError(lc, "");
             throw new ErrorVarNotDec();
         }
         tac.generateCode(paramType()+" " + a.getVALID() + "\n");
@@ -36,7 +36,7 @@ public class SymOUTPUT extends SymBase {
             else return "param_s";
         }
         if(PRINT.getVALUELIST() == null){
-            new ErrorVarNotDec().printError(place,lc, this.PRINT.getVALID());
+            new ErrorVarNotDec().printError(lc, this.PRINT.getVALID());
             throw new ErrorVarNotDec();
         }
         if (PRINT.getVALUELIST().getVALUE().getType().equalsIgnoreCase("string")) return "param_c";
