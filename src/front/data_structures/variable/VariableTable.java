@@ -43,6 +43,15 @@ public class VariableTable {
         rows_list.add(var);
     }
 
+    public Variable getVar(String id){
+        for(Variable v : this.rows_list){
+            if(v.getName().equals(id)){
+                return v;
+            }
+        }
+        return null;
+    }
+
 
     public void closeFile() {
         try {

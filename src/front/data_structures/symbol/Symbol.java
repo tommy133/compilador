@@ -45,7 +45,7 @@ public class Symbol {
     private int calcLength(){
         int len=0;
         for (Dimension dim : dimensions){
-            len += dim.getSubrange().getVal2() + 1;
+            len += dim.getSubrange().getVal2() - dim.getSubrange().getVal1() + 1;
         }
         return len;
     }
