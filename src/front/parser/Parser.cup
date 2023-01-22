@@ -6,6 +6,7 @@ import front.scanner.LexicalScanner;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import front.error.ErrorSintax;
+import front.error.ErrorFatalSintax;
 
 class Parser;
 
@@ -21,6 +22,11 @@ parser code {:
     public boolean getSintacticErrors() {
         return this.sintacticErrors;
     }
+
+    public void report_fatal_error(String message, Object info) throws Exception {
+        new ErrorFatalSintax().printError(message, new int[]{0, 0}, message);
+        throw new ErrorFatalSintax();
+      }
 
     private LexicalScanner scanner;
 
@@ -170,8 +176,8 @@ start with START;
 
 
 
-    CONDITION ::= OPERANDX:a OPERATION:b OPERANDX:c CONDEXT:d      {: RESULT = new SymCONDITION(a, b, c, d); :}
-          | ID:a                        {: RESULT = new SymCONDITION(a); :}
+    CONDITION ::= OPERANDX:a OPERATION:b OPERANDX:c CONDEXT:d      {: RESULT = new SymCONDITION(a, b, c, d, scanner.getLineColumn()); :}
+          | ID:a                        {: RESULT = new SymCONDITION(a, scanner.getLineColumn()); :}
           | IDARRAY:a                   {: RESULT = new SymCONDITION(a); :}
           ; 
 
@@ -198,7 +204,7 @@ start with START;
 /*******BUCLE WHILE********/
 
     WHILE    ::= STARTLOOP While CONDLABEL CONDITION:a loop CONDBRANCH INCSCOPE SENTLIST:b GSTARTLOOP         {: RESULT = new SymWHILE(a, b); :}
-					| 	STARTLOOP While error GSTARTLOOP {: apuntar_error("WHILE", scanner.getLineColumn()); :}
+					| 	STARTLOOP While error {: apuntar_error("WHILE", scanner.getLineColumn()); :}
               ;
 
 /*******BUCLE REPEAT UNTIL********/

@@ -6,6 +6,7 @@
 package front.symbols;
 
 
+import front.error.ErrorIncompatibleTypesOperation;
 import front.error.ErrorVarNotDec;
 
 public class SymCONDITION extends SymBase {
@@ -18,14 +19,18 @@ public class SymCONDITION extends SymBase {
     private SymIDARRAY IDARRAY;
 
     private String type_op;
+    private String place = "SymCONDITION";
 
-    public SymCONDITION(SymOPERANDX a, SymOPERATION c, SymOPERANDX b, SymCONDEXT d) {
+    public SymCONDITION(SymOPERANDX a, SymOPERATION c, SymOPERANDX b, SymCONDEXT d, int[] lc) throws ErrorIncompatibleTypesOperation {
         super("CONDITION", 0);
         this.OPERANDX1 = a;
         this.OPERANDX2 = b;
         this.OPERATION = c;
         this.CONDEXT = d;
-
+        if(!this.OPERANDX1.getSUBTYPE().getType().equalsIgnoreCase(this.OPERANDX2.getSUBTYPE().getType())){
+            new ErrorIncompatibleTypesOperation().printError(place,lc, "");
+            throw new ErrorIncompatibleTypesOperation();
+        }
         do {
 
             tac.generateCode(OPERANDX1.getSUBTYPE().getValor() + " ");
@@ -41,11 +46,15 @@ public class SymCONDITION extends SymBase {
         while (CONDEXT != null);
     }
 
-    public SymCONDITION(SymID a) throws ErrorVarNotDec {
+    public SymCONDITION(SymID a, int[] lc) throws ErrorVarNotDec, ErrorIncompatibleTypesOperation {
         super("CONDITION", 0);
 
         this.ID = a;
         this.type_op = ID.getType();
+        if(!this.type_op.equalsIgnoreCase("LOGIC")){
+            new ErrorIncompatibleTypesOperation().printError(place,lc, "");
+            throw new ErrorIncompatibleTypesOperation();
+        }
         tac.generateCode(ID.getID() + " then ");
     }
 

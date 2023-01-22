@@ -17,7 +17,7 @@ public class ErrorIncompatibleTypesOperation extends SintaxErrorException {
 
             writer.write(place + " [Error SEMÀNTIC]:"
                     + "[" + column_line[0] + ":" + column_line[1] + "]"
-                    + " Els tipus de les variables no son compatibles per aquesta operació.\n");
+                    + " Els tipus de les variable o variables no son compatibles per aquesta operació.\n");
 
             writer.close();
 

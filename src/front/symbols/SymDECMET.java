@@ -6,7 +6,6 @@
 package front.symbols;
 
 import front.data_structures.symbol.Symbol;
-import front.data_types.Types;
 import front.error.ErrorProcExists;
 import java.util.ArrayList;
 

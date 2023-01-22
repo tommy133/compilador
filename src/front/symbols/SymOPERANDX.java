@@ -6,7 +6,6 @@
 package front.symbols;
 
 import front.data_types.TypeSub;
-import front.error.ErrorArgTypes;
 import front.error.ErrorIncompatibleTypesOperation;
 
 

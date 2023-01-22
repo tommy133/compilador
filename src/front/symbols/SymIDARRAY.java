@@ -1,10 +1,5 @@
 package front.symbols;
 
-import front.data_structures.Dimension;
-import front.data_structures.Subrange;
-import front.data_types.TypeSub;
-import front.error.ErrorRangeTypes;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
