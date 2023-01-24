@@ -1,0 +1,122 @@
+Taula de variables
+
+Nombre			NV			Subprograma			Ocupació			Desplaçament			Tipus subjacent			Valor
+res			0			main			48			0			string			"RESULTAT: "
+
+separator			1			main			20			48			string			" | "
+
+testcond			2			main			80			68			string			"PROVA CONDICIONAL:"
+
+testwhile			3			main			80			148			string			"PROVA BUCLE WHILE:"
+
+testrepeat			4			main			108			228			string			"PROVA BUCLE REPEAT UNTIL:"
+
+testarrayn			5			main			112			336			string			"PROVA ARRAY N-DIMENSIONAL:"
+
+testarray1			6			main			76			448			string			"PROVA ARRAY SERIE"
+
+t7			7			main			4			524			logic			true
+
+enter			8			main			4			528			logic			true
+
+t9			9			main			4			532			integer			0
+
+n1			10			main			4			536			integer			0
+
+t11			11			main			4			540			integer			10
+
+n2			12			main			4			544			integer			10
+
+t13			13			main			4			548			integer			1
+
+t15			15			main			4			556			integer			0
+
+t17			17			main			4			564			integer			1
+
+t19			19			main			4			572			integer			5
+
+in1			20			main			4			576			integer			5
+
+t21			21			main			4			580			integer			10
+
+in2			22			main			4			584			integer			10
+
+t23			23			main			4			588			INTEGER			0
+
+t24			24			main			4			592			INTEGER			0
+
+t25			25			main			4			596			INTEGER			0
+
+t26			26			main			4			600			INTEGER			14
+
+t27			27			main			4			604			INTEGER			-26
+
+t28			28			main			4			608			INTEGER			-104
+
+array			29			main			72			612			integer			
+
+t30			30			main			4			684			INTEGER			0
+
+t31			31			main			4			688			INTEGER			0
+
+t32			32			main			4			692			INTEGER			0
+
+t33			33			main			4			696			INTEGER			15
+
+t34			34			main			4			700			INTEGER			-25
+
+t35			35			main			4			704			INTEGER			-100
+
+t37			37			main			4			780			INTEGER			0
+
+t38			38			main			4			784			INTEGER			0
+
+t39			39			main			4			788			INTEGER			0
+
+t40			40			main			4			792			INTEGER			14
+
+t41			41			main			4			796			INTEGER			-26
+
+t42			42			main			4			800			INTEGER			-104
+
+out1			43			main			4			804			integer			
+
+t44			44			main			4			808			INTEGER			0
+
+t45			45			main			4			812			INTEGER			0
+
+t46			46			main			4			816			INTEGER			0
+
+t47			47			main			4			820			INTEGER			15
+
+t48			48			main			4			824			INTEGER			-25
+
+t49			49			main			4			828			INTEGER			-100
+
+out2			50			main			4			832			integer			
+
+t51			51			main			4			836			integer			0
+
+i			52			main			4			840			integer			0
+
+t53			53			main			4			844			integer			5
+
+n			54			main			4			848			integer			5
+
+t55			55			main			4			852			INTEGER			0
+
+t56			56			main			4			856			INTEGER			0
+
+series			57			main			44			860			integer			
+
+t58			58			main			4			904			integer			1
+
+t60			60			main			4			912			integer			0
+
+t62			62			main			4			920			INTEGER			0
+
+t63			63			main			4			924			INTEGER			0
+
+out			64			main			4			928			integer			
+
+t65			65			main			4			932			integer			1

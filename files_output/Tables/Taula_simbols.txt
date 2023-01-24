@@ -1,0 +1,63 @@
+Taula de símbols
+
+Identificador	Àmbit	Tipus		Tipus subjacent		Arguments	
+
+res		2		CONSTANT		string	
+
+
+separator		2		CONSTANT		string	
+
+
+testcond		2		CONSTANT		string	
+
+
+testwhile		2		CONSTANT		string	
+
+
+testrepeat		2		CONSTANT		string	
+
+
+testarrayn		2		CONSTANT		string	
+
+
+testarray1		2		CONSTANT		string	
+
+
+enter		2		VARIABLE		logic	
+
+
+n1		2		VARIABLE		integer	
+
+
+n2		2		VARIABLE		integer	
+
+
+array		2		ARRAY		integer	
+
+
+in1		2		VARIABLE		integer	
+
+
+in2		2		VARIABLE		integer	
+
+
+out1		2		VARIABLE		integer	
+
+
+out2		2		VARIABLE		integer	
+
+
+series		2		ARRAY		integer	
+
+
+i		2		VARIABLE		integer	
+
+
+n		2		VARIABLE		integer	
+
+
+out		2		VARIABLE		integer	
+
+
+program		1		MAINPROG		NULL	[]
+

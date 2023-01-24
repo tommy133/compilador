@@ -1,0 +1,150 @@
+goto main
+main:skip
+pmb main
+res = "RESULTAT: "
+separator = " | "
+testcond = "PROVA CONDICIONAL:"
+testwhile = "PROVA BUCLE WHILE:"
+testrepeat = "PROVA BUCLE REPEAT UNTIL:"
+testarrayn = "PROVA ARRAY N-DIMENSIONAL:"
+testarray1 = "PROVA ARRAY SERIE"
+param_c testcond
+call line
+t7 = true
+enter = t7
+param_c res
+call print
+if enter then goto e0
+goto e1
+e0:skip
+param_c "TRUE"
+call line
+goto e2
+e1:skip
+param_c "FALSE"
+call line
+e2:skip
+param_c ""
+call line
+param_c testwhile
+call line
+t9 = 0
+n1 = t9
+t11 = 10
+n2 = t11
+e3:skip
+if n1 <= n2 goto e4
+goto e5
+e4:skip
+param_s n1
+call print
+param_c separator
+call print
+t13 = 1 + n1
+n1 = t13
+goto e3
+e5:skip
+param_c ""
+call line
+param_c ""
+call line
+param_c testrepeat
+call line
+t15 = 0
+n1 = t15
+e6:skip
+param_s n1
+call print
+param_c separator
+call print
+t17 = 1 + n1
+n1 = t17
+if n2 < n1 goto e8
+goto e7
+e7:skip
+goto e6
+e8:skip
+param_c ""
+call line
+param_c ""
+call line
+param_c testarrayn
+call line
+t19 = 5
+in1 = t19
+t21 = 10
+in2 = t21
+t23 = 0 * 6
+t24 = t23 + 0
+t25 = t24 * 6
+t26 = t25 + 14
+t27 = t26 - 40
+t28 = t27 * 4
+array[t28] = in1
+t30 = 0 * 6
+t31 = t30 + 0
+t32 = t31 * 6
+t33 = t32 + 15
+t34 = t33 - 40
+t35 = t34 * 4
+array[t35] = in2
+t37 = 0 * 6
+t38 = t37 + 0
+t39 = t38 * 6
+t40 = t39 + 14
+t41 = t40 - 40
+t42 = t41 * 4
+out1 = array[t42]
+t44 = 0 * 6
+t45 = t44 + 0
+t46 = t45 * 6
+t47 = t46 + 15
+t48 = t47 - 40
+t49 = t48 * 4
+out2 = array[t49]
+param_s out1
+call print
+param_c separator
+call print
+param_s out2
+call print
+param_c ""
+call line
+param_c ""
+call line
+param_c testarray1
+call line
+t51 = 0
+i = t51
+t53 = 5
+n = t53
+e9:skip
+if i <= n goto e10
+goto e11
+e10:skip
+t55 = i - 0
+t56 = t55 * 4
+series[t56] = i
+t58 = 1 + i
+i = t58
+goto e9
+e11:skip
+param_c ""
+call line
+t60 = 0
+i = t60
+e12:skip
+if i <= n goto e13
+goto e14
+e13:skip
+t62 = i - 0
+t63 = t62 * 4
+out = series[t63]
+param_s out
+call print
+param_c separator
+call print
+t65 = 1 + i
+i = t65
+goto e12
+e14:skip

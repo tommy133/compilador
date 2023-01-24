@@ -1,0 +1,115 @@
+ | GOTO | null | null | main |
+ | SKIP | null | null | main |
+ | PMB | null | null | main |
+ | ASIGNA |  RESULTAT:  | null | res |
+ | ASIGNA |   |  | null | separator |
+ | ASIGNA |  PROVA CONDICIONAL: | null | testcond |
+ | ASIGNA |  PROVA BUCLE WHILE: | null | testwhile |
+ | ASIGNA |  PROVA BUCLE REPEAT UNTIL: | null | testrepeat |
+ | ASIGNA |  PROVA ARRAY N-DIMENSIONAL: | null | testarrayn |
+ | ASIGNA |  PROVA ARRAY SERIE | null | testarray1 |
+ | PARAM_C | null | null | testcond |
+ | CALL | null | null | line |
+ | ASIGNA | true | null | enter |
+ | PARAM_C | null | null | res |
+ | CALL | null | null | print |
+ | IFDIFERENTE | enter | -1 | e1 |
+ | SKIP | null | null | e0 |
+ | PARAM_C | null | null | TRUE |
+ | CALL | null | null | line |
+ | GOTO | null | null | e2 |
+ | SKIP | null | null | e1 |
+ | PARAM_C | null | null | FALSE |
+ | CALL | null | null | line |
+ | SKIP | null | null | e2 |
+ | PARAM_C | null | null |  |
+ | CALL | null | null | line |
+ | PARAM_C | null | null | testwhile |
+ | CALL | null | null | line |
+ | ASIGNA | 0 | null | n1 |
+ | ASIGNA | 10 | null | n2 |
+ | SKIP | null | null | e3 |
+ | IFMAYOR | n1 | n2 | e5 |
+ | SKIP | null | null | e4 |
+ | PARAM_S | null | null | n1 |
+ | CALL | null | null | print |
+ | PARAM_C | null | null | separator |
+ | CALL | null | null | print |
+ | SUMA | 1 | n1 | t13 |
+ | ASIGNA | t13 | null | n1 |
+ | GOTO | null | null | e3 |
+ | SKIP | null | null | e5 |
+ | PARAM_C | null | null |  |
+ | CALL | null | null | line |
+ | PARAM_C | null | null |  |
+ | CALL | null | null | line |
+ | PARAM_C | null | null | testrepeat |
+ | CALL | null | null | line |
+ | ASIGNA | 0 | null | n1 |
+ | SKIP | null | null | e6 |
+ | PARAM_S | null | null | n1 |
+ | CALL | null | null | print |
+ | PARAM_C | null | null | separator |
+ | CALL | null | null | print |
+ | SUMA | 1 | n1 | t17 |
+ | ASIGNA | t17 | null | n1 |
+ | IFMENOR | n2 | n1 | e8 |
+ | GOTO | null | null | e6 |
+ | SKIP | null | null | e8 |
+ | PARAM_C | null | null |  |
+ | CALL | null | null | line |
+ | PARAM_C | null | null |  |
+ | CALL | null | null | line |
+ | PARAM_C | null | null | testarrayn |
+ | CALL | null | null | line |
+ | ASIGNA | 5 | null | in1 |
+ | ASIGNA | 10 | null | in2 |
+ | ASIGNA | -104 | null | t28 |
+ | ASIGNA | in1 | t28 | array |
+ | ASIGNA | -100 | null | t35 |
+ | ASIGNA | in2 | t35 | array |
+ | ASIGNA | -104 | null | t42 |
+ | ASIGNA | array | t42 | out1 |
+ | ASIGNA | -100 | null | t49 |
+ | ASIGNA | array | t49 | out2 |
+ | PARAM_S | null | null | out1 |
+ | CALL | null | null | print |
+ | PARAM_C | null | null | separator |
+ | CALL | null | null | print |
+ | PARAM_S | null | null | out2 |
+ | CALL | null | null | print |
+ | PARAM_C | null | null |  |
+ | CALL | null | null | line |
+ | PARAM_C | null | null |  |
+ | CALL | null | null | line |
+ | PARAM_C | null | null | testarray1 |
+ | CALL | null | null | line |
+ | ASIGNA | 0 | null | i |
+ | ASIGNA | 5 | null | n |
+ | SKIP | null | null | e9 |
+ | IFMAYOR | i | n | e11 |
+ | SKIP | null | null | e10 |
+ | RESTA | i | 0 | t55 |
+ | DESPLAZAR_BITS | 2 | t55 | t56 |
+ | ASIGNA | i | t56 | series |
+ | SUMA | 1 | i | t58 |
+ | ASIGNA | t58 | null | i |
+ | GOTO | null | null | e9 |
+ | SKIP | null | null | e11 |
+ | PARAM_C | null | null |  |
+ | CALL | null | null | line |
+ | ASIGNA | 0 | null | i |
+ | SKIP | null | null | e12 |
+ | IFMAYOR | i | n | e14 |
+ | SKIP | null | null | e13 |
+ | RESTA | i | 0 | t62 |
+ | DESPLAZAR_BITS | 2 | t62 | t63 |
+ | ASIGNA | series | t63 | out |
+ | PARAM_S | null | null | out |
+ | CALL | null | null | print |
+ | PARAM_C | null | null | separator |
+ | CALL | null | null | print |
+ | SUMA | 1 | i | t65 |
+ | ASIGNA | t65 | null | i |
+ | GOTO | null | null | e12 |
+ | SKIP | null | null | e14 |
