@@ -10,6 +10,9 @@ import front.data_structures.variable.VariableTable;
 import front.data_types.TypeSub;
 import front.data_types.Types;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static front.data_types.TypeSub.*;
@@ -22,10 +25,17 @@ public class EnsamblerCode {
     private ThreeAddressCodeSintetic tac;
     private TypeSub param;
 
-    public EnsamblerCode(ThreeAddressCodeSintetic tac) {
+    private int int_store;
+    private int str_store;
+    private int logic_store;
+    private int null_store;
+    public BufferedReader br;
+
+    public EnsamblerCode(ThreeAddressCodeSintetic tac) throws IOException {
         this.tac = tac;
         this.code = new ArrayList<>();
         this.conststrings = new ArrayList<>();
+        setStore();
     }
 
     public void generate(){
@@ -62,6 +72,7 @@ public class EnsamblerCode {
 
     private void setMemory(ThreeAddressCodeSintetic tac){
         boolean bytes = false;
+
         for (Variable v : tac.getTv()){
             String name = varnom(v);
             switch (TypeSub.valueOf(v.getType().toUpperCase())){
@@ -74,7 +85,7 @@ public class EnsamblerCode {
                         bytes = false;
                         code.add("\tDC.W 0");
                     }
-                    code.add(name + ": DS.W "+v.getStore()/new VariableTable().calculateStore(v.getType(),""));
+                    code.add(name + ": DS.W "+v.getStore()/calculateStore(v.getType(),""));
                     break;
                 case STRING:
                     bytes = true;
@@ -765,6 +776,30 @@ public class EnsamblerCode {
         } else {
             return "aux" + idx;
         }
+    }
+
+    private void setStore() throws IOException {
+        br = new BufferedReader(new FileReader("src/shared/stores.txt"));
+        int_store = Integer.parseInt(br.readLine().split(" ")[2]);
+        str_store = Integer.parseInt(br.readLine().split(" ")[2]);
+        logic_store = Integer.parseInt(br.readLine().split(" ")[2]);
+        null_store = Integer.parseInt(br.readLine().split(" ")[2]);
+        br.close();
+    }
+
+    public int calculateStore(String type, String s) {
+        TypeSub enum_type = TypeSub.valueOf(type.toUpperCase());
+        switch (enum_type) {
+            case INTEGER:
+                return int_store;
+            case STRING:
+                return str_store * s.length();
+            case LOGIC:
+                return logic_store;
+            case NULL:
+                return null_store;
+        }
+        return -1;
     }
 
     private boolean checkHasAllFields(Instruction i){
