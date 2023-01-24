@@ -1,41 +1,39 @@
 package front.code_generator;
 
 
-import front.data_structures.procedure.ProcedureTable;
+import front.data_structures.Stack;
 import front.data_structures.variable.Variable;
 import front.data_structures.variable.VariableTable;
-import front.data_structures.Stack;
 
 import java.io.*;
-import java.util.ArrayList;
-
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 
 public class ThreeAddressCode {
 
     private int n_var, label_num, disp = 0;
     private BufferedWriter bw;
-    private Stack<String> true_stack, false_stack, end_stack, start_stack;
-    private ArrayList<String> operands = new ArrayList<>(), instruction_list = new ArrayList<>();
+    private final Stack<String> true_stack, false_stack, end_stack, start_stack;
+    private final ArrayList<String> operands, instruction_list;
     private String temp_id = null, cur_prog, cur_type = "";
-    private boolean operand;
-    private VariableTable tv;
+    private final VariableTable tv;
 
     private static final String FILE_PATH = "files_output/codiIntermitg.txt";
 
 
-    public ThreeAddressCode(VariableTable tv, ProcedureTable pt) {
-        
-        n_var = 0;
+    public ThreeAddressCode(VariableTable tv) {
 
-        true_stack = new Stack<>();
-        false_stack = new Stack<>();
-        end_stack = new Stack<>();
-        start_stack = new Stack<>();
+        this.n_var = 0;
+
+        this.true_stack = new Stack<>();
+        this.false_stack = new Stack<>();
+        this.end_stack = new Stack<>();
+        this.start_stack = new Stack<>();
 
         this.tv = tv;
-        this.operand = true;
+        this.operands = new ArrayList<>();
+        this.instruction_list = new ArrayList<>();
 
         try {
             bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FILE_PATH, true), StandardCharsets.UTF_8));
@@ -180,17 +178,9 @@ public class ThreeAddressCode {
 
     public void push(Stack<String> stack, String label){stack.Push(label);}
 
-    public String getFilePath(){return FILE_PATH;}
-
-
     public ArrayList<String> getOperands() {
-        if (!operand) return operands = new ArrayList<>();
-        else return operands;
+        return operands;
     }
-
-    public void resetOperands(){
-        operands.clear();}
-    
 
     public void closeFile() {
 
@@ -201,12 +191,6 @@ public class ThreeAddressCode {
             bw.close();
         } catch (IOException e) {e.printStackTrace();}
     }
-
-    public void setOperand(boolean b){
-        operand = b;}
-
-
-    public boolean isOperand(){return operand;}
 
     public String getCur_prog() {
         return cur_prog;

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class Procedure {
 
-    private int num_proc;
-    private int depth;
-    private String start_label;
-    private ArrayList<Parametro> parametros;
+    private final int num_proc;
+    private final int depth;
+    private final String start_label;
+    private final ArrayList<Parametro> parametros;
     private int total_store;
     private TypeSub type_return;
 

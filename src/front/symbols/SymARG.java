@@ -8,8 +8,8 @@ package front.symbols;
 
 public class SymARG extends SymBase {
 
-    private SymTYPE TYPE;
-    private SymID ID;
+    private final SymTYPE TYPE;
+    private final SymID ID;
 
     public SymARG(SymTYPE a, SymID b) {
         super("F", 0);

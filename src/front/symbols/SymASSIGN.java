@@ -44,26 +44,18 @@ public class SymASSIGN extends SymBase {
             new ErrorConstAssign().printError(lc, ID.getID());
         }
 
-
-        while (OPERANDX.getOPARITH() != null) {
-            operands.add(OPERANDX.getSUBTYPE().getName());
-            operators.add(OPERANDX.getOPARITH().getType());
-            OPERANDX = OPERANDX.getOPERANDX();
+        SymOPERANDX OPERANDXLOCAL = this.OPERANDX;
+        while (OPERANDXLOCAL.getOPARITH() != null) {
+            operands.add(OPERANDXLOCAL.getSUBTYPE().getName());
+            operators.add(OPERANDXLOCAL.getOPARITH().getType());
+            OPERANDXLOCAL = OPERANDXLOCAL.getOPERANDX();
         }
 
-        if (OPERANDX.getSUBTYPE().getName() != null) {
-            operands.add(OPERANDX.getSUBTYPE().getName());
+        if (OPERANDXLOCAL.getSUBTYPE().getName() != null) {
+            operands.add(OPERANDXLOCAL.getSUBTYPE().getName());
         } else {
-            operands.add(OPERANDX.getSUBTYPE().getValor());
+            operands.add(OPERANDXLOCAL.getSUBTYPE().getValor());
         }
-
-//        if (tac.isOperand()) {
-//            operands = (ArrayList<String>) tac.getOperands().clone();
-//            tac.resetOperands();
-//        }
-//
-//        tac.setOperand(true);
-
 
         //Càlcul d'ocupacions
         if (OPERANDX.getSUBTYPE().isArray()){
@@ -104,24 +96,20 @@ public class SymASSIGN extends SymBase {
             new ErrorVarExists().printError(lc, ID.getID());
         }
 
-        while (OPERANDX.getOPARITH() != null) {
-            operands.add(OPERANDX.getSUBTYPE().getName());
-            operators.add(OPERANDX.getOPARITH().getType());
-            OPERANDX = OPERANDX.getOPERANDX();
+        SymOPERANDX OPERANDXLOCAL = this.OPERANDX;
+        while (OPERANDXLOCAL.getOPARITH() != null) {
+            operands.add(OPERANDXLOCAL.getSUBTYPE().getName());
+            operators.add(OPERANDXLOCAL.getOPARITH().getType());
+            OPERANDXLOCAL = OPERANDXLOCAL.getOPERANDX();
         }
 
-        if (OPERANDX.getSUBTYPE().getName() != null) {
-            operands.add(OPERANDX.getSUBTYPE().getName());
+        if (OPERANDXLOCAL.getSUBTYPE().getName() != null) {
+            operands.add(OPERANDXLOCAL.getSUBTYPE().getName());
         } else {
-            operands.add(OPERANDX.getSUBTYPE().getValor());
+            operands.add(OPERANDXLOCAL.getSUBTYPE().getValor());
         }
 
-//        if (tac.isOperand()) {
-//            operands = (ArrayList<String>) tac.getOperands().clone();
-//            tac.resetOperands();
-//        }
-//
-//        tac.setOperand(true);
+
 
 
         //Càlcul d'ocupacions
@@ -133,7 +121,7 @@ public class SymASSIGN extends SymBase {
     }
 
     private void calcOcup(){
-        Collections.reverse(operands);
+        //Collections.reverse(operands);
 
         if (operands.size() > 2) {
             String temp_var = tac.newTempVar("");

@@ -13,7 +13,6 @@ public class SymCONDLABEL extends SymBase {
         tac.push(tac.getTrue_stack(), trueLabel);
         String falseLabel = tac.newLabel();
         tac.push(tac.getFalse_stack(), falseLabel);
-        tac.setOperand(false);
     }
 
 }

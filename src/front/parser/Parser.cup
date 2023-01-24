@@ -22,7 +22,7 @@ parser code {:
 
 terminal    
 
-colons, assign, scolon, op_and, op_or, add, sub, mult, div, mod,
+colons, assign, scolon, op_and, op_or, add, sub, mult, div,
 lparen, rparen, lbrckt, rbrckt, dotdot, gte, lt,  If,  print, line, read, then, endif, Else,
 While, Repeat, Until, loop, endloop, prog, end, method, func,
 Const, integer, string, logic, comma, Return,
@@ -92,7 +92,7 @@ non terminal  SymINCSCOPE          INCSCOPE;
 non terminal  SymDICSCOPE          DICSCOPE;
 
 precedence left add, sub;
-precedence left mult, div, mod;
+precedence left mult, div;
 
 
 /******* DECLARACIÓ DE LA VARIABLE INICIAL *******/
@@ -285,7 +285,6 @@ start with START;
               | sub:b                             {: RESULT = new SymOPARITH(b.toString()); :}
               | mult:c                            {: RESULT = new SymOPARITH(c.toString()); :}
               | div:d                             {: RESULT = new SymOPARITH(d.toString()); :}
-              | mod:e                             {: RESULT = new SymOPARITH(e.toString()); :}
               ;
 
     OPLOGIC     ::= gte:a                         {: RESULT = new SymOPLOGIC(a.toString()); :}

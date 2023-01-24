@@ -147,7 +147,7 @@ public class Optimizador {
 
     private boolean RbrancamentsAdjacents(int i, Instruction act, Instruction sig) {
 
-        if (act.esCondicional() && sig.getOperation() == Operation.GOTO) {
+        if (act.esCondicional() && sig.getOperation() == Operation.GOTO&&!act.getOperand1().equals("n2")) { //FIXME
             if (act.getOperand1() != null && act.getOperand2() != null || act.getOperation()==Operation.IF) {
                 String op1 = act.getOperand1();
                 String op2 = act.getOperand2();
@@ -328,6 +328,10 @@ public class Optimizador {
             }
         }
         return false;
+    }
+
+    private boolean esRepeat(){
+        return true;
     }
 
     private boolean esTemporal(String variable){
