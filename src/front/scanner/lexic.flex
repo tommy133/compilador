@@ -83,7 +83,6 @@ comment = "#" {whatever}* {endofline}?
 "-"     { writeToken(this.yytext()); return symbol(ParserSym.sub, this.yytext()); }
 "*"     { writeToken(this.yytext()); return symbol(ParserSym.mult, this.yytext()); }
 "/"     { writeToken(this.yytext()); return symbol(ParserSym.div, this.yytext()); }
-"%"     { writeToken(this.yytext()); return symbol(ParserSym.mod, this.yytext()); }
 
 /*Operadors lògics*/
 "&&"      { writeToken(this.yytext()); return symbol(ParserSym.op_and, this.yytext()); }

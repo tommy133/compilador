@@ -48,31 +48,31 @@ main:
 * --> | CALL | null | null | print |
 	JSR SPRINT
 	ADDA.L #4,A7
-* --> | IF | enter | null | L0 |
+* --> | IF | enter | null | e0 |
 	MOVE.B enter_main,D0
 	MOVE.B #-1,D1
 	CMP.B D0,D1
-	BEQ L0
-* --> | GOTO | null | null | L1 |
-	JMP L1
-* --> | SKIP | null | null | L0 |
-L0:
+	BEQ e0
+* --> | GOTO | null | null | e1 |
+	JMP e1
+* --> | SKIP | null | null | e0 |
+e0:
 * --> | PARAM_C | null | null | TRUE |
 	MOVE.L #aux7,-(A7)
 * --> | CALL | null | null | line |
 	JSR SLINE
 	ADDA.L #4,A7
-* --> | GOTO | null | null | L2 |
-	JMP L2
-* --> | SKIP | null | null | L1 |
-L1:
+* --> | GOTO | null | null | e2 |
+	JMP e2
+* --> | SKIP | null | null | e1 |
+e1:
 * --> | PARAM_C | null | null | FALSE |
 	MOVE.L #aux8,-(A7)
 * --> | CALL | null | null | line |
 	JSR SLINE
 	ADDA.L #4,A7
-* --> | SKIP | null | null | L2 |
-L2:
+* --> | SKIP | null | null | e2 |
+e2:
 * --> | PARAM_C | null | null |  |
 	MOVE.L #aux9,-(A7)
 * --> | CALL | null | null | line |
@@ -91,17 +91,17 @@ L2:
 	MOVE.W #10,t11_main
 * --> | ASIGNA | t11 | null | n2 |
 	MOVE.W t11_main,n2_main
-* --> | SKIP | null | null | L3 |
-L3:
-* --> | IFMENORIGUAL | n1 | n2 | L4 |
+* --> | SKIP | null | null | e3 |
+e3:
+* --> | IFMENORIGUAL | n1 | n2 | e4 |
 	MOVE.W n1_main,D1
 	MOVE.W n2_main,D0
 	CMP.W D0,D1
-	BLE L4
-* --> | GOTO | null | null | L5 |
-	JMP L5
-* --> | SKIP | null | null | L4 |
-L4:
+	BLE e4
+* --> | GOTO | null | null | e5 |
+	JMP e5
+* --> | SKIP | null | null | e4 |
+e4:
 * --> | PARAM_S | null | null | n1 |
 	MOVE.W n1_main,-(A7)
 * --> | CALL | null | null | print |
@@ -112,17 +112,17 @@ L4:
 * --> | CALL | null | null | print |
 	JSR SPRINT
 	ADDA.L #4,A7
-* --> | SUMA | n1 | 1 | t13 |
-	MOVE.W n1_main,D0
-	MOVE.W #1,D1
+* --> | SUMA | 1 | n1 | t13 |
+	MOVE.W #1,D0
+	MOVE.W n1_main,D1
 	JSR ISUMA
 	MOVE.W D1,t13_main
 * --> | ASIGNA | t13 | null | n1 |
 	MOVE.W t13_main,n1_main
-* --> | GOTO | null | null | L3 |
-	JMP L3
-* --> | SKIP | null | null | L5 |
-L5:
+* --> | GOTO | null | null | e3 |
+	JMP e3
+* --> | SKIP | null | null | e5 |
+e5:
 * --> | PARAM_C | null | null |  |
 	MOVE.L #aux9,-(A7)
 * --> | CALL | null | null | line |
@@ -142,8 +142,8 @@ L5:
 	MOVE.W #0,t15_main
 * --> | ASIGNA | t15 | null | n1 |
 	MOVE.W t15_main,n1_main
-* --> | SKIP | null | null | L6 |
-L6:
+* --> | SKIP | null | null | e6 |
+e6:
 * --> | PARAM_S | null | null | n1 |
 	MOVE.W n1_main,-(A7)
 * --> | CALL | null | null | print |
@@ -154,26 +154,26 @@ L6:
 * --> | CALL | null | null | print |
 	JSR SPRINT
 	ADDA.L #4,A7
-* --> | SUMA | n1 | 1 | t17 |
-	MOVE.W n1_main,D0
-	MOVE.W #1,D1
+* --> | SUMA | 1 | n1 | t17 |
+	MOVE.W #1,D0
+	MOVE.W n1_main,D1
 	JSR ISUMA
 	MOVE.W D1,t17_main
 * --> | ASIGNA | t17 | null | n1 |
 	MOVE.W t17_main,n1_main
-* --> | IFMENOR | n2 | n1 | L8 |
+* --> | IFMENOR | n2 | n1 | e8 |
 	MOVE.W n2_main,D1
 	MOVE.W n1_main,D0
 	CMP.W D0,D1
-	BLT L8
-* --> | GOTO | null | null | L7 |
-	JMP L7
-* --> | SKIP | null | null | L7 |
-L7:
-* --> | GOTO | null | null | L6 |
-	JMP L6
-* --> | SKIP | null | null | L8 |
-L8:
+	BLT e8
+* --> | GOTO | null | null | e7 |
+	JMP e7
+* --> | SKIP | null | null | e7 |
+e7:
+* --> | GOTO | null | null | e6 |
+	JMP e6
+* --> | SKIP | null | null | e8 |
+e8:
 * --> | PARAM_C | null | null |  |
 	MOVE.L #aux9,-(A7)
 * --> | CALL | null | null | line |
@@ -403,17 +403,17 @@ L8:
 	MOVE.W #5,t53_main
 * --> | ASIGNA | t53 | null | n |
 	MOVE.W t53_main,n_main
-* --> | SKIP | null | null | L9 |
-L9:
-* --> | IFMENORIGUAL | i | n | L10 |
+* --> | SKIP | null | null | e9 |
+e9:
+* --> | IFMENORIGUAL | i | n | e10 |
 	MOVE.W i_main,D1
 	MOVE.W n_main,D0
 	CMP.W D0,D1
-	BLE L10
-* --> | GOTO | null | null | L11 |
-	JMP L11
-* --> | SKIP | null | null | L10 |
-L10:
+	BLE e10
+* --> | GOTO | null | null | e11 |
+	JMP e11
+* --> | SKIP | null | null | e10 |
+e10:
 * --> | RESTA | i | 0 | t55 |
 	MOVE.W i_main,D1
 	MOVE.W #0,D0
@@ -432,17 +432,17 @@ L10:
 	ADD.L A1,A0
 	MOVE.W i_main,D0
 	MOVE.W D0,(A0)
-* --> | SUMA | i | 1 | t58 |
-	MOVE.W i_main,D0
-	MOVE.W #1,D1
+* --> | SUMA | 1 | i | t58 |
+	MOVE.W #1,D0
+	MOVE.W i_main,D1
 	JSR ISUMA
 	MOVE.W D1,t58_main
 * --> | ASIGNA | t58 | null | i |
 	MOVE.W t58_main,i_main
-* --> | GOTO | null | null | L9 |
-	JMP L9
-* --> | SKIP | null | null | L11 |
-L11:
+* --> | GOTO | null | null | e9 |
+	JMP e9
+* --> | SKIP | null | null | e11 |
+e11:
 * --> | PARAM_C | null | null |  |
 	MOVE.L #aux9,-(A7)
 * --> | CALL | null | null | line |
@@ -452,17 +452,17 @@ L11:
 	MOVE.W #0,t60_main
 * --> | ASIGNA | t60 | null | i |
 	MOVE.W t60_main,i_main
-* --> | SKIP | null | null | L12 |
-L12:
-* --> | IFMENORIGUAL | i | n | L13 |
+* --> | SKIP | null | null | e12 |
+e12:
+* --> | IFMENORIGUAL | i | n | e13 |
 	MOVE.W i_main,D1
 	MOVE.W n_main,D0
 	CMP.W D0,D1
-	BLE L13
-* --> | GOTO | null | null | L14 |
-	JMP L14
-* --> | SKIP | null | null | L13 |
-L13:
+	BLE e13
+* --> | GOTO | null | null | e14 |
+	JMP e14
+* --> | SKIP | null | null | e13 |
+e13:
 * --> | RESTA | i | 0 | t62 |
 	MOVE.W i_main,D1
 	MOVE.W #0,D0
@@ -491,17 +491,17 @@ L13:
 * --> | CALL | null | null | print |
 	JSR SPRINT
 	ADDA.L #4,A7
-* --> | SUMA | i | 1 | t65 |
-	MOVE.W i_main,D0
-	MOVE.W #1,D1
+* --> | SUMA | 1 | i | t65 |
+	MOVE.W #1,D0
+	MOVE.W i_main,D1
 	JSR ISUMA
 	MOVE.W D1,t65_main
 * --> | ASIGNA | t65 | null | i |
 	MOVE.W t65_main,i_main
-* --> | GOTO | null | null | L12 |
-	JMP L12
-* --> | SKIP | null | null | L14 |
-L14:
+* --> | GOTO | null | null | e12 |
+	JMP e12
+* --> | SKIP | null | null | e14 |
+e14:
 	SIMHALT
  
 res_main: DS.B 100

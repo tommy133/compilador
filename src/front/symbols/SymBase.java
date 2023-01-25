@@ -18,7 +18,7 @@ public abstract class SymBase extends ComplexSymbol {
     protected static SymbolTable ts = new SymbolTable();
     protected static VariableTable variableTable = new VariableTable();
     protected static ProcedureTable procedureTable = new ProcedureTable();
-    protected static ThreeAddressCode tac = new ThreeAddressCode(variableTable, procedureTable);
+    protected static ThreeAddressCode tac = new ThreeAddressCode(variableTable);
 
     public SymBase(String variable, Integer valor) {
         super(variable, idAutoIncrement++, valor);

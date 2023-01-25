@@ -1,6 +1,5 @@
 package front.data_structures.procedure;
 
-import front.data_structures.variable.Variable;
 import front.data_structures.variable.VariableTable;
 
 import java.io.*;
@@ -11,13 +10,14 @@ public class ProcedureTable {
 
     private static final String TABLE_NAME = "Taula de procedimients";
     public Writer writer;
-    private ArrayList<Procedure> row_list = new ArrayList<>();
+    private ArrayList<Procedure> row_list ;
     private int num_proc = 0;
 
 
     public ProcedureTable() {
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Tables/Taula_procediments.txt"), StandardCharsets.UTF_8));
+            this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Tables/Taula_procediments.txt"), StandardCharsets.UTF_8));
+            this.row_list = new ArrayList<>();
 
             writeFile(Title());
             writeFile(TableHeader());
@@ -66,10 +66,6 @@ public class ProcedureTable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public ArrayList<Procedure> getRow_list() {
-        return row_list;
     }
 
     public Procedure getProc(String id){

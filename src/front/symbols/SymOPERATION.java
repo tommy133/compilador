@@ -29,10 +29,6 @@ public class SymOPERATION extends SymBase {
         super("OPERATION", 0);
     }
 
-    public String getTypeOperation() {
-        return type_operation;
-    }
-
     public SymANDOR getANDOR() {
         return ANDOR;
     }

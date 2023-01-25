@@ -8,27 +8,40 @@ import java.util.ArrayList;
 
 public class VariableTable {
 
-    private static final int INT_STORE = 4;
-    private static final int STR_STORE = 4;
-    private static final int LOGIC_STORE = 4;
-    private static final int NULL_STORE = 1;
+    private int int_store;
+    private int str_store;
+    private int logic_store;
+    private int null_store;
 
-    private static final String TABLE_NAME = "Taula de variables";  //TODO Victor: Generar una tabla decente que se vea bien la correspondencia, idem per tp i tsimbols
+    private static final String TABLE_NAME = "Taula de variables";
 
     public Writer writer;
+    public BufferedReader br;
     private ArrayList<Variable> rows_list = new ArrayList<>();
 
 
     public VariableTable() {
         try {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Tables/Taula_variables.txt"), StandardCharsets.UTF_8));
+            setStore();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         writeFile(Title());
         writeFile(TableHeader());
 
 
+    }
+
+    private void setStore() throws IOException {
+        br = new BufferedReader(new FileReader("src/shared/stores.txt"));
+        int_store = Integer.parseInt(br.readLine().split(" ")[2]);
+        str_store = Integer.parseInt(br.readLine().split(" ")[2]);
+        logic_store = Integer.parseInt(br.readLine().split(" ")[2]);
+        null_store = Integer.parseInt(br.readLine().split(" ")[2]);
+        br.close();
     }
 
 
@@ -76,13 +89,13 @@ public class VariableTable {
         TypeSub enum_type = TypeSub.valueOf(type.toUpperCase());
         switch (enum_type) {
             case INTEGER:
-                return INT_STORE;
+                return int_store;
             case STRING:
-                return STR_STORE * s.length();
+                return str_store * s.length();
             case LOGIC:
-                return LOGIC_STORE;
+                return logic_store;
             case NULL:
-                return NULL_STORE;
+                return null_store;
         }
         return -1;
     }

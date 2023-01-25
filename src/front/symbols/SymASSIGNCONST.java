@@ -15,7 +15,6 @@ public class SymASSIGNCONST extends SymBase {
         super("ASSIGNCONST", 0);
         this.ID = a;
         this.OPERANDX = b;
-        tac.setOperand(false);
     }
 
     public SymID getID() {

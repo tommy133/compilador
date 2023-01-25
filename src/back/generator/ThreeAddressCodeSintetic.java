@@ -93,7 +93,6 @@ public class ThreeAddressCodeSintetic {
                                         case "-" -> instructionList.addInst(RESTA, instruction.split(" ")[2], instruction.split(" ")[4], instruction.split(" ")[0]);
                                         case "*" -> instructionList.addInst(MULTIPLICACION, instruction.split(" ")[2], instruction.split(" ")[4], instruction.split(" ")[0]);
                                         case "/" -> instructionList.addInst(DIVISION, instruction.split(" ")[2], instruction.split(" ")[4], instruction.split(" ")[0]);
-                                        case "%" -> instructionList.addInst(MODULO, instruction.split(" ")[2], instruction.split(" ")[4], instruction.split(" ")[0]);
                                         default -> //Es una assignació de string.
                                                 instructionList.addInst(ASIGNA, instruction.split("=")[1].replaceAll("\"", ""), null, instruction.split(" ")[0]);
                                     }
@@ -129,7 +128,7 @@ public class ThreeAddressCodeSintetic {
                     }
                 }
             }
-
+            br.close();
             System.out.println(instructionList.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -158,6 +157,7 @@ public class ThreeAddressCodeSintetic {
                 }
 
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -184,6 +184,7 @@ public class ThreeAddressCodeSintetic {
                 }
 
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -207,6 +208,7 @@ public class ThreeAddressCodeSintetic {
                 }
 
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
