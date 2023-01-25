@@ -1,0 +1,5 @@
+Taula de procedimients
+
+NP	Profunditat	Etiqueta inici	Parámetres	Ocupació variables locals	Tipus retorn	
+1		0			main			[]			844						NULL
+
