@@ -8,8 +8,8 @@ package front.symbols;
 
 public class SymASSIGNCONST extends SymBase {
 
-    private SymID ID;
-    private SymOPERANDX OPERANDX;
+    private final SymID ID;
+    private final SymOPERANDX OPERANDX;
 
     public SymASSIGNCONST(SymID a, SymOPERANDX b) {
         super("ASSIGNCONST", 0);

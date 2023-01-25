@@ -42,8 +42,8 @@ public class SymDECARRAY extends SymBase {
 
         Collections.reverse(dimensions);
 
-        Symbol s = new Symbol(ID.getID(), ARRAY, TYPE.getType(), dimensions,null);
-        if (!ts.exist(ID.getID())) {
+        Symbol s = new Symbol(ID.getID(), TYPE.getType(), dimensions);
+        if (!ts.existInTs(ID.getID())) {
             ts.insertElement(s);
         } else {
             new ErrorVarExists().printError(lc, ID.getID());
@@ -54,15 +54,6 @@ public class SymDECARRAY extends SymBase {
     }
 
 
-
-
-    public SymTYPE getTYPE() {
-        return TYPE;
-    }
-
-    public SymDECLISTDIM getIDLISTDIM() {
-        return IDLISTDIM;
-    }
 
     public SymID getID() {
         return ID;

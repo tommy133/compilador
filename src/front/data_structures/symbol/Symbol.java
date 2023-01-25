@@ -9,8 +9,9 @@ import java.util.ArrayList;
 public class Symbol {
 
     private String id;
-    private Types type;
-    private String subtype;
+    private final Types type;
+    private final String subtype;
+
     private ArrayList<Dimension> dimensions;
     private ArrayList<Symbol> args;
     private int b; //base del desplaçament del array coneguda en temps de compilació
@@ -23,13 +24,13 @@ public class Symbol {
         this.args = args;
     }
 
-    public Symbol(String id, Types types, String subtype, ArrayList<Dimension> dimensions, ArrayList<Symbol> args) {
+    public Symbol(String id, String subtype, ArrayList<Dimension> dimensions) {
         this.id = id;
-        this.type = types;
+        this.type = Types.ARRAY;
         this.subtype = subtype;
         this.dimensions = dimensions;
         this.b = (this.dimensions !=null)? calcBase(this.dimensions.size()-1) : 0;
-        this.length = (dimensions !=null)? calcLength() : 0;
+        this.length = (this.dimensions !=null)? calcLength() : 0;
     }
 
     private int calcBase(int i){

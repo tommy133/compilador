@@ -23,7 +23,7 @@ public class SymDECLARECONST extends SymBase {
 
         Symbol n = new Symbol(ASSIGNCONST.getID().getID(), CONSTANT, TYPE.getType(), null);
 
-        if (!ts.exist(n.getId())) {
+        if (!ts.existInTs(n.getId())) {
             ts.insertElement(n);
             tac.assign(tac.newVar(ASSIGNCONST.getID().getID(), ASSIGNCONST.getID().getType(),
                     ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor()), ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor());

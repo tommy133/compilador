@@ -142,9 +142,38 @@ public class ThreeAddressCode {
         return name;
     }
 
+    public void removeGotoElse() {
+
+        for (int i = instruction_list.size() - 1; i >= 0; i--) {
+
+            if (instruction_list.get(i).startsWith("goto")) {
+                instruction_list.remove(i);
+
+                break;
+            }
+        }
+    }
+
+    public void closeFile() {
+
+        try {
+            for (String s : instruction_list) {
+                bw.write(s);
+            }
+            bw.close();
+        } catch (IOException e) {e.printStackTrace();}
+    }
+
+    public String newLabel(){return "e" + label_num++;}
+
+    //Procediment que afegeix una instruccio de 3@C
+    public void generateCode(String code){
+        instruction_list.add(code);}
+
     public Variable getVar(String id){
         return this.tv.getVar(id);
     }
+
 
     public String getTemp_id(){return temp_id;}
     
@@ -152,12 +181,6 @@ public class ThreeAddressCode {
     public void setTemp_id(String temp_id){this.temp_id = temp_id;}
 
 
-    public String newLabel(){return "L" + label_num++;}
-
-    //Procediment que afegeix una instruccio de 3@C
-    public void generateCode(String code){
-        instruction_list.add(code);}
-    
 
     public Stack<String> getTrue_stack(){return true_stack;}
 
@@ -182,15 +205,7 @@ public class ThreeAddressCode {
         return operands;
     }
 
-    public void closeFile() {
 
-        try {
-            for (String s : instruction_list) {
-                bw.write(s);
-            }
-            bw.close();
-        } catch (IOException e) {e.printStackTrace();}
-    }
 
     public String getCur_prog() {
         return cur_prog;
@@ -208,15 +223,5 @@ public class ThreeAddressCode {
     
 
 
-    public void removeLastGoto() {
 
-        for (int i = instruction_list.size() - 1; i >= 0; i--) {
-
-            if (instruction_list.get(i).startsWith("goto")) {
-                instruction_list.remove(i);
-                
-                break;
-            }
-        }
-    }
 }

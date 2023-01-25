@@ -6,7 +6,6 @@
 package front.symbols;
 
 import front.data_structures.symbol.Symbol;
-import front.data_types.Types;
 import front.error.ErrorProcExists;
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class SymDECMET extends SymBase {
 
         Symbol n = new Symbol(ID.getID(), METHOD, "NULL", (ArrayList<Symbol>) ts.getParams().clone());
 
-        if (ts.exist(n.getId())) {
+        if (ts.existInTs(n.getId())) {
 
             Symbol node = ts.get(n.getId());
 

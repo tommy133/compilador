@@ -1,9 +1,7 @@
 package front.data_structures.symbol;
 
 
-import back.data_structures.Parametro;
 import front.data_structures.Stack;
-import front.data_types.TypeSub;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -20,12 +18,15 @@ public class SymbolTable {
     private static final String TABLE_NAME = "Taula de símbols";
     private Stack<HashMap> stack;
     public Writer writer;
-    private ArrayList<Symbol> temp = new ArrayList<>(); //llista de variables temporals
+    private ArrayList<Symbol> temp; //llista de variables temporals
+
+    private static final String FILE_PATH = "files_output/Tables/Taula_simbols.txt";
 
     public SymbolTable() {
         try {
             stack = new Stack<>();
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Tables/Taula_simbols.txt"), StandardCharsets.UTF_8));
+            temp = new ArrayList<>();
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FILE_PATH), StandardCharsets.UTF_8));
         } catch (IOException ex) {
             Logger.getLogger(SymbolTable.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -46,11 +47,11 @@ public class SymbolTable {
    //Inserta un element en l ámbit actual
     public void insertElement(Symbol a) {
         stack.Peek().put(a.getId(), a);
-        writeFile(AddTableRow(a).toString());
+        writeFile(AddTableRow(a));
     }
 
     public Symbol get(String a) {
-        if (exist(a)) {
+        if (existInTs(a)) {
             for (int i = stack.Size() - 1; i >= 0; i--) {
                 if (stack.Get(i).containsKey(a)) {
                     return (Symbol) stack.Get(i).get(a);
@@ -71,7 +72,7 @@ public class SymbolTable {
     }
 
     //Comprova si esta el node a la taula de simbols
-    public boolean exist(String a) {
+    public boolean existInTs(String a) {
 
         for (int i = stack.Size() - 1; i >= 0; i--) {
             if (stack.Get(i).containsKey(a)) {
@@ -132,13 +133,10 @@ public class SymbolTable {
     }
 
     private String TableHeader() {
-        return "\n"
-                + "Identificador\t"
-                + "Àmbit\t"
-                + "Tipus\t\t"
-                + "Tipus subjacent\t\t"
-                + "Arguments\t"
-                + "\n";
+        return """
+
+                Identificador\tÀmbit\tTipus\t\tTipus subjacent\t\tArguments\t
+                """;
     }
 
     private String AddTableRow(Symbol node) {

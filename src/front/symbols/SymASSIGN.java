@@ -8,7 +8,6 @@ package front.symbols;
 import front.data_structures.Dimension;
 import front.data_structures.symbol.Symbol;
 import front.data_structures.variable.VariableTable;
-import front.data_structures.Subrange;
 import front.data_types.TypeSub;
 import front.error.ErrorConstAssign;
 import front.error.ErrorVarExists;
@@ -17,7 +16,6 @@ import front.data_types.Types;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import static front.data_types.Types.VARIABLE;
 
@@ -25,11 +23,10 @@ public class SymASSIGN extends SymBase {
 
     private SymID ID;
     private SymIDARRAY IDARRAY;
-    private SymOPERANDX OPERANDX;
-    private SymTYPE TYPE;
+    private final SymOPERANDX OPERANDX;
 
-    private ArrayList<String> operators = new ArrayList<>();
-    private ArrayList<String> operands = new ArrayList<>();
+    private final ArrayList<String> operators = new ArrayList<>();
+    private final ArrayList<String> operands = new ArrayList<>();
 
     public SymASSIGN(SymID a, SymOPERANDX b, int[] lc) {
         super("ASSIGN", 0);
@@ -84,13 +81,12 @@ public class SymASSIGN extends SymBase {
 
     public SymASSIGN(SymTYPE a, SymID b, SymOPERANDX c, int[] lc) {
         super("ASSIGN", 0);
-        this.TYPE = a;
         this.ID = b;
         this.OPERANDX = c;
 
-        Symbol n = new Symbol(ID.getID(), VARIABLE, TYPE.getType(),null);
+        Symbol n = new Symbol(ID.getID(), VARIABLE, a.getType(),null);
 
-        if (!ts.exist(n.getId())) {
+        if (!ts.existInTs(n.getId())) {
             ts.insertElement(n);
         } else {
             new ErrorVarExists().printError(lc, ID.getID());
@@ -238,7 +234,7 @@ public class SymASSIGN extends SymBase {
 
     private ArrayList<Dimension> setIdxs(ArrayList<Dimension> dim, ArrayList<Integer> idxs){
         for (int i=0; i<dim.size(); i++){
-            dim.get(i).setIdx((int) idxs.get(i));
+            dim.get(i).setIdx(idxs.get(i));
         }
         return  dim;
     }

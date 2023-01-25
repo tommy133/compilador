@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Stack<T> {
-    //TODO Move Stack and subrange to data_structures
-    private List<T> elements;
+    private final List<T> elements;
 
     public Stack(){
         elements = new ArrayList<>();
@@ -38,10 +37,6 @@ public class Stack<T> {
 
     public int Size() {
         return elements.size();
-    }
-
-    public boolean isEmpty() {
-        return elements.isEmpty();
     }
 
     @Override

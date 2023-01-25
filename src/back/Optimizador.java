@@ -145,9 +145,18 @@ public class Optimizador {
         return false;
     }
 
+    private boolean checkRepeat(int i, Instruction sig){
+        String cur_label = sig.getDestiny();
+        String loop_label = instrucciones.getInstruction(i+3).getDestiny();
+        int res = cur_label.compareTo(loop_label);
+
+        return !act.getOperand1().equals("n2");
+    }
+
     private boolean RbrancamentsAdjacents(int i, Instruction act, Instruction sig) {
 
-        if (act.esCondicional() && sig.getOperation() == Operation.GOTO&&!act.getOperand1().equals("n2")) { //FIXME
+        if (act.esCondicional() && sig.getOperation() == Operation.GOTO&&checkRepeat(i, act)) {
+            boolean check = !checkRepeat(i, sig);
             if (act.getOperand1() != null && act.getOperand2() != null || act.getOperation()==Operation.IF) {
                 String op1 = act.getOperand1();
                 String op2 = act.getOperand2();

@@ -24,14 +24,14 @@ public class SymDECVAR extends SymBase {
 
         while (IDLIST.getIDLISTSEP() != null) {
             Symbol n = new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(),null);
-            if (!ts.exist(n.getId())) {
+            if (!ts.existInTs(n.getId())) {
                 ts.insertElement(n);
             } else {
                 new ErrorVarExists().printError(lc, IDLIST.getID().getID());
             }
             IDLIST = IDLIST.getIDLISTSEP().getLID();
         }
-        if (!ts.exist(IDLIST.getID().getID())) {
+        if (!ts.existInTs(IDLIST.getID().getID())) {
             ts.insertElement(new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(), null));
         } else {
             new ErrorVarExists().printError(lc, IDLIST.getID().getID());

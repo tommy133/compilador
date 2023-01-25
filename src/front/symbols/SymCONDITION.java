@@ -58,9 +58,8 @@ public class SymCONDITION extends SymBase {
     public String toString() {
         if (ID != null) {
             return ID.getID();
-        } else {
-            return "condition";
         }
+        return "";
     }
 
 

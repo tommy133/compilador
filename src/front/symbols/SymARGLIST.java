@@ -14,7 +14,6 @@ import static front.data_types.Types.VARIABLE;
 public class SymARGLIST extends SymBase {
 
     private SymARG ARG;
-    private SymARGLIST ARGLIST;
 
     public SymARGLIST() {
         super("ARGLIST", 0);
@@ -29,7 +28,6 @@ public class SymARGLIST extends SymBase {
     public SymARGLIST(SymARG a, SymARGLIST b) {
         super("ARGLIST", 0);
         this.ARG = a;
-        this.ARGLIST = b;
         ts.addParams(new Symbol(ARG.getID().getID(), VARIABLE, ARG.getType().getType(), null));
     }
 

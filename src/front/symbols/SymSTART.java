@@ -6,10 +6,6 @@
 package front.symbols;
 
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
 public class SymSTART extends SymBase {
 
     private SymMETFUNC METFUNC;
@@ -23,11 +19,11 @@ public class SymSTART extends SymBase {
         this.METFUNC = a;
         this.DECMP = b;
 
-        procedureTable.calculateLocalVarSize(variableTable);
+        tp.calculateLocalVarSize(tv);
 
         ts.closeFile();
-        variableTable.closeFile(); //Escritura de les taules als corresponents fitxers
-        procedureTable.closeFile();
+        tv.closeFile(); //Escritura de les taules als corresponents fitxers
+        tp.closeFile();
         tac.closeFile();
 
     }
