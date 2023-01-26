@@ -8,8 +8,8 @@ package front.symbols;
 
 public class SymSENTLIST extends SymBase {
 
-    private SymSENT SENT;
-    private SymSENTLISTSEP SENTLISTSEP;
+    private final SymSENT SENT;
+    private final SymSENTLISTSEP SENTLISTSEP;
 
     public SymSENTLIST(SymSENT a, SymSENTLISTSEP b) {
         super("SENTLISTSEP", 0);

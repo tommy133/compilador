@@ -16,11 +16,11 @@ import static front.data_types.Types.METHOD;
 
 public class SymDECFUNC extends SymBase {
 
-    private SymTYPE TYPE;
-    private SymID ID;
-    private SymARGLIST ARGLIST;
-    private SymSENTLIST SENTLIST;
-    private SymRETURN RETURN;
+    private final SymTYPE TYPE;
+    private final SymID ID;
+    private final SymARGLIST ARGLIST;
+    private final SymSENTLIST SENTLIST;
+    private final SymRETURN RETURN;
 
     public SymDECFUNC(SymTYPE a, SymID b, SymARGLIST c, SymSENTLIST d, SymRETURN e, int[] lc) throws ErrorArgTypes, ErrorProcExists {
         super("F", 0);
@@ -36,9 +36,9 @@ public class SymDECFUNC extends SymBase {
             throw new ErrorArgTypes();
         }
 
-        if (ts.exist(n.getId())) {
-            Symbol node = ts.get(n.getId());
-            if (node.getType() == METHOD || node.getType() == FUNCTION) {
+        if (ts.existInTs(n.getId())) {
+            Symbol sym = ts.get(n.getId());
+            if (sym.getType() == METHOD || sym.getType() == FUNCTION) {
                 new ErrorProcExists().printError(lc, n.getId());
                 throw new ErrorProcExists();
             } else {
@@ -49,7 +49,7 @@ public class SymDECFUNC extends SymBase {
             ts.insertElement(n);
         }
         ts.emptyParams();
-        procedureTable.getProc(ID.getID()).setType_return(TypeSub.valueOf(TYPE.getType().toUpperCase()));
+        tp.getProc(ID.getID()).setType_return(TypeSub.valueOf(TYPE.getType().toUpperCase()));
     }
 
     private void insertSymbolArgs(ArrayList<Symbol> args){

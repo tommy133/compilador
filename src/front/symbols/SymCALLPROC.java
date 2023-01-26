@@ -15,14 +15,13 @@ import java.util.Collections;
 
 public class SymCALLPROC extends SymBase {
 
-    private SymID ID;
-    private SymIDLIST IDLIST;
+    private final SymID ID;
 
     public SymCALLPROC(SymID a, int[] lc) { //NoArgs
         super("CALLPROC", 0);
         this.ID = a;
 
-        if (!ts.exist(ID.getID())) {
+        if (!ts.existInTs(ID.getID())) {
             new ErrorProcNotExists().printError(lc, ID.getID());
         }
 
@@ -33,15 +32,16 @@ public class SymCALLPROC extends SymBase {
     public SymCALLPROC(SymID a, SymIDLIST b, int[] lc) throws ErrorVarNotDec, ErrorMuchParam, ErrorFewParam, ErrorArgTypes, ErrorProcNotExists { //WithArgs
         super("CALLPROC", 0);
         this.ID = a;
-        this.IDLIST = b;
+        SymIDLIST IDLIST = b;
 
         //Comprovar existencia
-        if (!ts.exist(ID.getID())) {
+
+        if (!ts.existInTs(ID.getID())) {
             new ErrorProcNotExists().printError(lc, ID.getID());
             throw new ErrorProcNotExists();
         }
 
-        ArrayList<SymID> args_call = new ArrayList();
+        ArrayList<SymID> args_call = new ArrayList<>();
         while (IDLIST.getIDLISTSEP() != null) {
             args_call.add(IDLIST.getID());
             IDLIST = IDLIST.getIDLISTSEP().getLID();

@@ -2,12 +2,7 @@ package front.data_structures;
 
 public class Dimension {
     private int idx;
-    private Subrange subrange;
-
-    public Dimension(int idx, Subrange subrange) {
-        this.idx = idx;
-        this.subrange = subrange;
-    }
+    private final Subrange subrange;
 
     public Dimension(Subrange subrange) {
         this.subrange = subrange;

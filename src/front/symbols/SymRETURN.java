@@ -10,7 +10,7 @@ import front.error.ErrorVarNotDec;
 
 public class SymRETURN extends SymBase {
 
-    private SymRETURNTYPE RETURNTYPE;
+    private final SymRETURNTYPE RETURNTYPE;
 
     public SymRETURN(SymRETURNTYPE a) throws ErrorVarNotDec {
         super("F", 0);
@@ -18,8 +18,8 @@ public class SymRETURN extends SymBase {
 
         tac.pop(tac.getStart_stack());
         tac.setTemp_id(null);
-        tac.generateCode("rtn "+ tac.getCur_prog() + " " + RETURNTYPE.getID().getID() + "\n\n"); //TODO retorn de constant
-        tac.resetDisplacement();
+        tac.generateCode("rtn "+ tac.getCur_prog() + " " + RETURNTYPE.getID().getID() + "\n\n");
+        tac.resetDisp();
     }
 
     public SymRETURNTYPE getRETURNTYPE() {

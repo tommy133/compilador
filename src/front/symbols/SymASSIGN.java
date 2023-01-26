@@ -14,7 +14,6 @@ import front.data_types.Types;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import static front.data_types.Types.VARIABLE;
 
@@ -22,10 +21,10 @@ public class SymASSIGN extends SymBase {
 
     private SymID ID;
     private SymIDARRAY IDARRAY;
-    private SymOPERANDX OPERANDX;
-    private SymTYPE TYPE;
-    private ArrayList<String> operators = new ArrayList<>();
-    private ArrayList<String> operands = new ArrayList<>();
+    private final SymOPERANDX OPERANDX;
+
+    private final ArrayList<String> operators = new ArrayList<>();
+    private final ArrayList<String> operands = new ArrayList<>();
 
     public SymASSIGN(SymID a, SymOPERANDX b, int[] lc) throws SintaxErrorException {
         super("ASSIGN", 0);
@@ -51,17 +50,17 @@ public class SymASSIGN extends SymBase {
             throw new ErrorConstAssign();
         }
 
-
-        while (OPERANDX.getOPARITH() != null) {
-            operands.add(OPERANDX.getSUBTYPE().getName());
-            operators.add(OPERANDX.getOPARITH().getType());
-            OPERANDX = OPERANDX.getOPERANDX();
+        SymOPERANDX OPERANDXLOCAL = this.OPERANDX;
+        while (OPERANDXLOCAL.getOPARITH() != null) {
+            operands.add(OPERANDXLOCAL.getSUBTYPE().getName());
+            operators.add(OPERANDXLOCAL.getOPARITH().getType());
+            OPERANDXLOCAL = OPERANDXLOCAL.getOPERANDX();
         }
 
-        if (OPERANDX.getSUBTYPE().getName() != null) {
-            operands.add(OPERANDX.getSUBTYPE().getName());
+        if (OPERANDXLOCAL.getSUBTYPE().getName() != null) {
+            operands.add(OPERANDXLOCAL.getSUBTYPE().getName());
         } else {
-            operands.add(OPERANDX.getSUBTYPE().getValor());
+            operands.add(OPERANDXLOCAL.getSUBTYPE().getValor());
         }
 
         //Càlcul d'ocupacions
@@ -95,7 +94,6 @@ public class SymASSIGN extends SymBase {
 
     public SymASSIGN(SymTYPE a, SymID b, SymOPERANDX c, int[] lc) throws ErrorVarNotDec, ErrorArgTypes, ErrorVarExists {
         super("ASSIGN", 0);
-        this.TYPE = a;
         this.ID = b;
         this.OPERANDX = c;
 
@@ -107,9 +105,9 @@ public class SymASSIGN extends SymBase {
             new ErrorArgTypes().printError(lc, this.ID.getID());
             throw new ErrorArgTypes();
         }
+        Symbol n = new Symbol(ID.getID(), VARIABLE, a.getType(),null);
 
-        Symbol n = new Symbol(ID.getID(), VARIABLE, TYPE.getType(),null); //TODO Subranges?
-        if (!ts.exist(n.getId())) {
+        if (!ts.existInTs(n.getId())) {
             ts.insertElement(n);
         } else {
             new ErrorVarExists().printError(lc, ID.getID());
@@ -258,7 +256,7 @@ public class SymASSIGN extends SymBase {
 
     private ArrayList<Dimension> setIdxs(ArrayList<Dimension> dim, ArrayList<Integer> idxs){
         for (int i=0; i<dim.size(); i++){
-            dim.get(i).setIdx((int) idxs.get(i));
+            dim.get(i).setIdx(idxs.get(i));
         }
         return  dim;
     }

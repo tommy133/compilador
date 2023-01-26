@@ -2,13 +2,8 @@ package front.data_structures.variable;
 
 public class Variable {
 
-    private String name;
-    private int n_var;
-    private String subprog;
-    private int store;
-    private int offset;
-    private String type;
-    private String value;
+    private final int n_var,store, offset;
+    private final String name, subprog, type, value;
 
     public Variable(String name, int n_var, String subprog, int store, int offset, String type, String value) {
         this.name = name;

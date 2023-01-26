@@ -8,15 +8,17 @@ import java.util.ArrayList;
 
 public class ProcedureTable {
 
-    private static final String TABLE_NAME = "Taula de procedimients";
+    private int num_proc;
     public Writer writer;
     private ArrayList<Procedure> row_list ;
-    private int num_proc = 0;
 
+    private static final String TABLE_NAME = "Taula de procedimients";
+    private static final String FILE_PATH = "files_output/Tables/Taula_procediments.txt";
 
     public ProcedureTable() {
         try {
-            this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Tables/Taula_procediments.txt"), StandardCharsets.UTF_8));
+            this.num_proc = 0;
+            this.writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FILE_PATH), StandardCharsets.UTF_8));
             this.row_list = new ArrayList<>();
 
             writeFile(Title());
@@ -26,10 +28,6 @@ public class ProcedureTable {
         }
     }
 
-    public int getNewNumProc() {
-        return ++num_proc;
-    }
-
 
     public void addRow(Procedure proc) {
         row_list.add(proc);
@@ -37,8 +35,8 @@ public class ProcedureTable {
 
 
     public void closeFile() {
-        for (int i = 0; i < row_list.size(); i++) {
-            writeFile(AddTableRow(row_list.get(i)));
+        for (Procedure procedure : row_list) {
+            writeFile(AddTableRow(procedure));
         }
 
         try {
@@ -50,11 +48,11 @@ public class ProcedureTable {
     }
 
     public void calculateLocalVarSize(VariableTable tv) {
-        for (int i = 0; i < row_list.size(); i++) {
+        for (Procedure procedure : row_list) {
 
-            for (int j = 0; j < tv.getRows_list().size(); j++) {
-                if (tv.getRows_list().get(j).getSubprog(). equalsIgnoreCase(row_list.get(i).getStart_label())) {
-                    row_list.get(i).setTotal_store(row_list.get(i).getTotal_store() + tv.getRows_list().get(j).getStore());
+            for (int i = 0; i < tv.getRows_list().size(); i++) {
+                if (tv.getRows_list().get(i).getSubprog().equalsIgnoreCase(procedure.getStart_label())) {
+                    procedure.setTotal_store(procedure.getTotal_store() + tv.getRows_list().get(i).getStore());
                 }
             }
         }
@@ -66,6 +64,10 @@ public class ProcedureTable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getNewNumProc() {
+        return ++num_proc;
     }
 
     public Procedure getProc(String id){

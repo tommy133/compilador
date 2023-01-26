@@ -8,13 +8,13 @@ public class SymELSE extends SymBase {
         super("SymELSE", 0);
 
 
-        String endLabel = tac.newLabel();
-        tac.push(tac.getEnd_stack(), endLabel);
+        String end_label = tac.newLabel();
+        tac.push(tac.getEnd_stack(), end_label);
 
-        tac.generateCode("goto " + endLabel + "\n");
+        tac.generateCode("goto " + end_label + "\n");
 
-        String falseLabel = tac.getTop(tac.getFalse_stack());
-        tac.generateCode(falseLabel + ":skip\n");
+        String false_label = tac.getTop(tac.getFalse_stack());
+        tac.generateCode(false_label + ":skip\n");
     }
 
 }

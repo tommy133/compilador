@@ -9,8 +9,8 @@ import front.data_types.TypeSub;
 
 public class SymANDOR extends SymBase {
 
-    private String operation;
-    private String typeOperation;
+    private final String operation;
+    private final String typeOperation;
 
     public SymANDOR(String a) {
         super("ANDOR", 0);

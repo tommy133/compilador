@@ -20,7 +20,7 @@ public class SymCONDELSE extends SymBase {
 
     public SymCONDELSE() {
         super("F", 0);
-        tac.removeLastGoto();
+        tac.removeGotoElse();
     }
 
 }

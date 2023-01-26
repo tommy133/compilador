@@ -15,8 +15,6 @@ public class SymOPERANDX extends SymBase {
     private SymOPARITH OPARITH;
     private SymSUBTYPE SUBTYPE;
 
-    private String type_operand;
-
     public SymOPERANDX() {
         super("OPERANDX", 0);
     }
@@ -31,10 +29,6 @@ public class SymOPERANDX extends SymBase {
             if(!this.OPERANDX.getSUBTYPE().getType().equalsIgnoreCase(this.SUBTYPE.getType())){
                 new ErrorIncompatibleTypesOperation().printError(lc, type_operand);
                 throw new ErrorIncompatibleTypesOperation();
-            }
-            if (OPERANDX.getSUBTYPE().getType().equalsIgnoreCase(TypeSub.INTEGER.toString())
-                    && SUBTYPE.getType().equalsIgnoreCase(TypeSub.INTEGER.toString())) {
-                type_operand = TypeSub.INTEGER.toString();
             }
         }
     }

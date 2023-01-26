@@ -13,7 +13,7 @@ import static front.data_types.Types.VARIABLE;
 
 public class SymDECVAR extends SymBase {
 
-    private SymTYPE TYPE;
+    private final SymTYPE TYPE;
     private SymIDLIST IDLIST;
     public SymDECVAR(SymTYPE a, SymIDLIST b, int[] lc) throws ErrorVarExists {
         super("DVAR", 0);
@@ -22,16 +22,16 @@ public class SymDECVAR extends SymBase {
         this.IDLIST = b;
 
         while (IDLIST.getIDLISTSEP() != null) {
-            Symbol n = new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(),null);
-            if (!ts.exist(n.getId())) {
-                ts.insertElement(n);
+            Symbol sym = new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(),null);
+            if (!ts.existInTs(sym.getId())) {
+                ts.insertElement(sym);
             } else {
                 new ErrorVarExists().printError(lc, IDLIST.getID().getID());
                 throw new ErrorVarExists();
             }
             IDLIST = IDLIST.getIDLISTSEP().getLID();
         }
-        if (!ts.exist(IDLIST.getID().getID())) {
+        if (!ts.existInTs(IDLIST.getID().getID())) {
             ts.insertElement(new Symbol(IDLIST.getID().getID(), VARIABLE, TYPE.getType(), null));
         } else {
             new ErrorVarExists().printError(lc, IDLIST.getID().getID());

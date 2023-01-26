@@ -14,9 +14,9 @@ import static front.data_types.Types.METHOD;
 
 public class SymDECMET extends SymBase {
 
-    private SymID ID;
-    private SymARGLIST ARGLIST;
-    private SymSENTLIST SENTLIST;
+    private final SymID ID;
+    private final SymARGLIST ARGLIST;
+    private final SymSENTLIST SENTLIST;
 
     public SymDECMET(SymID a, SymARGLIST b, SymSENTLIST c, int[] lc) throws ErrorProcExists {
         super("F", 0);
@@ -27,7 +27,7 @@ public class SymDECMET extends SymBase {
 
         Symbol n = new Symbol(ID.getID(), METHOD, "NULL", (ArrayList<Symbol>) ts.getParams().clone());
 
-        if (ts.exist(n.getId())) {
+        if (ts.existInTs(n.getId())) {
 
             Symbol node = ts.get(n.getId());
 

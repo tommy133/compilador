@@ -7,7 +7,7 @@ package front.symbols;
 
 public class SymVALUELIST extends SymBase {
 
-    private SymVALUE VAL;
+    private final SymVALUE VAL;
     private SymVALUELIST VALUELIST;
 
     public SymVALUELIST(SymVALUE a) {

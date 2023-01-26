@@ -1,8 +1,8 @@
 package front.symbols;
 
 import front.data_structures.Dimension;
-import front.data_structures.symbol.Symbol;
 import front.data_structures.Subrange;
+import front.data_structures.symbol.Symbol;
 import front.data_types.TypeSub;
 import front.error.ErrorRangeTypes;
 import front.error.ErrorVarExists;
@@ -10,12 +10,10 @@ import front.error.ErrorVarExists;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static front.data_types.Types.ARRAY;
-
 
 public class SymDECARRAY extends SymBase {
-    private SymTYPE TYPE;
-    private SymID ID;
+    private final SymTYPE TYPE;
+    private final SymID ID;
     private SymDECLISTDIM IDLISTDIM;
 
     public SymDECARRAY(SymTYPE a, SymID b, SymDECLISTDIM c, int[] lc) throws ErrorRangeTypes, ErrorVarExists {
@@ -42,8 +40,8 @@ public class SymDECARRAY extends SymBase {
 
         Collections.reverse(dimensions);
 
-        Symbol s = new Symbol(ID.getID(), ARRAY, TYPE.getType(), dimensions,null);
-        if (!ts.exist(ID.getID())) {
+        Symbol s = new Symbol(ID.getID(), TYPE.getType(), dimensions);
+        if (!ts.existInTs(ID.getID())) {
             ts.insertElement(s);
         } else {
             new ErrorVarExists().printError(lc, ID.getID());
@@ -55,15 +53,6 @@ public class SymDECARRAY extends SymBase {
     }
 
 
-
-
-    public SymTYPE getTYPE() {
-        return TYPE;
-    }
-
-    public SymDECLISTDIM getIDLISTDIM() {
-        return IDLISTDIM;
-    }
 
     public SymID getID() {
         return ID;

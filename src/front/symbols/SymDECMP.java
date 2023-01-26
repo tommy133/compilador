@@ -12,9 +12,9 @@ import static front.data_types.Types.MAINPROG;
 
 public class SymDECMP extends SymBase {
 
-    private SymID ID;
-    private SymARGLIST ARGLIST;
-    private SymSENTLIST SENTLIST;
+    private final SymID ID;
+    private final SymARGLIST ARGLIST;
+    private final SymSENTLIST SENTLIST;
 
     public SymDECMP(SymID a, SymARGLIST b, SymSENTLIST c) {
         super("F", 0);

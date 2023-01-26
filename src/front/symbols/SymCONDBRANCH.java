@@ -9,27 +9,25 @@ public class SymCONDBRANCH extends SymBase {
         super("CONDBRANCH", 0);
 
         if (inverter){
-            String falseLabel = tac.getTop(tac.getFalse_stack());
-            tac.generateCode("goto " + falseLabel + "\n");
+            String false_label = tac.getTop(tac.getFalse_stack());
+            tac.generateCode("goto " + false_label + "\n");
 
-            String trueLabel = tac.getTop(tac.getTrue_stack());
-            tac.generateCode("goto " + trueLabel + "\n");
+            String true_label = tac.getTop(tac.getTrue_stack());
+            tac.generateCode("goto " + true_label + "\n");
             tac.pop(tac.getTrue_stack());
 
-            tac.generateCode(trueLabel + ":skip\n");
-            tac.setTemp_id(null);
+            tac.generateCode(true_label + ":skip\n");
         } else {
-            String trueLabel = tac.getTop(tac.getTrue_stack());
-            tac.generateCode("goto " + trueLabel + "\n");
+            String true_label = tac.getTop(tac.getTrue_stack());
+            tac.generateCode("goto " + true_label + "\n");
             tac.pop(tac.getTrue_stack());
 
-            String falseLabel = tac.getTop(tac.getFalse_stack());
-            tac.generateCode("goto " + falseLabel + "\n");
+            String false_label = tac.getTop(tac.getFalse_stack());
+            tac.generateCode("goto " + false_label + "\n");
 
-            tac.generateCode(trueLabel + ":skip\n");
-            tac.setTemp_id(null);
+            tac.generateCode(true_label + ":skip\n");
         }
-
+        tac.setTemp_id(null);
     }
 
 }

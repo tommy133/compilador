@@ -6,8 +6,6 @@ import front.data_structures.symbol.Symbol;
 import front.data_types.TypeSub;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Locale;
 
 
 public class SymPMB extends SymBase {
@@ -19,7 +17,7 @@ public class SymPMB extends SymBase {
 
         String startLabel = tac.getTemp_id();
         tac.setTemp_id(null);
-        procedureTable.addRow(new Procedure(procedureTable.getNewNumProc(), 0, startLabel, getParams(), 0, TypeSub.NULL));
+        tp.addRow(new Procedure(tp.getNewNumProc(), 0, startLabel, getParams(), 0, TypeSub.NULL));
         tac.generateCode("pmb " + startLabel + "\n");
     }
 
@@ -27,9 +25,9 @@ public class SymPMB extends SymBase {
         ArrayList<Symbol> paramSymbol = ts.getParams();
         ArrayList<Parametro> params = new ArrayList<>();
 
-        for (int i=0; i<paramSymbol.size(); i++) {
-            TypeSub enum_type = TypeSub.valueOf(paramSymbol.get(i).getSubtype().toUpperCase());
-            params.add(new Parametro(paramSymbol.get(i).getId(), enum_type));
+        for (Symbol symbol : paramSymbol) {
+            TypeSub enum_type = TypeSub.valueOf(symbol.getSubtype().toUpperCase());
+            params.add(new Parametro(symbol.getId(), enum_type));
         }
 
         return params;

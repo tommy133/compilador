@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class SymIDARRAY extends SymBase{
-    private SymID ID;
-    private SymIDLISTDIM IDLISTDIM;
+    private final SymID ID;
+    private final SymIDLISTDIM IDLISTDIM;
 
     public SymIDARRAY(SymID ID, SymIDLISTDIM IDLISTDIM) {
         super("IDARRAY", 0);

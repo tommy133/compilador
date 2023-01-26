@@ -17,15 +17,15 @@ public class VariableTable {
 
     public Writer writer;
     public BufferedReader br;
-    private ArrayList<Variable> rows_list = new ArrayList<>();
+    private final ArrayList<Variable> rows_list = new ArrayList<>();
 
+    private static final String TABLE_FILE_PATH = "files_output/Tables/Taula_variables.txt";
+    private static final String STORES_FILE_PATH = "src/shared/stores.txt";
 
     public VariableTable() {
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("files_output/Tables/Taula_variables.txt"), StandardCharsets.UTF_8));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(TABLE_FILE_PATH), StandardCharsets.UTF_8));
             setStore();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class VariableTable {
     }
 
     private void setStore() throws IOException {
-        br = new BufferedReader(new FileReader("src/shared/stores.txt"));
+        br = new BufferedReader(new FileReader(STORES_FILE_PATH));
         int_store = Integer.parseInt(br.readLine().split(" ")[2]);
         str_store = Integer.parseInt(br.readLine().split(" ")[2]);
         logic_store = Integer.parseInt(br.readLine().split(" ")[2]);
@@ -47,8 +47,8 @@ public class VariableTable {
 
     public void addRow(Variable var) {
 
-        for (int i = 0; i < rows_list.size(); i++) { //Cerca i Si ja existeix no la torna a afegir
-            if (rows_list.get(i).getName().equals(var.getName())) {
+        for (Variable variable : rows_list) { //Cerca i Si ja existeix no la torna a afegir
+            if (variable.getName().equals(var.getName())) {
                 return;
             }
         }
@@ -65,18 +65,6 @@ public class VariableTable {
         return null;
     }
 
-
-    public void closeFile() {
-        try {
-            for (int i = 0; i < rows_list.size(); i++) {
-                writeFile(AddTableRow(rows_list.get(i)));
-            }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void writeFile(String string) {
         try {
             writer.write(string);
@@ -87,17 +75,23 @@ public class VariableTable {
 
     public int calculateStore(String type, String s) {
         TypeSub enum_type = TypeSub.valueOf(type.toUpperCase());
-        switch (enum_type) {
-            case INTEGER:
-                return int_store;
-            case STRING:
-                return str_store * s.length();
-            case LOGIC:
-                return logic_store;
-            case NULL:
-                return null_store;
+        return switch (enum_type) {
+            case INTEGER -> int_store;
+            case STRING -> str_store * s.length();
+            case LOGIC -> logic_store;
+            case NULL -> null_store;
+        };
+    }
+
+    public void closeFile() {
+        try {
+            for (Variable variable : rows_list) {
+                writeFile(AddTableRow(variable));
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return -1;
     }
 
     private String Title() {
