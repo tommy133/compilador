@@ -2,9 +2,9 @@ prog main()
 
     integer: array[0..100..150[10..15];
     integer: numero
-
+    const string: ejecutar := "No me llego a ejecutar!";
     array[0][0][14]:= numero;
 
-    print("No me llego a ejecutar!");
+    print(ejecutar);
 
 end
