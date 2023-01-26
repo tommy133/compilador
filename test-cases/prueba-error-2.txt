@@ -1,0 +1,15 @@
+prog main()
+   integer: n1 := 5;
+   integer: n2 := 10;
+   repeat
+      print(n1);
+      n1 := n1 + 1;
+    until n2 < n1
+
+  while i <= n loop
+    print(i);
+    i := i + 1;
+  endloop
+
+  integer: n2 := 10;
+end

@@ -1,0 +1,25 @@
+integer func suma(integer a, integer b)
+    integer: x;
+    x := a + b;
+    return x;
+end
+integer func resta(integer a, integer b)
+    integer: x;
+    x := a - b;
+    return x;
+end
+
+prog main()
+    integer: ressuma, resresta;
+    integer: n1 = 1;
+    integer: n2 := 2;
+    integer: n3 := 3;
+    resresta := resta(n1, n2 ,n3);
+
+    integer: n4 := 4;
+    integer: n5 := 5;
+    ressuma := suma(n4,n5);
+
+    print(ressuma);
+    print(resresta);
+end

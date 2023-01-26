@@ -1,5 +1,6 @@
 package front.parser;
 
+import java_cup.runtime.*;
 import front.symbols.*;
 import front.data_structures.symbol.Symbol;
 import front.scanner.LexicalScanner;
@@ -7,12 +8,24 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import front.error.ErrorSintax;
 import front.error.ErrorFatalSintax;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 class Parser;
 
 parser code {:
 
     private boolean sintacticErrors = false;
+
+    // Overrided method from lr_parser
+    public void syntax_error(Symbol cur_token) {
+    }
+
+    // Overrided method from lr_parser
+    protected String show_expected_token_ids() {
+    return null;
+    }
 
     public void apuntar_error(int[] lc) {
         new ErrorSintax().printError(lc, "");
@@ -23,10 +36,16 @@ parser code {:
         return this.sintacticErrors;
     }
 
+    // Overrided method from lr_parser
+    public void report_error ( String message, Object info) {
+    }
+
+
+    // Overrided method from lr_parser
     public void report_fatal_error(String message, Object info) throws Exception {
         new ErrorFatalSintax().printError(new int[]{0, 0}, message);
         throw new ErrorFatalSintax();
-      }
+    }
 
     private LexicalScanner scanner;
 
@@ -156,7 +175,6 @@ start with START;
             |     DECVAR:h scolon                   {: RESULT = new SymSENT(h); :}
             |     DECLARECONST:i scolon             {: RESULT = new SymSENT(i); :}
             |     DECARRAY:j scolon                 {: RESULT = new SymSENT(j); :}
-            |     error scolon  	                {: apuntar_error(scanner.getLineColumn()); :}
             ;
 
     OPERANDX    ::= OPERANDX:a OPARITH:b SUBTYPE:c            {:  RESULT = new SymOPERANDX(a, b, c, scanner.getLineColumn()); :}

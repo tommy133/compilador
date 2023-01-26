@@ -78,9 +78,9 @@ public class SymASSIGN extends SymBase {
         super("ASSIGN", 0);
         this.IDARRAY = a;
         this.OPERANDX = b;
-
         if (ts.get(IDARRAY.getID().getID()) == null) {
             new ErrorVarNotDec().printError(lc, IDARRAY.getID().getID());
+            throw new ErrorVarNotDec();
         }
         if(!ts.get(IDARRAY.getID().getID()).getSubtype().equalsIgnoreCase(this.OPERANDX.getSUBTYPE().getType())){
             new ErrorArgTypes().printError(lc, IDARRAY.getID().getID());
