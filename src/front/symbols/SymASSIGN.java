@@ -101,7 +101,7 @@ public class SymASSIGN extends SymBase {
             new ErrorArgTypes().printError(lc, this.ID.getID());
             throw new ErrorArgTypes();
         }
-        if(!this.TYPE.getType().equalsIgnoreCase(this.OPERANDX.getSUBTYPE().getType())) {
+        if(!a.getType().equalsIgnoreCase(this.OPERANDX.getSUBTYPE().getType())) {
             new ErrorArgTypes().printError(lc, this.ID.getID());
             throw new ErrorArgTypes();
         }

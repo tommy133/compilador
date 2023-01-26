@@ -22,14 +22,14 @@ public class SymDECLARECONST extends SymBase {
         this.TYPE = a;
         this.ASSIGNCONST = b;
 
-        Symbol n = new Symbol(ASSIGNCONST.getID().getID(), CONSTANT, TYPE.getType(), null);
+        Symbol sym = new Symbol(ASSIGNCONST.getID().getID(), CONSTANT, TYPE.getType(), null);
 
         if (!ts.existInTs(sym.getId())) {
             ts.insertElement(sym);
             tac.assign(tac.newVar(ASSIGNCONST.getID().getID(), ASSIGNCONST.getID().getType(),
                     ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor()), ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor());
         } else {
-            new ErrorConstExists().printError(lc, n.getId());
+            new ErrorConstExists().printError(lc, sym.getId());
             throw new ErrorConstExists();
         }
     }
