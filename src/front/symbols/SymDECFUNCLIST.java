@@ -8,8 +8,8 @@ package front.symbols;
 
 public class SymDECFUNCLIST extends SymBase {
 
-    private SymDECFUNC DECFUNC;
-    private SymMETFUNC METFUNC;
+    private final SymDECFUNC DECFUNC;
+    private final SymMETFUNC METFUNC;
 
     public SymDECFUNCLIST(SymDECFUNC a, SymMETFUNC b, int[] lc) {
         super("F", 0);

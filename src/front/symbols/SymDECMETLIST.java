@@ -8,8 +8,9 @@ package front.symbols;
 
 public class SymDECMETLIST extends SymBase {
 
-    private SymDECMET DECMET;
-    private SymMETFUNC METFUNC;
+    private final SymDECMET DECMET;
+    private final SymMETFUNC METFUNC;
+
 
     public SymDECMETLIST(SymDECMET a, SymMETFUNC b) {
         super("F", 0);

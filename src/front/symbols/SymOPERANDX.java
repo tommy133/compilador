@@ -5,16 +5,11 @@
  */
 package front.symbols;
 
-import front.data_types.TypeSub;
-
-
 public class SymOPERANDX extends SymBase {
 
     private SymOPERANDX OPERANDX;
     private SymOPARITH OPARITH;
     private SymSUBTYPE SUBTYPE;
-
-    private String type_operand;
 
     public SymOPERANDX() {
         super("OPERANDX", 0);
@@ -26,12 +21,6 @@ public class SymOPERANDX extends SymBase {
         this.OPARITH = b;
         this.SUBTYPE = c;
 
-        if (OPERANDX.getSUBTYPE().getType() != null) {
-            if (OPERANDX.getSUBTYPE().getType().equalsIgnoreCase(TypeSub.INTEGER.toString())
-                    && SUBTYPE.getType().equalsIgnoreCase(TypeSub.INTEGER.toString())) {
-                type_operand = TypeSub.INTEGER.toString();
-            }
-        }
     }
 
     public SymOPERANDX(SymSUBTYPE a) {

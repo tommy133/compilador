@@ -15,11 +15,11 @@ import static front.data_types.Types.METHOD;
 
 public class SymDECFUNC extends SymBase {
 
-    private SymTYPE TYPE;
-    private SymID ID;
-    private SymARGLIST ARGLIST;
-    private SymSENTLIST SENTLIST;
-    private SymRETURN RETURN;
+    private final SymTYPE TYPE;
+    private final SymID ID;
+    private final SymARGLIST ARGLIST;
+    private final SymSENTLIST SENTLIST;
+    private final SymRETURN RETURN;
 
     public SymDECFUNC(SymTYPE a, SymID b, SymARGLIST c, SymSENTLIST d, SymRETURN e, int[] lc) {
         super("F", 0);
@@ -32,8 +32,8 @@ public class SymDECFUNC extends SymBase {
         Symbol n = new Symbol(ID.getID(), FUNCTION, TYPE.getType(), (ArrayList<Symbol>) ts.getParams().clone());
 
         if (ts.existInTs(n.getId())) {
-            Symbol node = ts.get(n.getId());
-            if (node.getType() == METHOD || node.getType() == FUNCTION) {
+            Symbol sym = ts.get(n.getId());
+            if (sym.getType() == METHOD || sym.getType() == FUNCTION) {
                 new ErrorProcExists().printError(lc, n.getId());
             } else {
                 ts.insertElement(n);

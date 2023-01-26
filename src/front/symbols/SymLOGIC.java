@@ -10,7 +10,7 @@ import front.data_types.TypeSub;
 
 public class SymLOGIC extends SymBase {
 
-    private String value;
+    private final String value;
 
     public SymLOGIC(String a) {
         super("F", 0);

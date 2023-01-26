@@ -14,9 +14,9 @@ import static front.data_types.Types.METHOD;
 
 public class SymDECMET extends SymBase {
 
-    private SymID ID;
-    private SymARGLIST ARGLIST;
-    private SymSENTLIST SENTLIST;
+    private final SymID ID;
+    private final SymARGLIST ARGLIST;
+    private final SymSENTLIST SENTLIST;
 
     public SymDECMET(SymID a, SymARGLIST b, SymSENTLIST c, int[] lc) {
         super("F", 0);

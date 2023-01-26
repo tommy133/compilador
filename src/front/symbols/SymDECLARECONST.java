@@ -13,22 +13,22 @@ import static front.data_types.Types.CONSTANT;
 
 public class SymDECLARECONST extends SymBase {
 
-    private SymTYPE TYPE;
-    private SymASSIGNCONST ASSIGNCONST;
+    private final SymTYPE TYPE;
+    private final SymASSIGNCONST ASSIGNCONST;
 
     public SymDECLARECONST(SymTYPE a, SymASSIGNCONST b, int[] lc) {
         super("DECLARECONST", 0);
         this.TYPE = a;
         this.ASSIGNCONST = b;
 
-        Symbol n = new Symbol(ASSIGNCONST.getID().getID(), CONSTANT, TYPE.getType(), null);
+        Symbol sym = new Symbol(ASSIGNCONST.getID().getID(), CONSTANT, TYPE.getType(), null);
 
-        if (!ts.existInTs(n.getId())) {
-            ts.insertElement(n);
+        if (!ts.existInTs(sym.getId())) {
+            ts.insertElement(sym);
             tac.assign(tac.newVar(ASSIGNCONST.getID().getID(), ASSIGNCONST.getID().getType(),
                     ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor()), ASSIGNCONST.getOPERANDX().getSUBTYPE().getValor());
         } else {
-            new ErrorConstExists().printError(lc, n.getId());
+            new ErrorConstExists().printError(lc, sym.getId());
         }
     }
 

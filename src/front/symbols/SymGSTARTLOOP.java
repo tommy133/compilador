@@ -9,8 +9,8 @@ public class SymGSTARTLOOP extends SymBase {
         super("SymGSTARTLOOP", 0);
 
         tac.generateCode("goto " + tac.getTop(tac.getStart_stack()) + "\n");
-        String falseLabel = tac.getTop(tac.getFalse_stack());
-        tac.generateCode(falseLabel + ":skip\n");
+        String false_label = tac.getTop(tac.getFalse_stack());
+        tac.generateCode(false_label + ":skip\n");
     }
 
 

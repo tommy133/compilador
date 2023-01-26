@@ -8,8 +8,8 @@ package front.symbols;
 
 public class SymIDLIST extends SymBase {
 
-    private SymID ID;
-    private SymIDLISTSEP IDLISTSEP;
+    private final SymID ID;
+    private final SymIDLISTSEP IDLISTSEP;
 
     public SymIDLIST(SymID a, SymIDLISTSEP b) {
         super("ID", 0);

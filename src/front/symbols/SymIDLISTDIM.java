@@ -2,7 +2,7 @@ package front.symbols;
 
 public class SymIDLISTDIM extends SymBase {
     private SymIDLISTDIM IDLISTDIM;
-    private SymOPERANDX OPERANDX;
+    private final SymOPERANDX OPERANDX;
 
 
     public SymIDLISTDIM(SymIDLISTDIM a, SymOPERANDX b) {

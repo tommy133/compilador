@@ -8,10 +8,10 @@ public class SymSTARTLOOP extends SymBase {
     public SymSTARTLOOP() {
         super("STARTLOOP", 0);
 
-        String startLabel = tac.newLabel();
-        tac.push(tac.getStart_stack(), startLabel);
+        String start_label = tac.newLabel();
+        tac.push(tac.getStart_stack(), start_label);
 
-        tac.generateCode(startLabel + ":skip\n");
+        tac.generateCode(start_label + ":skip\n");
 
     }
 

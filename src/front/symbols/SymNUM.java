@@ -9,7 +9,6 @@ import front.data_types.TypeSub;
 
 
 public class SymNUM extends SymBase {
-
     private int value;
 
     public SymNUM(int a) {
@@ -17,12 +16,12 @@ public class SymNUM extends SymBase {
         this.value = a;
     }
 
-    public String getType() {
-        return TypeSub.INTEGER.toString();
-    }
-
     public String getValue() {
         return Integer.toString(value);
+    }
+
+    public String getType() {
+        return TypeSub.INTEGER.toString();
     }
 
 }

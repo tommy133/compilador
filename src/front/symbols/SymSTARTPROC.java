@@ -8,10 +8,10 @@ public class SymSTARTPROC extends SymBase {
     public SymSTARTPROC() {
         super("STARTPROC", 0);
 
-        String startLabel = tac.getTemp_id();
-        tac.setCur_prog(startLabel);
-        tac.generateCode(startLabel + ":skip\n");
-        tac.push(tac.getStart_stack(), startLabel);
+        String start_label = tac.getTemp_id();
+        tac.setCur_prog(start_label);
+        tac.generateCode(start_label + ":skip\n");
+        tac.push(tac.getStart_stack(), start_label);
     }
 
 

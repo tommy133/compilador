@@ -218,7 +218,7 @@ public class ThreeAddressCode {
         disp += val;}
 
 
-    public void resetDisplacement(){
+    public void resetDisp(){
         disp = 0;}
     
 

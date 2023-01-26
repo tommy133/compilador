@@ -8,7 +8,7 @@ package front.symbols;
 
 public class SymRETURN extends SymBase {
 
-    private SymRETURNTYPE RETURNTYPE;
+    private final SymRETURNTYPE RETURNTYPE;
 
     public SymRETURN(SymRETURNTYPE a) {
         super("F", 0);
@@ -17,7 +17,7 @@ public class SymRETURN extends SymBase {
         tac.pop(tac.getStart_stack());
         tac.setTemp_id(null);
         tac.generateCode("rtn "+ tac.getCur_prog() + " " + RETURNTYPE.getID().getID() + "\n\n");
-        tac.resetDisplacement();
+        tac.resetDisp();
     }
 
 

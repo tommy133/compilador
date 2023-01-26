@@ -8,11 +8,12 @@ package front.symbols;
 
 public class SymINPUT extends SymBase {
 
-    private SymID ID;
+    private final SymID ID;
 
     public SymINPUT(SymID a) {
         super("F", 0);
         this.ID = a;
+
         tac.generateCode(paramType()+" " + ID + "\n");
         tac.generateCode("call " + (paramType().equals("param_c")?"getStr":"getInt") + "\n");
         tac.generateCode(tac.newVar(ID.getID(), ID.getType()) +" = " + returnType() + "\n");

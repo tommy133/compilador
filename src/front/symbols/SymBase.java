@@ -13,14 +13,21 @@ import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;
 
 
 public abstract class SymBase extends ComplexSymbol {
-    private static int idAutoIncrement = 0;
+    private static int i = 0;
     protected static SymbolTable ts = new SymbolTable();
     protected static VariableTable tv = new VariableTable();
     protected static ProcedureTable tp = new ProcedureTable();
     protected static ThreeAddressCode tac = new ThreeAddressCode(tv);
 
     public SymBase(String variable, Integer valor) {
-        super(variable, idAutoIncrement++, valor);
+        super(variable, i++, valor);
+    }
+
+    public void closeFiles(){
+        ts.closeFile();
+        tv.closeFile();
+        tp.closeFile();
+        tac.closeFile();
     }
 
 }

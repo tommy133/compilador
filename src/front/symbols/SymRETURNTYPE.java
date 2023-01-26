@@ -8,13 +8,13 @@ package front.symbols;
 
 public class SymRETURNTYPE extends SymBase {
 
-    private SymNUM NUM;
     private SymID ID;
+    private SymNUM NUM;
     private SymCALLPROC CALLPROC;
     private SymLOGIC LOGIC;
     private SymSTR STR;
 
-    private String type;
+    private final String type;
 
     public SymRETURNTYPE(SymNUM a) {
         super("RETURNTYPE", 0);

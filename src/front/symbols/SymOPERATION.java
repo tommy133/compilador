@@ -10,19 +10,14 @@ public class SymOPERATION extends SymBase {
     private SymANDOR ANDOR;
     private SymOPLOGIC OPLOGIC;
 
-    String type_operation;
-
     public SymOPERATION(SymANDOR a) {
         super("OPERATION", 0);
         this.ANDOR = a;
-        this.type_operation = a.getTypeOperation();
     }
 
     public SymOPERATION(SymOPLOGIC b) {
         super("OPERATION", 0);
         this.OPLOGIC = b;
-        this.type_operation = b.getTypeOperator();
-
     }
 
     public SymOPERATION() {

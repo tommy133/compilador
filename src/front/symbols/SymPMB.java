@@ -25,9 +25,9 @@ public class SymPMB extends SymBase {
         ArrayList<Symbol> paramSymbol = ts.getParams();
         ArrayList<Parametro> params = new ArrayList<>();
 
-        for (int i=0; i<paramSymbol.size(); i++) {
-            TypeSub enum_type = TypeSub.valueOf(paramSymbol.get(i).getSubtype().toUpperCase());
-            params.add(new Parametro(paramSymbol.get(i).getId(), enum_type));
+        for (Symbol symbol : paramSymbol) {
+            TypeSub enum_type = TypeSub.valueOf(symbol.getSubtype().toUpperCase());
+            params.add(new Parametro(symbol.getId(), enum_type));
         }
 
         return params;

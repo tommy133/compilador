@@ -10,7 +10,7 @@ import front.error.ErrorVarNotDec;
 
 public class SymID extends SymBase {
 
-    private String ID;
+    private final String ID;
     int[] lc;
 
     public SymID(String a, int[] lc) {
@@ -18,10 +18,8 @@ public class SymID extends SymBase {
         this.ID = a;
         this.lc = lc;
 
-        if (tac.getTemp_id() == null) {
-            String startLabel = ID;
-            tac.setTemp_id(startLabel);
-        }
+        if (tac.getTemp_id() == null) tac.setTemp_id(ID);
+
     }
 
     public String getID() {

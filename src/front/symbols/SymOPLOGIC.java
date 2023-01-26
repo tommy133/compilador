@@ -5,23 +5,14 @@
  */
 package front.symbols;
 
-import front.data_types.TypeSub;
-
-
 public class SymOPLOGIC extends SymBase {
 
     private String operator;
-    private String typeOperator;
 
     public SymOPLOGIC(String a) {
         super("OPLOGIC", 0);
         this.operator = a;
-        this.typeOperator = TypeSub.LOGIC.toString();
 
-    }
-
-    public String getTypeOperator() {
-        return typeOperator;
     }
 
     public String getOperator() {

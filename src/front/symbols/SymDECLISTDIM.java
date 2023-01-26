@@ -2,7 +2,7 @@ package front.symbols;
 
 public class SymDECLISTDIM extends SymBase {
     private SymDECLISTDIM DECLISTDIM;
-    private SymSUBRANGE SUBRANGE;
+    private final SymSUBRANGE SUBRANGE;
 
     public SymDECLISTDIM(SymDECLISTDIM a, SymSUBRANGE b) {
         super("ID", 0);

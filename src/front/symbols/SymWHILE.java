@@ -8,8 +8,8 @@ package front.symbols;
 
 public class SymWHILE extends SymBase {
 
-    private SymCONDITION COND;
-    private SymSENTLIST SENTLIST;
+    private final SymCONDITION COND;
+    private final SymSENTLIST SENTLIST;
 
     public SymWHILE(SymCONDITION a, SymSENTLIST b) {
         super("F", 0);
