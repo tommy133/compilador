@@ -10,6 +10,7 @@ integer func resta(integer a, integer b)
 end
 
 prog main()
+    const string: error := "Esto es un error;
     integer: ressuma, resresta;
     integer: n1 = 1;
     integer: n2 := 2;
@@ -22,4 +23,5 @@ prog main()
 
     print(ressuma);
     print(resresta);
+    print(error);
 end
